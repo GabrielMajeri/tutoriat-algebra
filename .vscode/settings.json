@@ -1,0 +1,4 @@
+{
+  "editor.formatOnSave": true,
+  "latex-workshop.latex.external.build.command": "make"
+}
