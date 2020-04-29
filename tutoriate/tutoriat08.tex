@@ -1,0 +1,133 @@
+\begin{exercise}
+Arătați că orice grup de 4 elemente este izomorf cu \(\integersmod{4}\) sau cu \(\integersmod{2} \times \integersmod{2}\). 
+\end{exercise}
+\begin{proof}
+Fie \((G, +)\) un grup cu \(\abs{G} = 4\).
+
+O consecință a teoremei lui Lagrange este că ordinul unui element dintr-un grup trebuie să dividă ordinul (cardinalul) grupului. Deci elementele lui \(G\) trebuie să aibă ordinele \(\ord x \in \Set{1, 2, 4}\).
+
+Avem mai multe cazuri posibile:
+\begin{enumerate}
+    \item Există cel puțin un element de ordin 4. Fie \(a \in G\), cu \(\ord a = 4\). Atunci observăm că \(a\) generează tot grupul, deci \(G\) este ciclic. Din \emph{teorema de structură a grupurilor ciclice}, acesta este izomorf cu \(\integersmod{4}\).
+    
+    \item Toate elementele au ordin cel mult 2. Să le notăm cu \(0, a, b, c\). Atunci
+    \[
+        0 + 0 = a + a = b + b = c + c = 0
+    \]
+    Dacă \(a + b = a\) sau \(a + b = b\), ar rezulta că \(a = 0\) sau că \(b = 0\), ceea ce nu se poate. Deci \(a + b = c\).
+    
+    Analog obținem că \(a + c = c + a = b\) și că \(b + c = c + b = a\).
+    
+    Tabelul pentru acest grup ar fi:
+    \begin{center}
+        \begin{tabular}{C|C|C|C|C} 
+          & 0 & a & b & c \\
+        \hline
+        0 & 0 & a & b & c \\
+        \hline
+        a & a & 0 & c & b \\
+        \hline
+        b & b & c & 0 & a \\
+        \hline
+        c & c & b & a & 0 \\
+        \end{tabular}
+    \end{center}
+    
+    Dacă realizăm corespondența \(0 \to (\widehat{0}, \widehat{0})\), \(a \to (\widehat{0}, \widehat{1})\), \(b \to (\widehat{1}, \widehat{0})\) și \(c \to (\widehat{1}, \widehat{1})\) observăm că tabelul se potrivește cu adunarea pe \(\integersmod{2} \times \integersmod{2}\).
+\end{enumerate}
+
+\end{proof}
+
+\begin{exercise}
+Arătați că orice grup de 6 elemente este izomorf cu \(\integersmod{6}\) sau \(S_3\).
+\end{exercise}
+\begin{proof}
+Fie \((G, \cdot)\) un grup cu \(\abs{G} = 4\).
+
+\begin{enumerate}
+    \item Dacă grupul are un element de ordin 6, atunci este ciclic, deci este izomorf cu \(\integersmod{6}\).
+    \item Grupul are cel puțin un element de ordin 3. Să-l notăm pe acesta \(a\). Știm că \(a\) și \(a^2\) sunt distincte, iar \(a^3 = 1\).
+    
+    Să notăm cu \(b\) un alt element din grup, diferit de \(1\), \(a\), sau \(a^2\). Acesta trebuie să aibă ordin 2, altfel am obține distincte elementele \(ab\), \(a^2 b\), \(a b^2\), \(a^2 b^2\) și am depăși cardinalul lui \(G\).
+    
+    Mai facem observația că \(ab \neq ba\), altfel completând tabelul am obține că \(\ord a = 6\), și \(G\) izomorf cu \(\integersmod{6}\).
+    
+    Completăm tabelul:
+    \begin{center}
+        \begin{tabular}{C|C|C|C|C|C|C}
+               & 1 & a & a^2 & b & a b & a^2 b \\
+             \hline
+             1 & 1 & a & a^2 & b & a b & a^2 b \\
+             \hline
+             a & a & a^2 & 1 & a b & a^2 b & b \\
+             \hline
+             a^2 & a^2 & 1 & a & a^2 b & b & a b \\
+             \hline
+             b & b & a^2 b & a b & 1 & a^2 & a \\
+             \hline
+             a b & a b & b & a^2 b & a & 1 & a^2 \\
+             \hline
+             a^2 b & a^2 b & a b & b & a^2 & a & 1
+        \end{tabular}
+    \end{center}
+    Acesta se potrivește cu cel al lui \(S_3\).
+    
+    \item Cazul în care are doar elemente de ordin cel mult 2 ar implica că grupul este comutativ, deoarece
+    \begin{align*}
+        \begin{rcases}
+        (xy)^2 = 1 \implies xy = (xy)^{-1} \\
+        (xy)^{-1} = y^{-1} x^{-1} = y x
+        \end{rcases} \implies xy = yx
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+Arătați că orice grup de 8 elemente este izomorf cu \(\integersmod{8}\), \(\integersmod{2} \times \integersmod{4}\), \(\integersmod{2}^3\), \(D_4\), sau cu \(Q\) (grupul cuaternionilor).
+\end{exercise}
+\begin{proof}
+Fie \((G, \cdot)\) un grup cu \(\abs{G} = 8\).
+\begin{enumerate}
+    \item Dacă are cel puțin un element de ordin 8, atunci \(G\) este ciclic, deci izomorf cu \(\integersmod{8}\).
+    
+    \item Dacă toate elementele au ordin cel mult 2, atunci \(G\) este izomorf cu \(\integersmod{2}^3\).
+    
+    \item Fie \(a \in G\) un element de ordin 4. Acesta va genera subgrupul \(\generatedby{a} = \Set{ 1, a, a^2, a^3 }\).
+    
+    Trebuie să mai existe cel puțin un element, pe care îl notăm \(b\), care să nu aparțină lui \(\generatedby{a}\). Elementele grupului sunt
+    \[
+        G = \Set{ 1, a, a^2, a^3, b, a b, a^2 b, a^3 b }
+    \]
+    
+    \pagebreak
+    
+    Știm că \(b^2\) trebuie să fie egal cu unul din primele patru elemente scrise mai sus:
+    \begin{enumerate}
+        \item Dacă \(b^2 = 1\), atunci \(\ord b = 2\). Trebuie să vedem cu cât este egal \(ba\):
+        \begin{enumerate}
+            \item Dacă \(ba = ab\) atunci \(G\) este comutativ și izomorf cu \(\integersmod{2} \times \integersmod{4}\).
+            
+            \item Dacă \(ba = a^2 b\), înmulțind cu inversul obținem \(a = b^{-1} a^2 b\). Ridicând la pătrat ajungem la contradicția \(a^2 = (b^{-1} a^2 b) (b^{-1} a^2 b) = 1\).
+            
+            \item Dacă \(ba = a^3 b\), regăsim grupul diedral \(\dihedralgroup{4}\).
+        \end{enumerate}
+        
+        \item Dacă \(b^2 = a^2\), atunci \(\ord b = 4\).
+        \begin{enumerate}
+            \item Dacă \(ba = ab\) regăsim \(\integersmod{2} \times \integersmod{4}\).
+            
+            \item Dacă \(ba = a^2 b\) ajungem la contradicția \(ba = b^3 \iff a = b^2 = a^2\).
+            
+            \item Dacă \(ba = a^3 b\) obținem un grup care se numește \emph{grupul cuaternionilor}.
+            
+            Cuaternionii se notează de obicei cu
+            \[
+                Q = \Set{ \pm 1, \pm i, \pm j, \pm k }
+            \]
+            cu proprietatea că \(i^2 = j^2 = k^2 = ijk = -1\).
+        \end{enumerate}
+        
+        \item \(b^2 = a\) și \(b^2 = a^3\) duc la contradicția că \(\ord b \not\in \set{2, 4}\)
+    \end{enumerate}
+\end{enumerate}
+\end{proof}

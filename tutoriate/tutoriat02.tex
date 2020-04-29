@@ -1,0 +1,184 @@
+\begin{exercise}
+Fie \(\function{f}{\reals}{\reals}\), \(f(x) = x^2 + x\). Găsiți preimaginea lui \([6, 12]\) (mai multe exemple pe \href{http://mathonline.wikidot.com/determining-the-inverse-image-of-a-set-examples}{acest site}).
+\end{exercise}
+\begin{proof}
+Aplicăm definiția preimaginii:
+\begin{align*}
+    f^{-1}([6, 12]) &= \Set{ x \in \reals | f(x) \in [6, 12] } \\
+    &= \Set{ x \in \reals | 6 \leq f(x) \leq 12 } \\
+    &= \Set{ x \in \reals | 6 \leq x^2 + x \leq 12 }
+\end{align*}
+Deci problema se reduce la a găsi soluțiile inecuației \(6 \leq x^2 + x \leq 12\).
+
+\begin{itemize}
+    \item Rezolvăm \(6 \leq x^2 + x \iff 0 \leq x^2 + x - 6\):
+    \begin{gather*}
+        \Delta = 1 + 4 \cdot 6 = 25 \\
+        x_1 = \frac{-1 + 5}{2} = 2 \\
+        x_2 = \frac{-1 - 5}{2} = -3
+    \end{gather*}
+    Soluția este \(x \in (-\infty, -3] \cup [2, +\infty)\).
+
+    \item Rezolvăm \(x^2 + x \leq 12 \iff x^2 + x - 12 \leq 0\):
+    \begin{gather*}
+        \Delta = 1 + 4 \cdot 12 = 49 \\
+        x_1 = \frac{-1 + 7}{2} = 3 \\
+        x_2 = \frac{-1 - 7}{2} = -4
+    \end{gather*}
+    Soluția este \(x \in [-4, 3]\).
+
+\end{itemize}
+
+Punând laolaltă rezultatele, obținem că preimaginea lui \([6, 12]\) este
+\[
+    ((-\infty, -3] \cup [2, +\infty)) \cap [-4, 3] = [-4, -3] \cup [2, 3]
+\]
+\end{proof}
+
+\begin{exercise}
+Fie \(\function{f}{[1, \infty)}{(0, 1]}\), unde
+\[
+    f(x) = \frac{2x}{1+x^2}
+\]
+Demonstrați că \(f\) este bijectivă și găsiți \(f^{-1}\).
+\end{exercise}
+\begin{proof}
+Ca să arătăm că \(f\) este bijectivă arătăm, pe rând, că este injectivă și surjectivă:
+\begin{itemize}
+    \item \(f\) injectivă \(\iff\) pentru orice \(x_1, x_2 \in [1, \infty)\) avem că \(f(x_1) = f(x_2) \implies x_1 = x_2\).
+    
+    Fie \(x_1, x_2 \in [1, \infty)\).
+    \begin{gather*}
+        f(x_1) = f(x_2) \\
+        \iff \frac{2x_1}{1 + x_1^2} = \frac{2x_2}{1 + x_2^2} \\
+        \iff x_1 (1 + x_2^2) = (1 + x_1^2) x_2 \\
+        \iff x_1 + x_1 x_2^2 = x_2 + x_1^2 x_2 \\
+        \iff x_1 - x_2 + x_1 x_2^2 - x_1^2 x_2 = 0 \\
+        \iff (x_1 - x_2)(1 - x_1 x_2) = 0 \\
+        \iff \begin{cases}
+        x_1 = x_2 \\
+        x_1 x_2 = 1 \iff x_1 = \frac{1}{x_2} \\
+        \qquad \iff x_1 = x_2 = 1 \\
+        \qquad \text{ pentru că } x_1, x_2 \in [1, \infty)
+        \end{cases}
+    \end{gather*}
+    \item \(f\) surjectivă \(\iff\) pentru orice \(y \in (0, 1]\) există un \(x \in [1, \infty)\) astfel încât \(f(x) = y\).
+     
+    Trebuie să ne gândim cum ar arăta un \(x\) pentru care \(f(x) = y\). Am avea că
+    \begin{gather*}
+        \frac{2x}{1 + x^2} = y \\
+        \iff yx^2 - 2x + y = 0 \\
+        \Delta = 4 - 4y^2 \geq 0 \text{ pentru că } y \in (0, 1] \\
+        x_1 = \frac{2 + \sqrt{4 - 4y^2}}{2y} = \frac{1 + \sqrt{1 - y^2}}{y} \\
+        x_2 = \frac{2 - \sqrt{4 - 4y^2}}{2y} = \frac{1 - \sqrt{1 - y^2}}{y}
+    \end{gather*}
+    Dintre cele două posibilități, dacă încercăm să introducem valoarea \(y = \frac{1}{2}\) doar prima convine. Acum trebuie să și demonstrăm că aceasta ar fi formula potrivită pentru \(x\).
+     
+    Fie \(y \in (0, 1]\). Luăm \(x = \frac{1 + \sqrt{1 - y^2}}{y}\). Avem că
+    \begin{align*}
+        f\left(\frac{1 + \sqrt{1 - y^2}}{y}\right)
+        &= \frac{2 \frac{1 + \sqrt{1 - y^2}}{y}}{1 + \left(\frac{1 + \sqrt{1 - y^2}}{y}\right)^2}
+        = \frac{2 + 2\sqrt{1 - y^2}}{y} \cdot \frac{1}{\frac{y^2}{y^2} + \frac{1 + 2\sqrt{1 - y^2} + 1 - y^2}{y^2}} \\
+        &= \frac{2 + 2\sqrt{1 - y^2}}{y} \cdot \frac{y^2}{2 + 2 \sqrt{1 - y^2}}
+        = y
+    \end{align*}
+\end{itemize}
+Din cele de mai sus rezultă că \(f\) este bijectivă.
+
+Conform definiției, inversa unei funcții \(\function{f}{A}{B}\) este o funcție \(\function{g}{B}{A}\) cu proprietatea că \(f \circ g = \identity{B}\) și \(g \circ f = \identity{A}\).
+
+Luăm \(\function{g}{(0, 1]}{[1, \infty)}\), \(g(y) = \frac{1 + \sqrt{1 - y^2}}{y}\). Atunci avem că \(f \circ g = \identity{[1, \infty)}\) (conform calculelor de la surjectivitate), și putem arăta și că \(g \circ f = \identity{(0, 1]}\) (prin alte calcule asemănătoare).
+\end{proof}
+
+\begin{exercise}
+Fie \(G = (V, E)\) un graf neorientat (respectiv orientat). Definim relația de echivalență pe noduri \(n \rhoequiv m \iff n \text{ este vecin cu } m\). Ce reprezintă închiderea tranzitivă a lui \(\rhoequiv\) în acest caz?
+\end{exercise}
+\begin{proof}
+Conform definiției, închiderea tranzitivă a lui \(\rhoequiv\) este
+\[
+    \rhoequiv' = \bigcup_{n=1}^{+\infty} \rhoequiv^n
+\]
+Să vedem ce reprezintă \(\rhoequiv^n\) pentru un anumit \(n\).
+
+Dacă există o muchie între nodul \(a\) și nodul \(b\) (\((a, b) \in \rhoequiv\)), și o muchie între \(b\) și \(c\) (\((b, c) \in \rhoequiv\)), atunci în \(\rhoequiv^2\) vom avea perechea \((a, c) \in \rhoequiv^2\).
+Cu alte cuvinte, spunem că două noduri se află în relația \(x \rhoequiv^2 y\) dacă există un drum de lungime doi între \(x\) și \(y\).
+
+Reunind toate drumurile de lungime \(1, 2, \dots, \infty\) obținem că \(x \rhoequiv' y\) dacă există un drum de orice lungime între \(x\) și \(y\).
+
+Acum să vedem ce reprezintă clasele de echivalență pentru \(\rho'\). Toate nodurile între care există un drum sunt echivalente.
+O mulțime maximală de noduri care sunt conectate se numește \href{https://en.wikipedia.org/wiki/Component_(graph_theory)}{componentă conexă}.
+\end{proof}
+
+\begin{exercise}
+Pe mulțimea \(\complex^*\) (numere complexe în afară de \(0\)) definim relația \(\sim\) cu \(z \sim w\) dacă \(0\), \(z\), și \(w\) sunt coliniare. Arătați că \(\sim\) este relație de echivalență și găsiți un sistem de reprezentanți.
+\end{exercise}
+\begin{proof}
+Pentru a demonstra că este relație de echivalență trebuie să arătăm că este
+\begin{itemize}
+    \item \emph{reflexivă}: Fie \(z \in \complex^*\). Atunci \(z\) se află pe dreapta \((0, z)\). Deci \(z \sim z\).
+    \item \emph{simetrică}: Fie \(z, w \in \complex^*\) astfel încât \(z \sim w\). Atunci \(0, z, w\) sunt coliniare. Putem spune că și \(0, w, z\) sunt coliniare. Deci \(w \sim z\).
+    \item \emph{tranzitivă}: Fie \(z, w, v \in \complex^*\) astfel încât \(z \sim w\) și \(w \sim v\).
+\end{itemize}
+Deoarece toate punctele aflate pe o dreaptă care trece prin origine, am putea lua ca sistem de reprezentanți dreptele:
+\[
+    S = \Set{ d \text{ dreaptă care trece prin } 0 }
+\]
+Dacă ne dăm seama că singurul lucru care contează pentru a distinge aceste drepte este panta lor, putem să luăm ca sistem de reprezentanți unghiul pe care îl fac cu \(O_x\):
+\[
+    S = \Set{ u \text{ unghi } | u \in [0, 2 \pi) }
+\]
+Să mai observăm și că obținem aceeași dreaptă dacă luăm două unghiuri la distanță \(\pi\) între ele. Așa că sistemul se poate reduce la
+\[
+    S = \Set{ u \text{ unghi } | u \in [0, \pi) }
+\]
+\end{proof}
+
+\begin{exercise}
+Fie \(\sim\) relația pe \(\naturals \times \naturals\) definită prin \((a, b) \sim (c, d)\) dacă \(a + d = b + c\). Arătați că \(\sim\) este o relație de echivalență și identificați un sistem de reprezentanți.
+\end{exercise}
+\begin{proof}
+Arătăm mai întâi că \(\sim\) este de echivalență:
+\begin{itemize}
+    \item \emph{reflexivă}: Fie \((a, b) \in \naturals \times \naturals\). Avem că \(a + b = b + a\). Deci \((a, b) \sim (a, b)\).
+    \item \emph{simetrică}: Fie \((a, b), (c, d) \in \naturals \times \naturals\) astfel încât \((a, b) \sim (c, d)\).
+    \item \emph{tranzitivă}: Fie \((a, b), (c, d), (e, f) \in \naturals \times \naturals\), cu
+    \begin{gather*}
+        \begin{rcases*}
+        (a, b) \sim (c, d) \iff a + d = b + c \iff a - b = c - d \\
+        (c, d) \sim (e, f) \iff c + f = d + e \iff c - d = e - f
+        \end{rcases*} \implies \\ \implies a - b = e - f \\
+        \iff a + f = b + e \\
+        \iff (a, b) \sim (e, f)
+    \end{gather*}
+\end{itemize}
+Acum trebuie să alegem reprezentanți pentru fiecare clasă de echivalență. Observăm că dacă plecăm de la, de exemplu \((2, 3)\) obținem
+\[
+    (0, 1) \sim (1, 2) \sim (2, 3) \sim (3, 4) \sim \dots \sim (n, n + 1)
+\]
+Sau dacă plecăm de la \((7, 4)\) obținem
+\[
+    (3, 0) \sim \dots \sim (6, 3) \sim (7, 4) \sim (8, 5) \sim \dots \sim (n + 3, n)
+\]
+Deci clasele de echivalență sunt de forma \((n, n + k)\) sau \((n + k, n)\). Luăm separat și cazul \((n, n)\). Deci un sistem de reprezentanți ar fi
+\[
+    S = \Set{ (0, k) | k \in \naturals^* } \cup \Set{ (k, 0) | k \in \naturals^* } \cup \Set{ (0, 0) }
+\]
+O idee ar fi să identificăm perechile de forma \((k, 0)\) cu \(+k\) și cele de forma \((0, k)\) cu simbolul \(-k\). Astfel aceste clase de echivalență se identifică cu \(\integers\). Dacă avem o pereche oarecare \((a, b)\), dacă \(a > b\) atunci aceasta reprezintă numărul pozitiv cu modulul \(a - b\), dacă \(a < b\) reprezintă numărul negativ cu modulul \(b - a\).
+
+Regulile de calcul pentru \(\integers\) funcționează și când lucrăm pe aceste perechi. Dacă luăm \((5, 3)\) (care ar însemna \(+2\)) și adunăm \((1, 6)\) (care ar însemna \(-5\)) obținem \((6, 9)\) (care ar însemna \((-3\))).
+\end{proof}
+
+\begin{exercise}
+Fie \(X\) o mulțime. Demonstrați că mulțimea funcțiilor \(\function{f}{X}{X}\) formează un monoid în raport cu operația de compunere a funcțiilor. 
+\end{exercise}
+\begin{proof}
+Pentru a forma un monoid, operația \(\circ\) trebuie să îndeplinească două cerințe:
+\begin{itemize}
+    \item să fie asociativă (știm deja asta despre \href{https://en.wikipedia.org/wiki/Function_composition#Properties}{compunerea funcțiilor})
+    \item să admită un element neutru: să existe o funcție \(\function{h}{X}{X}\) cu proprietatea că
+    \[
+        f \circ h = h \circ f = f, \forall \function{f}{X}{X}
+    \]
+    Observăm că în cazul nostru elementul neutru este funcția identică \(\identity{X}\).
+\end{itemize}
+\end{proof}

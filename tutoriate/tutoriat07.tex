@@ -1,0 +1,226 @@
+\begin{exercise}
+Determinați toate morfismele de monoizi de la \((\naturals, +)\) la \((\naturals, \max)\).
+\end{exercise}
+\begin{proof}
+Fie \(\function{f}{\naturals}{\naturals}\) un morfism. Atunci \(f\) are proprietatea că \(f(0) = 0\) și \(f(a + b) = \max(f(a), f(b))\).
+
+Putem scrie \(f(2)\) ca
+\[
+    f(2) = f(1 + 1) = \max(f(1), f(1)) = \max(f(1)) = f(1)
+\]
+Notând \(f(1) = a \in \naturals\), ajungem la concluzia că
+\begin{align*}
+    f(0) &= 0 \\
+    f(n) &= \max(\underbrace{f(1), \dots, f(1)}_{n \text{ ori}}) = f(1) = a
+\end{align*}
+Deci toate morfismele sunt de forma
+\[
+    f(x) =
+    \begin{cases}
+        0, \text{ dacă } x = 0 \\
+        a, \text{ altfel }
+    \end{cases}
+\]
+pentru un \(a \in \naturals\).
+\end{proof}
+
+\begin{exercise}
+Determinați \(\mathop{Hom}(\integersmod{8}, \rationals)\), adică mulțimea morfismelor de la \((\integersmod{8}, +)\) la \((\rationals, +)\).
+\end{exercise}
+\begin{proof}
+Fie \(\function{f}{\integersmod{8}}{\rationals}\) un morfism de grupuri. Din proprietățile morfismelor, știm că
+\begin{align*}
+    f(\widehat{0}) &= 0 \\
+    f(\widehat{a} + \widehat{b}) &= f(\widehat{a}) + f(\widehat{b})
+\end{align*}
+
+Să luăm de exemplu \(f(\widehat{3})\). Acesta poate fi scris ca
+\[
+    f(\widehat{3}) = f(\widehat{1} + \widehat{1} + \widehat{1}) = f(\widehat{1}) + f(\widehat{1}) + f(\widehat{1}) = 3 f(\widehat{1})
+\]
+
+Pe același principiu, pentru orice \(\widehat{k} \in \integersmod{8}\) avem că
+\[
+    f(\widehat{k}) = k f(\widehat{1})
+\]
+
+Să luăm acum două clase din \(\integersmod{8}\) care adunate dau \(\widehat{0}\), cum ar fi \(\widehat{3}\) și \(\widehat{5}\):
+\begin{align*}
+    f(\widehat{3} + \widehat{5}) &= f(\widehat{0}) = 0 \\
+    f(\widehat{3} + \widehat{5}) &= 3 f(\widehat{1}) + 5 f(\widehat{1}) = 8 f(\widehat{1})
+\end{align*}
+Deci \(8 f(\widehat{1}) = 0\). De aici obținem că \(f(\widehat{1}) = 0\), și de fapt că \(f(\widehat{k}) = 0\), \(\forall \widehat{k} \in \integersmod{8}\).
+
+Singurul morfism de la \(\integersmod{8}\) la \(\rationals\) este morfismul nul.
+\end{proof}
+
+
+\section*{Model de examen rezolvat}
+
+\subsection*{Subiectul 1}
+
+Considerăm grupul diedral \(\dihedralgroup_5 = \Set{ 1, \rho, \rho^2, \rho^3, \rho^4, \sigma, \rho \sigma, \rho^2 \sigma, \rho^3 \sigma, \rho^4 \sigma }\).
+Se știe că în el au loc relațiile \(\rho^5 = 1\), \(\sigma^2 = 1\), \(\sigma \rho = \rho^4 \sigma\).
+
+Grupul diedral de ordin \(n\) se referă la simetriile unui poligon regulat cu \(n\) laturi. În acest caz, \(\dihedralgroup_5\) se referă la simetriile unui pentagon regulat. \(\rho\) reprezintă o rotație, iar \(\sigma\) este pentagonul ``oglindit''.
+
+\begin{enumerate}[(a)]
+    \item \textbf{Teorie}: Construcția grupului factor
+
+    \item Arătați că \(\Set{ 1, \rho^3 \sigma } \leq \dihedralgroup_5\).
+    \begin{proof}
+    Notăm mulțimea cu \(A = \Set{ 1, \rho^3 \sigma }\).
+
+    Oricum am compune între ele elementele, rămânem în mulțime:
+    \begin{align*}
+        1 \cdot 1 &= 1 \in A \\
+        1 \cdot \rho^3 \sigma &= \rho^3 \sigma \in A \\
+        \rho^3 \sigma \cdot 1 &= \rho^3 \sigma \in A \\
+        (\rho^3 \sigma) \cdot (\rho^3 \sigma) &= \rho^3 (\sigma \rho) \rho^2 \sigma = \rho^3 \rho^4 \sigma \rho^2 \sigma \\
+        &= \rho^7 (\sigma \rho) \rho \sigma \\
+        &= \rho^{11} (\sigma \rho) \sigma \\
+        &= \rho^{15} \sigma^2 = (\rho^{5})^3 \cdot 1 \\
+        &= 1 \in A
+    \end{align*}
+
+    Pentru fiecare element, inversul elementului este conținut în mulțime:
+    \begin{align*}
+        1 \cdot 1 = 1 &\iff 1^{-1} = 1 \in A \\
+        (\rho^3 \sigma) \cdot (\rho^3 \sigma) = 1 &\iff (\rho^3 \sigma)^{-1} = \rho^3 \sigma \in A
+    \end{align*}
+    \end{proof}
+
+    \item Arătați că \(\generatedby{\rho} \trianglelefteq \dihedralgroup_5\).
+    \begin{proof}
+    Trebuie să scriem subgrupul generat de \(\rho\):
+    \[
+        \generatedby{\rho} = \Set{ \rho, \rho^2, \rho^3, \rho^4, \rho^5 = 1 }
+    \]
+    Deoarece \(\rho^5 = 1\), orice putere mai mare a lui \(\rho\) este conținută în această listă.
+
+    Pentru a arăta că este subgrup normal, cel mai simplu este să observăm că \(\generatedby{\rho}\) are exact \(5\) elemente, iar \(\dihedralgroup_5\) are 10. Deci \(\generatedby{\rho}\) are indice \(2 = \frac{10}{5}\). Ne folosim de o proprietate din curs care zice că orice subgrup de indice 2 al unui grup este normal.
+
+    Dacă nu ținem minte această observație, trebuie să calculăm toate clasele de resturi la stânga \(1 H, \rho H, \dots, \sigma H\) și toate clasele de resturi la dreapta \(H 1, H \rho, \dots, H \sigma\), și să arătăm că au același număr și corespund unu-la-unu.
+    \end{proof}
+
+
+    \item Descrieți grupul factor \(\dihedralgroup_5 \slash \generatedby{\rho}\).
+    \begin{proof}
+    Notăm \(\symrm{H} = \generatedby{\rho}\). Clasele de resturi obținute ar fi \(1 \symrm{H}\), \(\rho \symrm{H}\), \(\rho^2 \symrm{H}, \dots, \sigma \symrm{H}, \dots, \rho^4 \sigma \symrm{H}\). Unele dintre acestea sunt echivalente:
+    \begin{gather*}
+        \symrm{H} = \rho \symrm{H} = \dots = \rho^4 \symrm{H} \\
+        \sigma \symrm{H} = \dots = \rho^4 \sigma \symrm{H}
+    \end{gather*}
+    Legea de compoziție pe subgrup:
+    \begin{align*}
+        \symrm{H} \cdot \symrm{H} &= \symrm{H} \\
+        \symrm{H} \cdot \sigma \symrm{H} &= \sigma \symrm{H} \\
+        \sigma \symrm{H} \cdot \symrm{H} &= \sigma \symrm{H} \\
+        \sigma \symrm{H} \cdot \sigma \symrm{H} &= \symrm{H}
+    \end{align*}
+    Acest grup factor este izomorf cu \((\integersmod{2}, +)\): \(\symrm{H}\) este elementul neutru \(\widehat{0}\), iar \(\sigma \symrm{H}\) este \(\widehat{1}\).
+    \end{proof}
+\end{enumerate}
+
+\subsection*{Subiectul 2}
+\begin{enumerate}[(a)]
+    \item \textbf{Teorie}: Definiția morfismului și izomorfismul de grupuri
+
+    \item Elementele de ordin 8 din \(\integersmod{10} \times \integersmod{36}\)
+    \begin{proof}
+    Ordinul grupului este \(10 \cdot 36 = 360\).
+
+    Fie \((\widehat{a}, \widetilde{b})\) un element arbitrar din grup, cu \(\widehat{a} \in \integersmod{10}\) și \(\widetilde{b} \in \integersmod{36}\). Din teorema lui Lagrange trebuie ca ordinul lui \((\widehat{a}, \widetilde{b})\) să dividă 360, și \(\ord \widehat{a} \mid 10\), \(\ord \widetilde{b} \mid 36\).
+
+    Știm că
+    \[
+    \ord_{\integersmod{10} \times \integersmod{36}} (\widehat{a}, \widetilde{b}) = [\ord_{\integersmod{10}} \widehat{a}, \ord_{\integersmod{36}} \widetilde{b}]
+    \]
+    unde \([ \cdot, \cdot ]\) reprezintă c.m.m.m.c.-ul celor două ordine.
+
+    Din ipoteză, \(\ord_{\integersmod{10} \times \integersmod{36}} (\widehat{a}, \widehat{b})\) trebuie să fie 8. Pentru a obține acest c.m.m.m.c.~ar trebui ca unul dintre \(\widehat{a}, \widetilde{b}\) să aibă ordin 8.
+
+    Deoarece \(8 \not \mid 10\) și \(8 \not\mid 36\), nu există soluții.
+    \end{proof}
+
+    \item Elementele de ordin 20 din \(\integersmod{10} \times \integersmod{36}\)
+    \begin{proof}
+    Asemănător exercițiului precedent, ajungem la concluzia că pentru a avea c.m.m.m.c.-ul 20, trebuie ca ordinele elementelor să fie 5 și 4 sau 10 și 4.
+
+    Ne folosim de faptul că în \(\integersmod{n}\):
+    \[
+        \ord \widehat{x} = \frac{n}{(x, n)}
+    \]
+    unde \((\cdot, \cdot)\) reprezintă c.m.m.d.c.-ul celor două numere.
+
+    Rearanjând obținem
+    \[
+        \ord \widehat{x} \cdot (x, n) = n
+    \]
+
+    Înlocuim în expresie valorile noastre:
+    \begin{align*}
+        5 \cdot (x, 10) = 10 \iff (x, 10) = 2 \\
+        10 \cdot (x, 10) = 10 \iff (x, 10) = 1 \\
+        4 \cdot (x, 36) = 36 \iff (x, 36) = 9
+    \end{align*}
+
+    Elementele de ordin 5 în \(\integersmod{10}\) sunt \(\Set{ \widehat{2}, \widehat{4}, \widehat{6}, \widehat{8} }\), iar de ordin 10 sunt \(\widehat{1}, \widehat{3}, \widehat{7}, \widehat{9}\). Elementele de ordin 4 în \(\integersmod{36}\) sunt \(\Set{ \widetilde{9}, \widetilde{27} }\).
+
+    Deci elementele de ordin 20 sunt toate combinațiile posibile:
+    \[
+    \Set{ (\widehat{2}, \widetilde{9}), \dots, (\widehat{8}, \widetilde{27}), (\widehat{1}, \widetilde{9}), \dots, (\widehat{9}, \widetilde{27}) }
+    \]
+    \end{proof}
+\end{enumerate}
+
+\subsection*{Subiectul 3}
+\begin{enumerate}[(a)]
+    \item \textbf{Teorie}: Definiți ce este o transpoziție. Demonstrați că orice transpoziție este permutare impară.
+
+    \item Fie
+    \(
+    \sigma = \left(\begin{smallmatrix}
+    1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+    4 & 5 & 6 & 7 & 8 & 9 & 11 & 12 & 3 & 13 & 1 & 2 & 10
+    \end{smallmatrix}\right) \in S_{13}
+    \)
+
+    Trebuie descompusă în produs de ciclii disjuncți, găsit inversul permutării, calculat \(\sigma^2\), calculat ordinul permutării, calculat \(\sigma^{2019}\).
+    \begin{proof}
+    Descompunem permutarea în produs de ciclii disjuncți:
+    \[
+        \sigma = (1, 4, 7, 11) (2, 5, 8, 12) (3, 6, 9) (10, 13)
+    \]
+
+    Putem calcula \(\sigma^2\) mai ușor folosindu-ne de această reprezentare:
+    \[
+        \sigma^2 = (1, 7) (4, 11) (2, 8) (5, 12) (3, 9, 6)
+    \]
+    Orice ciclu de lungime 4 s-a spart în doi ciclii de lungime 2. Ciclul de lungime 2 a dispărut complet.
+
+    Pentru \(\sigma^{-1}\), putem inversa ordinea fiecărui ciclu:
+    \[
+        \sigma^{-1} = (11, 7, 4, 1) (12, 8, 5, 2) (9, 6, 3) (13, 10)
+    \]
+
+    Ordinul permutării este c.m.m.m.c.-ul lungimilor ciclului. Deci este \([4, 4, 3, 2]\), adică 12.
+
+    Pentru a calcula \(\sigma^{2019}\), ne folosim de faptul că de fiecare dată când compunem permutarea cu ea însăși de 12 ori (ordinul ei), obținem permutarea identică. Deci
+    \[
+        \sigma^{2019} = \sigma^{168 \cdot 12 + 3} = {(\sigma^{12})}^{168} \sigma^3 = \sigma^3
+    \]
+
+    Răspunsul este
+    \[
+        \sigma^{2019} = \sigma^3 = (1, 11, 7, 4)(2, 12, 8, 5)(10, 13)
+    \]
+    \end{proof}
+\end{enumerate}
+
+
+\begin{figure}[h]
+    \caption*{Subiectul de la restanță la Mincu, pentru cei care vor să-și testeze cunoștințele:}
+    \includegraphics[width=0.75\paperwidth]{subiect-restanta}
+    \centering
+\end{figure}

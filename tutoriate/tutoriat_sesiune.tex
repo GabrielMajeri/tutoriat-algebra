@@ -1,0 +1,142 @@
+\begin{exercise}
+Fie polinoamele \(f = X^2 + \widehat{2} X + \widehat{1}\), \(g = X^2 + \widehat{2} X + \widehat{2}\) din \(\integersmod{3}[X]\).
+
+Demonstrați că
+\[
+    \integersmod{3}[X] / (f) \not\cong \integersmod{3}[X] / (g)
+\]
+\end{exercise}
+\begin{proof}
+Vrem să găsim o justificare de ce nu ar putea fi izomorfe inelele factor.
+
+Observăm că polinomul \(f\) este reductibil:
+\begin{align*}
+    f(\widehat{0}) &= \widehat{1} \\
+    f(\widehat{1}) &= \widehat{1} \\
+    f(\widehat{2}) &= \widehat{0}
+    \implies f = (X - \widehat{2})(X - \widehat{2})
+\end{align*}
+
+În timp ce polinomul \(g\) este ireductibil:
+\begin{align*}
+    g(\widehat{0}) &= \widehat{2} \\
+    g(\widehat{1}) &= \widehat{2} \\
+    g(\widehat{2}) &= \widehat{1}
+\end{align*}
+
+Din curs avem o proprietate care ne zice că atunci când factorizăm printr-un polinom ireductibil, cum avem în cazul \(\integersmod{3}[X]/(g)\), obținem un \emph{corp}. Ar fi suficient să arătăm că \(\integersmod{3}[X]/(f)\) nu e corp.
+
+Când polinomul prin care factorizăm este reductibil, putem să îi scriem descompunerea în factori în inelul factor ca să obținem \emph{divizori ai lui zero}:
+\[
+    \overline{(\underbrace{X - \widehat{2}}_{\neq 0})(\underbrace{X - \widehat{2}}_{\neq 0})} = \overline{X^2 + \widehat{2} X + \widehat{1}} = \overline{\widehat{0}}
+\]
+Deoarece are divizori al lui zero, \(\integersmod{3}[X]/(f)\) nu este corp. Deci nu poate fi izomorf cu \(\integersmod{3}[X]/(g)\).
+\end{proof}
+
+\begin{exercise}
+Fie \(J = (X^3 + 1)\) un ideal al inelului \(\rationals[X]\). Determinați elementele nilpotente și idempotente ale lui \(\rationals[X]/J\).
+\end{exercise}
+\begin{proof}
+Elementele inelului factor sunt de forma
+\[
+    \frac{\rationals[X]}{J} = \Set{ aX^2 + bX + c | a, b, c \in \rationals }
+\]
+și mai știm și că \(\widehat{X^3} = \widehat{-1}\).
+
+Pentru ca un polinom să fie nilpotent trebuie ca
+\[
+    (\widehat{aX^2 + bX + c})^n = \widehat{0} \text{ pentru un } n \in \naturals
+\]
+Dacă dezvoltăm și ne uităm doar la termenul liber, obținem că
+\[
+    \widehat{c^n} = \widehat{0}
+\]
+deci trebuie ca \(c\) să fie nilpotent, în cazul nostru singura posibilitate este \(c = 0\).
+
+Repetăm raționamentul pentru
+\[
+    (\widehat{aX^2 + bX})^n = \widehat{0} \iff \widehat{X}^n(\widehat{aX + b})^n = \widehat{0}
+\]
+Dacă ne uităm doar la termenul de grad \(n\) obținem că \(\widehat{X^n b^n} = \widehat{0}\), de unde \(b\) este nilpotent, deci este \(0\).
+
+Analog obținem că \(a = 0\). Singurul nilpotent al inelului factor este \(\widehat{0}\).
+
+Pentru ca un polinom să fie idempotent trebuie ca
+\[
+    (\widehat{aX^2 + bX + c})^2 = \widehat{aX^2 + bX + c}
+\]
+Desfăcând paranteza și folosindu-ne de identitatea de mai sus obținem
+\begin{gather*}
+    \widehat{a^2 X^4} + \widehat{b^2 X^2} + \widehat{c^2} + \widehat{2abX^3} + \widehat{2acX^2} + \widehat{2bcX} = \widehat{aX^2} + \widehat{bX} + \widehat{c} \\
+    \widehat{- a^2} \widehat{X} + \widehat{b^2} \widehat{X^2} + \widehat{c^2} - \widehat{2ab} + \widehat{2ac} \widehat{X^2} + \widehat{bc} \widehat{X} = \widehat{aX^2} + \widehat{bX} + \widehat{c} \\
+    \widehat{X^2}(\widehat{b^2} + \widehat{2ac}) + X(\widehat{- a^2} + \widehat{bc}) + \widehat{c^2} - \widehat{2ab} = \widehat{aX^2} + \widehat{bX} + \widehat{c} \\
+    \begin{cases}
+    \begin{aligned}
+        b^2 + 2ac &= a \\
+        -a^2 + bc &= b \\
+        c^2 - 2ab &= c
+    \end{aligned}
+    \end{cases}
+\end{gather*}
+Singurele soluții ale acestui sistem sunt \(a = b = c = 0\) și \(a = b = 0\), \(c = 1\). Deci singurii idempotenți din inelul factor sunt \(0\) și \(1\).
+\end{proof}
+
+\begin{exercise}
+Se dă polinomul \(f = X^4 + X^2 + 1\).
+Notăm cu \(\alpha_1, \alpha_2, \alpha_3, \alpha_4\) rădăcinile complexe ale polinomului. Scrieți un polinom care să aibă rădăcinile \(2 \alpha_1 + 1, 2 \alpha_2 + 1, 2 \alpha_3 + 1, 2\alpha_4 + 1\).
+\end{exercise}
+\begin{proof}
+Vrem să obținem un nou polinom \(f'\) în \(Y\) care să aibă acele rădăcini. Pentru asta notăm \(Y = 2 X + 1\) și extragem \(X\)-ul:
+\[
+    Y = 2 X + 1 \iff Y - 1 = 2X \iff \frac{Y - 1}{2} = X
+\]
+Înlocuind, obținem polinomul
+\[
+    f' = \left(\frac{Y - 1}{2}\right)^4 + \left(\frac{Y - 1}{2}\right)^2 + 1
+\]
+În această formă se vede că \(f'(2 \alpha_k + 1)\) este egal cu \(f(\alpha_k) = 0\), \(\forall k \in \overline{1, 4}\). Mai rămâne să desfacem parantezele ca să scriem polinomul în forma lui obișnuită (ca să fie mai ușor, putem înmulți cu \(\frac{1}{16}\), vom avea aceleași rădăcini).
+\end{proof}
+
+\begin{comment}
+\begin{exercise}
+Fie două grupuri \((G, \cdot)\), \((H, *)\) și \(\function{f}{G}{H}\) un morfism de grupuri.
+Demonstrați că preimaginea prin \(f\) a unui subgrup normal \(H' \trianglelefteq H\) este subgrup normal al lui \(G\).
+\end{exercise}
+\end{comment}
+
+\begin{comment}
+\begin{exercise}
+Se consideră următoarele submulțimi ale lui \(\symcal{M}_2(\reals)\):
+\[
+A = \Set{
+\begin{pmatrix}
+    a & b \\
+    0 & c
+\end{pmatrix}
+| a, c \in \reals^*, b \in \reals
+},
+B = \Set{
+\begin{pmatrix}
+    1 & b \\
+    0 & 1
+\end{pmatrix}
+| b \in \reals
+}
+\]
+\begin{enumerate}
+    \item Arătați că \(A \leq GL_2(\reals)\).
+    \item Arătați că \(B \trianglelefteq A\).
+\end{enumerate}
+\end{exercise}
+\end{comment}
+
+\section*{Sfaturi}
+\begin{itemize}
+    \item La ambii profesori este important să scrii toată rezolvarea \textbf{pas cu pas}, și să fie \textbf{corect} din punct de vedere logic.
+    \begin{itemize}
+        \item Dacă omiți pași care ți se par evidenți, profesorul ar putea să întrebe la corectură cum de ai obținut un anume rezultat.
+        \item În special la Mincu: În cazul în care nu ești sigur dacă e nevoie să arăți/verifici ceva ca parte a unei demonstrații, nu pierzi nimic dacă scrii în plus.
+        \item Mare grijă la diferența dintre \(p \implies q\) și \(p \iff q\)! De asemenea, e important să pui conectori logici (\(\implies\), \emph{așadar}, \emph{deci}) între propozițiile pe care le scrii, altfel nu ar fi clar cum decurge rezolvarea.
+    \end{itemize}
+    \item Întotdeauna trebuie să ai în minte \textbf{ce îți cere problema} (concluzia). Multă lume ajunge să dea răspunsul corect dar la cu totul altă întrebare. Dacă nu înțelegi ce vrea enunțul de la tine, poți cere clarificări de la profesor.
+\end{itemize}

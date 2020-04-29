@@ -1,0 +1,167 @@
+\begin{exercise}
+Demonstrați că următoarele grupuri (cu adunarea) nu sunt izomorfe:
+\begin{itemize}
+    \item \(\integersmod{2} \times \integersmod{2}\) și \(\integersmod{4}\).
+    \item \(\integers\) și \(\rationals\)
+    \item \(\rationals\) și \(\reals\)
+\end{itemize}
+\end{exercise}
+\begin{proof}
+Pentru a demonstra că două grupuri nu sunt izomorfe, putem folosi procedeul reducerii la absurd. Presupunem că ar exista un izomorfism \(f\) și ajungem la o contradicție.
+\begin{itemize}
+    \item În unele cazuri ne putem gândi la ordinele elementelor. Reamintim că ordinul elementului \(x\) este cel mai mic număr natural nenul \(k\) pentru care \(\underbrace{x + \dots + x}_{k \text{ ori}} = 0\). Un izomorfism păstrează ordinul unui element: \(f(\underbrace{x + \dots + x}_{k \text{ ori}}) = \underbrace{f(x) + \dots + f(x)}_{k \text{ ori}}\).
+        \begin{itemize}
+            \item În \(\integersmod{2} \times \integersmod{2}\) toate elementele au ordin cel mult \(2\).
+            \item În \(\integersmod{4}\) avem și un element de ordin 4 (și anume \(\widehat{1}\)). Pentru elementul de ordin 4 nu am avea corespondent.
+        \end{itemize}
+
+    \item O altă proprietate care trebuie păstrată de izomorfisme este cea de a fi grup ciclic. \(\integers\) este un grup ciclic, în timp ce \(\rationals\) nu este (am demonstrat acest lucru în tutoriatul anterior).
+    
+    \item Dacă ar exista un izomorfism \(f\), acesta ar fi funcție bijectivă. Asta ar însemna că \(\rationals\) și \(\reals\) ar avea același cardinal. Dar \(\rationals\) este mulțime numărabilă, iar \(\reals\) este nenumărabilă.
+\end{itemize}
+\end{proof}
+
+\pagebreak
+
+\begin{exercise}
+Fie \(\function{f}{\rationals}{\complex^*}\), definită prin
+\[
+    f(\frac{m}{n}) = \cos 2\pi \frac{m}{n} + i \sin 2 \pi \frac{m}{n}
+\]
+și notăm cu \(U\) mulțimea \(U = \Set{ z \in \complex^* | \exists n \in \naturals^*, z^n = 1 }\)
+
+\begin{enumerate}
+    \item Arătați că \(f\) este morfism de grupuri.
+    \item Determinați \(\ker f\) și \(\im f\).
+    \item Arătați că \(\rationals / \integers \cong U\).
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+Facem observația că în acest caz, grupurile sunt \(\rationals\) cu adunarea (elementul neutru este 0) și \(\complex\) cu înmulțirea (elementul neutru este 1).
+
+De asemenea, dacă luăm formula din definiția lui \(U\) și aplicăm modulul obținem:
+\begin{align*}
+    z^n &= 1 \\
+    \implies \abs{z^n} &= 1 \\
+    \implies \abs{z}^n &= 1 \\
+    \implies \abs{z} &= 1
+\end{align*}
+Deci \(U\) este mulțimea punctelor aflate la distanță 1 de origine, sau cu alte cuvinte este cercul de centru 0 și rază 1.
+
+\begin{enumerate}
+    \item Condiția ca \(f\) să fie morfism este ca
+    \begin{align*}
+        f(x + y) &= f(x) \cdot f(y) \iff \\
+        \cos 2 \pi (x + y) + i \sin 2 \pi (x + y) &= (\cos 2 \pi x + i \sin 2 \pi x) \cdot (\cos 2 \pi y + i \sin 2 \pi y)
+    \end{align*}
+    Ultima egalitate este adevărată din formulele lui de Moivre.
+    
+    \item Ne bazăm pe definițiile acestor mulțimi:
+    \begin{align*}
+        \ker f &= \Set{ x \in \rationals | f(x) = 1 } \\
+        &= \Set{ x \in \rationals | \cos 2 \pi x + i \sin 2 \pi x = 1 } \\
+        &= \Set{ x \in \rationals | x \in \integers } = \integers
+    \end{align*}
+    \begin{align*}
+        \im f &= \Set{ y \in \complex^* | \exists x \in \rationals, f(x) = y } \\
+        &= \Set{ y \in \complex^* | \exists x \in \rationals, \cos 2 \pi x + i \sin 2 \pi x = y } \\
+        &= \Set{ y \in \complex^* | \abs{y} = 1 } = U
+    \end{align*}
+    
+    \item Putem demonstra că grupul factor \(\frac{\rationals}{\integers}\) este izomorf cu \(U\) foarte ușor folosindu-ne de \textbf{teorema fundamentală de izomorfism}.
+    
+    Pe cazul general, teorema spune că, dacă \(\function{f}{G}{H}\) este un morfism de grupuri, avem că
+    \[
+        \frac{G}{\ker f} \cong \im f
+    \]
+    
+    Aplicând teorema pe cazul nostru avem că:
+    \[
+        \frac{\rationals}{\integers} \cong U
+    \]
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+Scrieți subgrupurile lui \(\integersmod{12}\) și grupurile factor ale lui \(\integersmod{12}\).
+\end{exercise}
+\begin{proof}
+Putem găsi subgrupurile lui \(\integersmod{12}\) generând subgrupul corespunzător fiecărui element:
+\begin{align*}
+    \generatedby{\widehat{0}} &= \Set{ \widehat{0} } \\
+    \generatedby{\widehat{1}} &= \Set{ \widehat{0}, \widehat{1}, \dots, \widehat{11} } \\
+    &= \generatedby{\widehat{5}} = \generatedby{\widehat{7}} = \widehat{\generatedby{11}} \\
+    \generatedby{\widehat{2}} &= \Set{ \widehat{0}, \widehat{2}, \widehat{4}, \dots, \widehat{10} } = \generatedby{\widehat{10}} \\
+    \generatedby{\widehat{3}} &= \Set{ \widehat{0}, \widehat{3}, \dots, \widehat{9} } = \generatedby{\widehat{9}} \\
+    \generatedby{\widehat{4}} &= \Set{ \widehat{0}, \widehat{4}, \widehat{8} } = \generatedby{\widehat{8}} \\
+    \generatedby{\widehat{6}} &= \Set{ \widehat{0}, \widehat{6} }
+\end{align*}
+Nu mai există alte subgrupuri în afară de acestea. Dacă luăm două numere \(\widehat{a}, \widehat{b}\) și încercăm să vedem ce subgrup generează, fie au un factor în comun și generează subgrupul generat de c.m.m.d.c.-ul lor \(\generatedby{\widehat{a}, \widehat{b}} = \generatedby{\widehat{(a, b)}}\).
+
+În ceea ce privește grupurile factor, să luăm de exemplu subgrupul normal \(H = \Set{\widehat{0}, \widehat{6}}\). Atunci avem
+\[
+    \frac{\integersmod{12}}{H} = \Set{ \Set{ \widehat{y} \in \integersmod{12} | \widehat{x} - \widehat{y} \in \integersmod{12} } | \widehat{x} \in \integersmod{12} }
+\]
+
+Pentru a determina clasele de echivalență din grupul factor, ne folosim de definiția că două clase de resturi \(\widehat{x}, \widehat{y}\) sunt echivalente dacă \(\widehat{x} - \widehat{y} \in \Set{ \widehat{0}, \widehat{6} }\).
+
+Obținem clasele de echivalență:
+\begin{align*}
+    \widehat{0} + H &= \Set{ \widehat{0}, \widehat{6} } \\
+    \widehat{1} + H &= \Set{ \widehat{1}, \widehat{7} } \\
+    &\dots \\
+    \widehat{5} + H &= \Set{ \widehat{5}, \widehat{11} }
+\end{align*}
+
+Adunarea pe aceste șase clase de echivalență funcționează ca în \(\integersmod{6}\). Dacă notăm cu \(\overline{x} = \widehat{x} + H\) avem, de exemplu:
+\begin{align*}
+    \overline{1} + \overline{3} &= \overline{4} \\
+    \overline{5} + \overline{4} &= \overline{3} \\
+    \dots
+\end{align*}
+
+De fapt, un rezultat mai general ne spune că, pentru orice \(n \in \integers^*\) și pentru orice \(d\) divizor al lui \(n\), avem:
+\[
+    \frac{\integersmod{n}}{d \integersmod{n}} \cong \integersmod{d}
+\]
+\end{proof}
+
+\begin{exercise}
+Fie \(G\) grupul factor \((\rationals, +) / \integers\). Arătați că:
+
+\begin{enumerate}
+    \item dacă \(a, b \in \naturals^*\) sunt prime între ele, atunci \(\ord\left(\widehat{\frac{a}{b}}\right) = b\)
+    \item orice subgrup finit generat este ciclic
+    \item \(G\) nu este finit generat
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+Să încercăm mai întâi să înțelegem din ce este format grupul factor \(\frac{\rationals}{\integers}\). În primul rând, observăm că toate numerele întregi se află în clasa lui 0, deoarece
+\[
+    \widehat{0} = \Set{ x \in \rationals | x - 0 \in \integers } \iff \widehat{0} = \integers
+\]
+
+\begin{enumerate}
+    \item Observăm că dacă adunăm o fracție \(\widehat{\frac{a}{b}}\) cu ea însăși de \(b\) ori, obținem un număr întreg, care este în \(\widehat{0}\):
+    \[
+        \underbrace{\widehat{\frac{a}{b}} + \dots + \widehat{\frac{a}{b}}}_{b \text{ ori}} = \widehat{b \cdot \frac{a}{b}} = \widehat{a} = \widehat{0}
+    \]
+    
+    Pentru a justifica că \(b\) este chiar ordinul lui \(\widehat{\frac{a}{b}}\), trebuie să arătăm că nu poate exista un \(c < b, c \in \naturals^*\) pentru care \(\widehat{c \frac{a}{b}} = \widehat{0}\). Ca să se întâmple așa ceva, ar trebui ca \(b \mid c \cdot a\). Însă știm că \((a, b) = 1\) și că \(c < b\), ajungem la o contradicție.
+    
+    \item Fie un subgrup \(H \leq G\) care este generat de \(\widehat{\frac{a_1}{b_1}}, \dots, \widehat{\frac{a_n}{b_n}}\).
+    Orice element din \(H\) se obține ca o combinație liniară dintre acești generatori:
+    \[
+        \forall x \in H, x = k_1 \widehat{\frac{a_1}{b_1}} + \dots + k_n \widehat{\frac{a_n}{b_n}}
+    \]
+    
+    Să zicem că \(q\) ar fi numitorul comun al  \(\widehat{\frac{a_1}{b_1}}, \dots, \widehat{\frac{a_n}{b_n}}\). Atunci putem rescrie relația de mai sus ca
+    \begin{align*}
+        x &= k_1' \widehat{\frac{1}{q}} + \dots + k_n' \widehat{\frac{1}{q}} \\
+        &= (k_1' + \dots + k_n') \widehat{\frac{1}{q}}
+    \end{align*}
+    Deci \(H\) este ciclic, fiind generat de un singur element, \(\widehat{\frac{1}{q}}\).
+    
+    \item Presupunem că ar exista un sistem de generatori finit pentru \(G = \generatedby{\widehat{\frac{a_1}{b_1}}, \dots \widehat{\frac{a_n}{b_n}}}\). Analog cu ce am făcut la subpunctul anterior, am ajunge la concluzia că acest sistem de generatori poate fi înlocuit de un singur \(\widehat{\frac{1}{q}}\). Dar nu avem cum să generăm, de exemplu, fracția \(\widehat{\frac{1}{q + 1}}\).
+\end{enumerate}
+\end{proof}

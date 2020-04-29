@@ -1,0 +1,81 @@
+\documentclass[a4paper, 12pt]{article}
+
+%% Font support
+\usepackage{fontspec}
+
+%% Foreign language support
+\usepackage{polyglossia}
+\setdefaultlanguage{romanian}
+
+%% Smaller page margins
+\usepackage[margin=1in]{geometry}
+
+%% For comment blocks
+\usepackage{verbatim}
+
+%% Set notation
+\usepackage{braket}
+
+%% Link support
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+
+%% Math packages
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+% More customizable enumerations
+\usepackage[shortlabels]{enumitem}
+
+% Math font using Unicode symbols
+\usepackage[math-style=TeX]{unicode-math}
+\setmathfont{XITS Math}
+\setoperatorfont\symup
+% More columns for pmatrix
+\setcounter{MaxMatrixCols}{20}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definiție}
+\newtheorem{exercise}{Exercițiul}
+
+% For removing figure captions
+\usepackage{caption}
+
+% For diagrams
+\usepackage{tikz}
+\usetikzlibrary{cd}
+
+% For image loading
+\usepackage{graphicx}
+\graphicspath{ {./imagini/} }
+
+\usepackage{array}
+
+\input{./commands}
+
+\title{Tutoriat Algebră}
+\author{Gabriel Majeri}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exerciții}
+
+\input{./tutoriate/tutoriat01}
+\input{./tutoriate/tutoriat02}
+\input{./tutoriate/tutoriat03}
+\input{./tutoriate/tutoriat04}
+\input{./tutoriate/tutoriat05}
+\input{./tutoriate/tutoriat06}
+\input{./tutoriate/tutoriat07}
+\input{./tutoriate/tutoriat08}
+\input{./tutoriate/tutoriat09}
+\input{./tutoriate/tutoriat_sesiune}
+
+\end{document}

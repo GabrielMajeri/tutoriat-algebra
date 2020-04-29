@@ -1,0 +1,233 @@
+\begin{exercise}
+Fie \(x \in \integers\). Notăm cu \(\widehat{a} \in \integersmod{3}\) clasa de resturi modulo \(3\) corespunzătoare lui \(a\).
+Fie corespondența \(x \mapsto \widehat{x + 1}\). Demonstrați că această corespondență definește o funcție.
+\end{exercise}
+\begin{proof}
+Pentru a fi funcție, corespondența trebuie să atribuie fiecărui \(x\) un singur rezultat, și să fie definită pentru orice \(x \in \integers\).
+
+Definim \(\function{f}{\integers}{\integersmod{3}}\), \(f(x) = \widehat{x + 1}\). Pentru fiecare \(x\), obținem o clasă de resturi. De asemenea, expresia \(\widehat{x + 1}\) este definită pentru orice număr întreg.
+\end{proof}
+
+\begin{exercise}
+Fie \(\function{f}{\integersmod{3}}{\integers}\), \(f(\widehat{x}) = 3 x + 2\). Demonstrați că această funcție nu este bine definită.
+\end{exercise}
+\begin{proof}
+Să calculăm funcția pentru un \(x\) anume:
+\[
+    f(\widehat{1}) = 3 \cdot 1 + 2 = 5
+\]
+Să calculăm funcția pentru un alt reprezentant din aceeași clasă de resturi:
+\[
+    f(\widehat{7}) = 3 \cdot 7 + 2 = 23
+\]
+Observăm că \(\widehat{1} = \widehat{7}\), dar \(f(\widehat{1}) \neq f(\widehat{7})\).
+
+Valoarea expresiei depinde de ce reprezentant alegem pentru clasa de resturi.
+\end{proof}
+
+\begin{exercise}
+Fie \(\function{f}{\reals}{\reals}\), \(f(x) = x^2\). Această funcție nu este nici injectivă, nici surjectivă.
+
+Propuneți o modificare (care ar putea fi aplicată pentru orice funcție) pentru ca aceasta să devină surjectivă, respectiv injectivă.
+\end{exercise}
+\begin{proof}
+Pentru surjectivitate, putem întotdeauna să \textbf{restrângem codomeniul} funcției la imaginea ei. Definim deci \(\function{f'}{\reals}{[0, +\infty)}\), unde \(f'(x) = x^2\).
+
+Pentru injectivitate, am putea alege să \textbf{restrângem domeniul}, dar apar două probleme:
+\begin{itemize}
+    \item în acest caz este ușor să determinăm la ce să restrângem domeniul, dar pe cazul general nu e clar cum am putea alege submulțimea pe care funcția ar fi injectivă
+    \item vrem să putem cumva să continuăm să calculăm funcția pentru toate valorile din domeniul inițial
+\end{itemize}
+Putem rezolva ambele probleme prin \emph{mulțimi factor}. Ne vom folosi de relația de echivalență asociată unei funcții.
+
+Reamintim că relația \(\rhoequiv_f\) este definită ca
+\[
+    x \rhoequiv_f y \iff f(x) = f(y)
+\]
+
+Pentru funcția noastră:
+\[
+    x \rhoequiv_f y \iff x^2 = y^2 \iff \abs{x} = \abs{y}
+\]
+
+Să vedem care sunt clasele de echivalență pentru \(\rhoequiv_f\):
+\begin{align*}
+    \reals/\rhoequiv_f &= \Set{ \Set{ y \in \reals | x \rhoequiv_f y } | x \in \reals } \\
+        &= \Set{ \Set{ y \in \reals | \abs{x} = \abs{y} } | x \in \reals } \\
+        &= \Set{ \Set{ x, -x } | x \in \reals } \\
+        &= \Set{ \widehat{x} | x \in [0, \infty) }
+\end{align*}
+unde cu \(\widehat{x}\) am notat \(\Set{ x, -x }\).
+
+Vom defini funcția \(\function{\tilde{f}}{\reals/\rhoequiv_f}{\reals}\), \(\tilde{f}(\widehat{x}) = x^2\). Fiind o funcție de la o mulțime factor la o mulțime obișnuită (adică o funcție în care „dăm jos căciula” lui \(x\)) ne punem problema dacă este bine-definită. 
+
+Pentru a demonstra asta mai ușor acest lucru ne putem folosi de \emph{proprietatea de universalitate a mulțimii factor}. 
+
+Introducem acum și funcția numită \emph{injecția canonică}, \(\function{i}{\reals}{\reals/\rho_f}\), unde \(i(x) = \widehat{x}\) (intuitiv, \(i\) îi „pune căciula” lui \(x\)). Pe cazul general, \(i\) e o funcție de la o mulțime la o mulțime factor obținută de la mulțimea inițială, care duce un element în clasa de echivalență corespunzătoare.
+
+Putem rescrie \(f\) în funcție de celelalte funcții ca \(f = \tilde{f} \circ i\).
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+      \matrix (m)
+        [
+          matrix of math nodes,
+          row sep    = 3em,
+          column sep = 4em
+        ]
+        {
+          \reals & \reals^+ \\
+          \reals/\rho_f & \\
+        };
+      \path
+        (m-1-1) edge [->] node [left] {\(i\)} (m-2-1)
+        (m-1-1.east |- m-1-2)
+          edge [->] node [above] {\(f\)} (m-1-2)
+        (m-2-1.east) edge [->] node [below] {\(\tilde{f}\)} (m-1-2);
+    \end{tikzpicture}
+    \caption*{Relația dintre funcțiile construite}
+\end{figure}
+
+Proprietatea de universalitate ne garantează că în acest caz \(\tilde{f}\) este corect definită.
+\end{proof}
+
+\begin{exercise}
+Fie \(M\) o mulțime și \(\cdot\) o lege de compoziție binară astfel încât \((M, \cdot)\) este monoid. Notăm cu \(e\) elementul neutru al acestui monoid.
+
+Demonstrați că \((M, \bigodot)\) este tot monoid, unde am definit \(x \bigodot y = y \cdot x\).
+\end{exercise}
+\begin{proof}
+Trebuie să arătăm că legea de compoziție „\(\bigodot\)”:
+\begin{itemize}
+    \item este \emph{asociativă}:
+    \begin{align*}
+        (x \bigodot y) \bigodot z &= x \bigodot (y \bigodot z) \iff \\
+        (y \cdot x) \bigodot z &= x \bigodot (z \cdot y) \iff \\
+        z \cdot (y \cdot x) &= (z \cdot y) \cdot x
+    \end{align*}
+    Ultima egalitate este adevărată deoarece „\(\cdot\)” este asociativă.
+    \item admite \emph{element neutru}, care este chiar elementul neutru pentru „\(\cdot\)”:
+    \begin{align*}
+        x \bigodot e &= e \bigodot x = x \iff e \cdot x &= x \cdot e = x
+    \end{align*}
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Fie \((M, \cdot)\) un monoid. Notăm cu \(U(M)\) mulțimea \emph{unităților} lui \(M\), adică mulțimea elementelor inversabile în raport cu \(\cdot\) din \(M\).
+
+Demonstrați că \((U(M), \cdot)\) formează un grup.
+\end{exercise}
+\begin{proof}
+Arătăm mai întâi că \((U(M), \cdot)\) este parte stabilă în raport cu „\(\cdot\)”.
+
+Fie \(x, y \in U(M)\). Vrem să arătăm că și \(x y \in U(M)\), deci că este inversabil. 
+
+Inversul lui \(x y\) este \(y^{-1} x^{-1}\):
+\begin{align*}
+    (x y) (y^{-1} x^{-1}) &= x (y y^{-1}) x^{-1} = x x^{-1} = e \\
+    (y^{-1} x^{-1}) (x y) &= y^{-1} (x^{-1} x) y = y^{-1} y = e
+\end{align*}
+
+Observăm că \(y^{-1} x^{-1}\) aparține lui \(U(M)\) (inversul este \(x y\)).
+
+Din faptul că este parte stabilă rezultă că \((U(M), \cdot)\) este monoid.
+
+De asemenea, toate elementele din \(U(M)\) sunt inversabile, din definiția acestei submulțimi.
+
+Deci \((U(M), \cdot)\) formează un grup.
+\end{proof}
+
+\begin{exercise}
+Fie un număr întreg \(n > 1\). Lucrăm cu monoidul \((\integersmod{n}, \cdot)\). Fie \(0 \leq a < n\).
+
+Demonstrați că \(a\) este inversabil în \(\integersmod{n}\) dacă și numai dacă \((a, n) = 1\).
+\end{exercise}
+\begin{proof}
+Implicația „\(\implies\)”:
+Plecăm de la faptul că \(\widehat{a} \in \integersmod{n}\) este inversabil. Deci există \(\widehat{b}\) pentru care
+\[
+   \widehat{a} \widehat{b} = \widehat{1}
+\]
+Înlocuind clasele de resturi cu reprezentanți în egalitate. Pentru \(p, q, k \in \integers\) avem că:
+\begin{align*}
+    (p n + a) (q n + b) &= k n + 1 \\
+    p q n^2 + q n a + p n b + a b - kn &= 1 \\
+    a b + (p q n + q + p - k) n &= 1 \\
+    a b + k' n &= 1 \tag{notăm coeficientul lui \(n\) cu \(k'\)}
+\end{align*}
+Notăm cu \(d \in \integers\) c.m.m.d.c.-ul lui \(a\) și \(n\). Deoarece \(d\) divide și pe \(a\) și pe \(n\), avem că \(d \mid a b + k' n\). Deci \(d\) divide și pe \(1\). Dar asta înseamnă că \(d = 1\).
+
+Implicația „\(\impliedby\)”:
+Știm din ipoteză că \((a, n) = 1\). Ne folosim de \href{https://ro.wikipedia.org/wiki/Identitatea_lui_Bézout}{identitatea lui Bézout}, care ne spune că există \(p, q \in \integers\) astfel încât
+\[
+    p a + q n = (a, n) = 1
+\]
+Trecând totul la clase de resturi modulo \(n\) obținem că:
+\begin{gather*}
+    \widehat{p a + q n} = \widehat{1} \iff \widehat{p a} + \widehat{q n} = \widehat{1} \\
+    \iff \widehat{p} \widehat{a} + \widehat{q} \widehat{n} = \widehat{1} \iff \widehat{p} \widehat{a} + \widehat{q} \widehat{0} = \widehat{1} \\
+    \iff \widehat{p} \widehat{a} = \widehat{1}
+\end{gather*}
+Din ultima egalitate rezultă că \(\widehat{p}\) din identitatea lui Bézout este inversul lui \(\widehat{a}\).
+
+Importanța teoretică a acestui rezultat este că avem un mod de a găsi inverse modulare folosind \href{https://en.wikipedia.org/wiki/Euclidean_algorithm#Extended_Euclidean_algorithm}{algoritmul lui Euclid extins} (care ne ajută să calculăm \(p\), \(q\) din identitatea lui Bézout).
+\end{proof}
+
+\begin{exercise}
+Fie \((G, \cdot)\) un grup în care \((a b)^2 = a^2 b^2\), \(\forall a, b \in G\).
+
+Demonstrați că \((G, \cdot)\) este abelian (comutativ).
+\end{exercise}
+\begin{proof}
+Un grup este comutativ dacă \(ab = ba, \forall a, b \in G\).
+
+Plecând de la relație, și folosindu-ne de faptul că toate elementele dintr-un grup sunt inversabile, obținem echivalențele:
+\begin{align*}
+    (a b)^2 &= a^2 b^2 \iff \\
+    a b a b &= a a b b \iff \\
+    (a^{-1} a) b a (b b^{-1}) &= (a^{-1} a) a b (b b^{-1}) \iff \\
+    b a &= a b
+\end{align*}
+\end{proof}
+
+\begin{exercise}
+Fie \((\integers, +)\) grupul numerelor întregi cu adunarea. Arătați că toate subgrupurile acestuia sunt de forma \(n \integers\) pentru un \(n \in \integers\), adică multiplii de \(n\).
+\end{exercise}
+\begin{proof}
+Un \textbf{subgrup} al unui grup \((G, \cdot)\) este
+\begin{itemize}
+    \item o \textbf{submulțime} \(H\) a lui \(G\)
+    \item la rândul ei \textbf{grup}, în raport cu aceeași operație
+\end{itemize}
+
+În mod echivalent, un subgrup este o submulțime care:
+\begin{itemize}
+    \item este \textbf{parte stabilă} în raport cu operația „\(\cdot\)”: dacă \(a, b \in H\), atunci \(a \cdot b \in H\)
+    \item conține \textbf{elementul neutru} al lui \(G\)
+    \item pentru orice element \(x\) din \(H\), și \textbf{inversul} \(x^{-1}\) este în \(H\)
+\end{itemize}
+
+Observăm că \(n \integers = \Set{ k n | k \in \integers }\) formează un subgrup.
+
+Fie \(H\) un subgrup al lui \(n \integers\). Lucrând pe cazul general, nu știm ce elemente conține.
+
+Fiind subgrup, cu siguranță conține elementul neutru \(0\). Dacă îl conține doar pe \(0\), atunci \(H = \Set{ 0 } = 0 \integers\). Dacă nu, observăm că trebuie să conțină cel puțin un număr pozitiv și un număr negativ (dacă îl conține pe \(x\) îl conține și pe inversul său la adunare \(-x\)).
+
+Îl notăm cu \(a\) pe cel mai mic număr din \(H\) care este strict pozitiv. Deoarece \(H\) este subgrup, trebuie să îl conțină și pe \(a + a\), \(a + a + a\), \dots, adică \(k a, \forall k \in \integers\).
+
+Să presupunem că mai există un \(b \in H, b > 0\), care nu este multiplu de \(a\). Deoarece \(a\) este cel mai mic număr strict pozitiv din \(H\), avem că \(b > a\). Putem împărți cu rest pe \(b\) la \(a\). Atunci relația din teorema împărțirii cu rest se scrie ca
+\[
+    b = p \cdot a + r
+\]
+Deoarece \(r\) este restul la împărțire, avem că \(0 \leq r < a\).
+
+Putem rescrie formula ca
+\[
+    r = b - p \cdot a
+\]
+Am plecat de la faptul că \(b \in H\), \(p \cdot a\) este multiplu de \(a\) deci este în \(H\), și deoarece un subgrup este parte stabilă avem că și \(r \in H\).
+
+Deci avem în \(H\) un număr strict pozitiv \(r\) care este mai mic decât \(a\). Asta contrazice presupunerea că \(a\) ar fi cel mai mic număr din \(H\). Deci \(b\) nu poate să fie în \(H\); toate elementele din \(H\) trebuie să fie multiplii de \(a\).
+\end{proof}

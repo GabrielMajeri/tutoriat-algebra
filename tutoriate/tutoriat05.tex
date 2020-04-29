@@ -1,0 +1,187 @@
+\begin{exercise}
+Demonstrați că grupurile \(\integers\) și \(\integersmod{6}\) sunt ciclice.
+\end{exercise}
+\begin{proof}
+Un grup este ciclic dacă poate fi generat de un singur element.
+
+\begin{itemize}
+    \item Pentru \(\integers\), \(1\) generează toată mulțimea. Putem obține orice număr pozitiv \(k\) ca \(k = 1 + \dots + 1\), orice număr negativ este opusul unui număr pozitiv,  iar \(0 = 1 + (-1)\).
+    \item Pentru \(\integersmod{6}\), \(\widehat{1}\) este un generator:
+    \begin{align*}
+        \widehat{1} + \widehat{1} &= \widehat{2} \\
+        \widehat{2} + \widehat{1} &= \widehat{3} \\
+        \widehat{3} + \widehat{1} &= \widehat{4} \\
+        \widehat{4} + \widehat{1} &= \widehat{5} \\
+        \widehat{5} + \widehat{1} &= \widehat{6} = \widehat{0}
+    \end{align*}
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Demonstrați că grupul \(\rationals\) nu este ciclic.
+\end{exercise}
+\begin{proof}
+Demonstrăm prin reducere la absurd. Presupunem că \(\rationals\) ar fi ciclic. Fie \(a \in \rationals\) un generator al său. Scriem \(a\) sub formă de fracție rațională ireductibilă: \(a = \frac{p}{q}\), cu \(p, q \in \integers^*\).
+
+Observăm că fracția \(\frac{p}{q + 1}\) nu poate fi obținută din \(\frac{p}{q}\). Oricum am aduna sau scădea fracțiile care sunt multiplu de \(\frac{p}{q}\), nu putem ajunge la o fracție cu numitor mai mare.
+\end{proof}
+
+\begin{exercise}
+Determinați dacă grupurile \(\integersmod{28} \times \integersmod{29}\), \(\integersmod{28} \times \integersmod{30}\), respectiv \(\reals\) sunt sau nu ciclice.
+\end{exercise}
+\begin{proof}
+Pentru a simplifica demonstrațiile în problemele în care apar \(\integersmod{n} \times \integersmod{m}\), ne folosim de o teoremă care ne spune că \(\integersmod{n} \times \integersmod{m}\) este izomorf cu \(\integersmod{n \times m}\) dacă și numai dacă \(n\) este prim față de \(m\). În acest fel, se poate arăta că \(\integers{n \times m}\) este ciclic dacă și numai dacă \((n, m) = 1\).
+\begin{itemize}
+    \item Pentru \(\integersmod{28} \times \integersmod{29}\), avem că \(28\) este prim față de \(29\).
+    \item Pentru \(\integersmod{28} \times \integersmod{30}\), numerele nu sunt prime între ele, deci grupul nu este izomorf cu \(\integersmod{28 \times 29}\).
+    \item Să presupunem că \(\reals\) ar fi ciclic, și \(a \in \reals\) ar fi un generator. Elementul \(a\) poate genera doar multiplii de \(a\). Asta înseamnă că toate numerele din \(\reals\) sunt de forma \(n a\), pentru un \(n \in \integers\). Dar \(\reals\) este o mulțime infinită nenumărabilă, deci trebuie să mai existe elemente care nu sunt generate de \(a\).
+\end{itemize}
+
+În fine, teorema de structură a grupurilor ciclice ne spune că orice grup ciclic este izomorf cu \(\integersmod{n}\) (dacă este finit), respectiv \(\integers\) dacă este infinit. Deci în general la un astfel de exercițiu putem arăta că un grup este/nu este izomorf cu unul dintre grupurile \(\integersmod{n}\) sau \(\integers\).
+\end{proof}
+
+\begin{exercise}
+Pe mulțimea \([-3, 1)\) definim relația de echivalență \(a \rhoequiv b \iff a^4 = b^4\).
+
+Determinați clasa de echivalență a elementului \(\frac{\sqrt{2}}{2}\) și scrieți un sistem complet și independent de reprezentanți ai elementelor lui \([-3, 1)\) în raport cu \(\rhoequiv\).
+\end{exercise}
+\begin{proof}
+Pentru a determina clasa de echivalență a lui \(\frac{\sqrt{2}}{2}\), trebuie să găsim toate elementele din \([-3, 1)\) care sunt în relație cu el:
+\begin{align*}
+    x &\rhoequiv \frac{\sqrt{2}}{2} \\
+    \iff x^4 &= \left(\frac{\sqrt{2}}{2}\right)^4 \\
+    \iff x^4 &= \frac{1}{4}
+\end{align*}
+Singurele soluții ale acestei ecuații în \([-3, 1)\) sunt \(\pm \frac{\sqrt{2}}{2}\). Deci
+\[
+    \widehat{\frac{\sqrt{2}}{2}} = \Set{ \frac{\sqrt{2}}{2}, -\frac{\sqrt{2}}{2} }
+\]
+
+Pe cazul mai general, observăm că pentru \(x \in (-1, 1)\):
+\[
+\widehat{x} = \Set{x, -x}, \forall x \in (-1, 1)
+\]
+
+Dacă \(x \in [-3, -1]\), atunci \(x\) este singur în clasa sa de echivalență (pentru că \(-x\) ar fi în afara mulțimii):
+\[
+\widehat{x} = \Set{x}, \forall x \in [-3, -1]
+\]
+
+Când vine vorba de ales un sistem de reprezentanți, nu putem alege toată mulțimea, deoarece de exemplu \(\widehat{-0.5} = \widehat{0.5}\), deci sistemul nu ar fi independent. Așa că alegem ca sistem de reprezentanți pe \(S = [-3, 0]\).
+
+Justificăm că \(S\) este
+\begin{itemize}
+    \item \emph{complet}: Fie \(x \in [-3, 1)\). Dacă \(x \leq 0\), atunci \(x\) este reprezentat de \(\widehat{x}\). Dacă \(x > 0\), \(x\) este reprezentant de \(\widehat{-x}\).
+    \item \emph{independent}: Dacă alegem un element \(x \leq -1\), atunci acesta se află singur în clasa lui, deci aceste clase de echivalență sunt independente. Dacă luăm \(x \neq y \in (-1, 0]\), este imposibil ca \(\widehat{x} = \widehat{y}\), deoarece  în clasa lui \(\widehat{x}\) se află doar el și \(-x\) care este în \((0, 1)\) (deci diferit sigur de \(y\)).
+\end{itemize}
+
+O altă soluție ar fi fost să alegem ca sistem de reprezentanți \([-3, -1] \cup [0, 1)\).
+\end{proof}
+
+\begin{exercise}
+Fie permutarea
+\[
+\tau = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+3 & 12 & 13 & 2 & 7 & 9 & 5 & 6 & 8 & 4 & 11 & 10 & 1
+\end{pmatrix}
+\]
+\begin{itemize}
+    \item Descompuneți \(\tau\) în produs de ciclii disjuncți și în produs de transpoziții.
+    \item Determinați \(\tau^2\), \(\tau^{-1}\), \(\epsilon(\tau)\), \(\ord(\tau)\) și \(\tau^{2010}\).
+\end{itemize}
+\end{exercise}
+\begin{proof}
+~
+\begin{itemize}
+    \item Luăm fiecare element de la \(1\) la \(13\) și încercăm să scriem ciclul în care se află (de exemplu, \(1\) merge în \(3\), care merge în \(13\), care se întoarce în \(1\), ș.a.m.d.):
+    \[
+        \tau = (1, 3, 13) (2, 12, 10, 4) (5, 7) (6, 9, 8)
+    \]
+    Observați că nu am mai scris ciclul de lungime \(1\) format de \(11\), pentru că nu afectează rezultatul.
+    
+    Pentru transpoziții, rupem fiecare ciclu în perechi de elemente consecutive:
+    \[
+        \tau = (1, 3) (3, 13) (2, 12) (12, 10) (10, 4) (5, 7) (6, 9) (9, 8)
+    \]
+    
+    \item Când ridicăm la puterea \(k\), luăm fiecare ciclu și numărăm din \(k\) în \(k\). Ciclii ale căror lungimi au factori în comun cu \(k\) se rup în mai multe bucăți. Ciclii ale căror lungimi sunt egale cu sau divid puterea dispar.
+    
+    În cazul nostru, ciclul de lungime \(4\) s-a rupt în doi cicli de lungime \(2\).
+    \[
+        \tau^2 = (1, 13, 3) (2, 10) (12, 4) (6, 8, 9)
+    \]
+    
+    Pentru a calcula inversa, putem să ne uităm pe permutare și să luăm elementele de jos în sus și să le reordonăm. Însă mult mai simplu este să ne folosim de descompunerea în cicli și să scriem fiecare ciclu invers.
+    \[
+        \tau^{-1} = (13, 3, 1) (4, 10, 12, 2) (7, 5) (8, 9, 6)
+    \]
+    
+    Semnul permutării este fie \(+1\) (pentru permutări pare) fie \(-1\) (pentru permutări impare). Îl putem determina în funcție de numărul de transpoziții (paritatea permutării este aceeași cu paritatea numărului de transpoziții în care se descompune).
+    \[
+        \epsilon(\tau) = (-1)^{8} = 1
+    \]
+    
+    Ordinul unei permutări \(\tau\) este cel mai mic număr \(k \in \naturals^*\) pentru care \(\tau^k = e\). Ordinul unui ciclu (care este tot o permutare) este egal cu lungimea ciclului. Ordinul unei permutări este egal cu c.m.m.m.c.-ul lungimilor ciclilor.
+    
+    În cazul nostru,
+    \[
+        \ord(\tau) = [3, 4, 2, 3] = 12
+    \]
+    
+    Pentru a determina \(\tau^{2010}\) ne folosim de faptul că
+    \[
+        \tau^{2010} = (\tau^{12})^{167} \cdot \tau^6 = \tau^6
+    \]
+    Putem calcula \(\tau^{6}\) pe ciclii:
+    \[
+        \tau^6 = (2, 10) (12, 4)
+    \]
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Fie permutarea
+\[
+\tau = \begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+7 & 4 & 5 & 6 & 1 & 8 & 3 & 10 & 12 & 2 & 13 & 9 & 11
+\end{pmatrix}
+\]
+\begin{itemize}
+    \item Descompuneți \(\tau\) în produs de ciclii disjuncți, în produs de transpoziții.
+    \item Determinați \(\tau^{-2}\), \(\epsilon(\tau)\), și \(\ord(\tau)\).
+    \item Rezolvați în \(S_{13}\) ecuația
+    \[
+        x^{20} = \tau
+    \]
+\end{itemize}
+\end{exercise}
+\begin{proof}
+~
+\begin{itemize}
+    \item 
+    Produs de ciclii disjuncți:
+    \[
+        \tau = (1, 7, 3, 5) (2, 4, 6, 8, 10) (9, 12) (11, 13)
+    \]
+    
+    Produs de transpoziții:
+    \[
+        \tau = (1, 7) (7, 3) (3, 5) (2, 4) (4, 6) (6, 8) (8, 10) (9, 12) (11, 13)
+    \]
+    
+    \item Calculăm utilizând aceleași metode ca la exercițiul precedent:
+    \begin{align*}
+        \tau^{-2} &= (\tau^2)^{-1} \\
+        &= ((1, 3) (7, 5) (2, 6, 10, 4, 8))^{-1} \\
+        &= (3, 1) (5, 7) (8, 4, 10, 6, 2) \\
+        \epsilon(\tau) &= (-1)^{9} = -1 \\
+        \ord(\tau) &= [4, 5, 2, 2] = 20
+    \end{align*}
+    
+    \item Dacă ne uităm la semne, observăm că \(\epsilon(\tau)\) este \(-1\) (\(\tau\) este impară), dar în stânga, semnul lui \(x^{20}\) este \(+1\), fiind o putere pară. Deci ecuația nu are soluții.
+    
+    În cazul în care ecuația ar avea soluții, trebuie să luăm o permutare oarecare din \(S_{13}\) și să potrivim indicii pentru a rezolva ecuația.
+\end{itemize}
+\end{proof}

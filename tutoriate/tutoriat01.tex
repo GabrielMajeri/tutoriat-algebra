@@ -1,0 +1,98 @@
+\begin{exercise}
+Scrieți elementele mulțimii \(\powerset(\powerset(\powerset(\varnothing)))\).
+\end{exercise}
+
+\begin{proof}
+\begin{align*}
+    \powerset(\varnothing) &= \Set{ \varnothing } \\
+    \powerset(\powerset(\varnothing)) &= \Set{ \varnothing, \set{ \varnothing } } \\
+    \powerset(\powerset(\powerset(\varnothing))) &= \Set{ \varnothing, \Set{ \varnothing }, \Set{\Set{\varnothing}}, \Set{ \varnothing, \Set{ \varnothing } } }
+\end{align*}
+\end{proof}
+
+\begin{exercise}
+Arătați că relația de \href{https://en.wikipedia.org/wiki/Modular_arithmetic#Definition_of_congruence_relation}{congruență modulo \(n\)} este relație de echivalență, folosind definiția.
+\end{exercise}
+\begin{proof}
+Fie \(n \in \naturals^*\) fixat. Atunci spunem că \(a \equiv b \mod n\) dacă \(n \mid (a - b)\).
+
+Pentru a demonstra că este relație de echivalență, trebuie să demonstrăm că este \emph{reflexivă}, \emph{simetrică} și \emph{tranzitivă}.
+
+\begin{enumerate}
+    \item Fie \(a \in \naturals\). Atunci \(n \mid (a - a) = 0\). Deci \(a \equiv a \mod n\). Deci \(\equiv\) este reflexivă.
+    \item Fie \(a, b \in \naturals\) cu \(a \equiv b \mod n\). Din definiție, \(n \mid (a - b)\). Atunci \(n \mid - (a - b)\). De unde rezultă că \(n \mid (b - a)\). Deci \(b \equiv a \mod n\). Deci \(\equiv\) este simetrică.
+    \item Fie \(a, b, c \in \naturals\) cu \(a \equiv b \mod n\) și \(b \equiv c \mod n\). Din definiție avem că \(n \mid (a - b)\) și \(n \mid (b - c)\). Atunci facem suma și avem că \(n \mid ((a - b) + (b - c)) \implies n \mid (a - c)\). Deci \(a \equiv c \mod n\). Deci \(\equiv\) este tranzitivă.
+\end{enumerate}
+Din acestea rezultă că \(\equiv\) este relație de echivalență.
+\end{proof}
+
+\begin{exercise}
+Demonstrați că relația \(x \rhoequiv y \iff x^2 + 7x = y^2 + 7y\) este de echivalență.
+\end{exercise}
+\begin{proof}
+Demonstrația este similară cu cea de la exercițiul precedent, iar proprietățile decurg din faptul că egalitatea este reflexivă, simetrică și tranzitivă. 
+\end{proof}
+
+\begin{exercise}
+Fie \(A\) și \(A'\) submulțimi ale lui T. Arătați că:
+\begin{enumerate}
+    \item \(\chi_{A \cap {A'}} = \chi_A \cdot \chi_{A'}\)
+    \item \(\chi_{A \cup {A'}} = \chi_A + \chi_{A'} - \chi_A \cdot \chi_{A'}\)
+    
+    În particular, dacă \(A\) și \(A'\) sunt disjuncte avem că \(X_{A \cup {A'}} = \chi_A + \chi_{A'}\).
+    \item \(\chi_{A \setminus A'} = \chi_A \cdot (1 - \chi_{A'})\)
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+Putem demonstra aceste egalități construind tabelul de valori pentru funcțiile \(\chi\).
+\begin{enumerate}
+    \item
+    \[
+    \begin{array}{cccc}
+        \chi_A & \chi_{A'} & \chi_{A \cap A'} & \chi_A \cdot \chi_{A'} \\
+        0 & 0 & 0 & 0 \cdot 0 = 0 \\
+        0 & 1 & 0 & 0 \cdot 1 = 0 \\
+        1 & 0 & 0 & 1 \cdot 0 = 0 \\
+        1 & 1 & 1 & 1 \cdot 1 = 1
+    \end{array}
+    \]
+    
+    \item
+    \[
+    \begin{array}{cccc}
+         \chi_A & \chi_{A'} & \chi_{A \cup A'} & \chi_A + \chi_{A'} - \chi_A \cdot \chi_{A'}  \\
+         0 & 0 & 0 & 0 + 0 - 0 \cdot 0 = 0 \\
+         0 & 1 & 1 & 0 + 1 - 0 \cdot 1 = 1 \\
+         1 & 0 & 1 & 1 + 0 - 1 \cdot 0 = 1 \\
+         1 & 1 & 1 & 1 + 1 - 1 \cdot 1 = 1
+    \end{array}
+    \]
+    
+    \item
+    \[
+    \begin{array}{cccc}
+         \chi_A & \chi_{A'} & \chi_{A \setminus A'} & \chi_A \cdot (1 - \chi_{A'})  \\
+         0 & 0 & 0 & 0 \cdot (1 - 0) = 0 \\
+         0 & 1 & 0 & 0 \cdot (1 - 1) = 0 \\
+         1 & 0 & 1 & 1 \cdot (1 - 0) = 1 \\
+         1 & 1 & 0 & 1 \cdot (1 - 1) = 0
+    \end{array}
+    \]
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+Dați exemplu de funcții \(\function{f, g}{\naturals}{\naturals}\) cu proprietatea că \(g \circ f = 1_{\naturals}\), dar \(g\) nu este injectivă, iar \(f\) nu este surjectivă.
+\end{exercise}
+\begin{proof}
+O pereche de funcții care îndeplinesc aceste condiții sunt
+\[
+g(n) = \begin{cases}
+0, &\text{ dacă } n = 0 \\
+n - 1, &\text{ dacă } n \geq 1
+\end{cases}
+\]
+\[
+f(n) = n + 1, \forall n \in \naturals
+\]
+\end{proof}

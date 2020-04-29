@@ -1,0 +1,166 @@
+\begin{exercise}
+Fie \(A = \Set{ 3, 6, 7, 9 }\).
+Definim funcția \(\function{f}{A}{\powerset(A)}\), unde \(f(x) = \text{ complementul mulțimii } \Set{ x }\).
+Scrieți explicit cât este \(f(3), f(6), f(7), f(9)\).
+\end{exercise}
+\begin{proof}
+\begin{align*}
+    f(3) = C_A \Set{3} = \Set{ 6, 7, 9 } \\
+    f(6) = C_A \Set{6} = \Set{ 3, 7, 9 } \\
+    f(7) = C_A \Set{7} = \Set{ 3, 6, 9 } \\
+    f(9) = C_A \Set{9} = \Set{ 3, 6, 7 }
+\end{align*}
+\end{proof}
+
+\begin{exercise}
+Fie \(A\) o mulțime. Demonstrați că nu poate exista nicio funcție \emph{surjectivă} de la \(A\) la \(\powerset(A)\).
+\end{exercise}
+\begin{proof}
+Demonstrăm afirmația prin reducere la absurd.
+
+Fie o mulțime \(A\) pentru care există o funcție surjectivă \(\function{f}{A}{\powerset(A)}\).
+
+Din definiție, \(f(x)\) este o submulțime a lui \(A\). Atunci, pentru orice \(x \in A\), avem două cazuri:
+\begin{itemize}
+    \item fie \(x \in f(x)\)
+    \item fie \(x \not\in f(x)\)
+\end{itemize}
+
+Notăm cu \(T = \Set{ x \in A | x \not\in f(x) }\).
+
+Știm că \(T\) este o submulțime a lui \(A\). Deci \(T \in \powerset(A)\).
+
+Deoarece \(f\) este surjectivă, există un \(a \in A\) pentru care \(f(a) = T\).
+
+Acum ne punem întrebarea dacă \(a \in T\):
+\begin{itemize}
+    \item dacă \(a \in T\), atunci din definiția lui \(T\) avem că \(a \not\in f(a)\), deci \(a \not\in T\)
+    \item dacă \(a \not\in T\), atunci din definiția lui \(T\) avem că \(a \in f(a)\), deci \(a \in T\)
+\end{itemize}
+În ambele cazuri, ajungem la \textbf{contradicție}. Deci nu poate exista o astfel de funcție.
+\end{proof}
+
+\begin{exercise}
+Fie \(\function{f}{A}{B}\) o funcție. Demonstrați că relația \(a \rhoequiv_f b \iff f(a) = f(b)\) este de echivalență. Aceasta se numește \emph{relația de echivalență asociată funcției \(f\)}.
+\end{exercise}
+\begin{proof}
+Pentru a arăta că \(\rhoequiv_f\) este relație de echivalență, arătăm că este:
+\begin{itemize}
+    \item \emph{reflexivă}: fie \(a \in A\), avem că \(f(a) = f(a)\), deci \(a \rhoequiv_f a\).
+    \item \emph{simetrică}: fie \(a, b \in A\) astfel încât \(a \rhoequiv_f b\). Atunci \(f(a) = f(b)\), de unde și \(f(b) = f(a)\). Deci \(b \rhoequiv_f a\).
+    \item \emph{tranzitivă}: fie \(a, b, c \in A\) astfel încât \(a \rhoequiv_f b\) și \(b \rhoequiv_f c\). Atunci avem că \(f(a) = f(b)\) și \(f(b) = f(c)\). Deci și \(f(a) = f(c)\), de unde rezultă că \(a \rhoequiv_f c\).
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Fie \(\function{f}{A}{B}\).
+Demonstrați că \(f\) este injectivă dacă și numai dacă relația asociată \(\rhoequiv_f\) conține numai elemente de forma \((x, x)\) (adică \(x \rhoequiv_f y\) doar dacă \(x\), \(y\) sunt egale).
+\end{exercise}
+\begin{proof}
+Mai întâi demonstrăm implicația directă.
+
+Fie \(f\) o funcție injectivă. Vrem să arătăm că toate numerele care sunt în relație sunt egale, deci că nu există \(x \rhoequiv_f y\) cu \(x \neq y\). Să presupunem prin reducere la absurd că ar exista \(x \neq y \in A\) pentru care \(x \rhoequiv_f y\). Din definiția relației, avem că \(f(x) = f(y)\). Din definiția injectivității, trebuie ca \(x = y\). Ajungem la o contradicție.
+
+Acum demonstrăm implicația inversă.
+
+Știm că relația este \(\rhoequiv_f = \Set{ (x, x) | x \in A }\).
+Fie \(x, y \in A\) pentru care \(f(x) = f(y)\). Atunci din definiția lui \(\rhoequiv_f\) avem că \(x \rhoequiv_f y\). Toate elementele din relație sunt de forma \((x, x)\), deci \(x = y\). De aici rezultă că \(f\) este injectivă.
+\end{proof}
+
+\begin{exercise}
+Fie \(A = \Set{ 3, -2, 7, 15, 21 }\).
+
+Verificați care dintre următoarele sunt partiții ale lui \(A\):
+\begin{itemize}
+    \item \(P_1 = \Set{ \Set{3, 21}, \Set{-2, 7, 15} }\)
+    \item \(P_2 = \Set{ \Set{ -2, 3 }, \emptyset, \Set{7}, \Set{15, 21} }\)
+    \item \(P_3 = \Set{ \Set{ -2, 15 }, \Set{ 7, 21 } }\)
+    \item \(P_4 = \Set{ \Set{ 15, 21 }, \Set{ -2, 7 }, \Set{ 3, -2 } }\)
+\end{itemize}
+\end{exercise}
+\begin{proof}
+~
+\begin{itemize}
+    \item Este partiție, avem o mulțime de submulțimi nevide, disjuncte două câte două, iar reuniunea lor este toată mulțimea.
+    \item Nu este partiție pentru că partiția este formată doar din mulțimi nevide.
+    \item Nu este partiție pentru că elementul \(3\) nu apare în nicio submulțime.
+    \item Nu este partiție pentru că elementul \(-2\) apare în două submulțimi.
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Fie relația de echivalență \(x \rhoequiv y \iff x^2 = y^2\) pentru \(x, y \in \reals\). Scrieți cât este mulțimea factor \(\frac{\reals}{\rhoequiv}\).
+\end{exercise}
+\begin{proof}
+Observăm că pentru această relație de echivalență, pentru orice \(x \in \reals\), \(x \rhoequiv (-x)\). O să notăm clasa de echivalență a lui \(x\) cu \(\widehat{x} = \Set{x, -x}\). Pentru \(0\) avem o clasă de echivalență cu un singur element: \(\widehat{0} = \Set{ 0 }\).
+Reunind toate clasele de echivalență, obținem mulțimea factor:
+\[
+    \frac{\reals}{\rhoequiv} = \Set{ \widehat{x} | x \in [0, +\infty) }
+\]
+\end{proof}
+
+\begin{exercise}
+Considerăm pe \(\reals\) relația \(x \rhoequiv y \iff x^2 + 7x = y^2 + 7y\).
+
+Determinați \(\frac{2}{\rhoequiv}\), \(\frac{\reals}{\rhoequiv}\), și găsiți un sistem complet și independent de reprezentanți pentru relația \(\rhoequiv\).
+\end{exercise}
+\begin{proof}
+~
+\begin{enumerate}
+    \item Pentru a găsi clasa de echivalență a elementului \(2\) trebuie să găsim toate elementele care sunt echivalente cu el: \begin{align*}
+        \frac{2}{\rhoequiv} &= \Set{ x \in \reals | x \rhoequiv 2 } \\
+        &= \Set{ x \in \reals | x^2 + 7x = 2^2 + 7 \cdot 2 } \\
+        &= \Set{ x \in \reals | x^2 + 7x - 18 = 0 } \\
+        &= \Set{ 2, - 9 } = \widehat{2}
+    \end{align*}
+    \item Fie \(y \in \reals\) fixat. Atunci \begin{align*}
+        \frac{y}{\rhoequiv} &= \Set{ x \in \reals | x \rhoequiv y } \\
+        &= \Set{ x \in \reals | x^2 + 7x = y^2 + 7y } \\
+        &= \Set{ x \in \reals | x^2 + 7x - (y^2 + 7y) = 0 } \\
+        &= \Set{ y, - y - 7 } = \widehat{y}
+    \end{align*}
+    Deci \(\frac{\reals}{\rho} = \Set{ \frac{y}{\rho} | y \in \reals } = \Set{ \Set{ y, - y - 7} | y \in \reals }\).
+    \item Pentru a construi un sistem de reprezentanți, trebuie să alegem un element din fiecare clasă de echivalență.
+    
+    Am putea să luăm ca sistem de reprezentanți tot \(\reals\): \(S = \Set{ \widehat{x} | x \in \reals }\). Acest sistem este complet, dar nu independent. De exemplu, \(\widehat{2} = \widehat{-9}\).
+    
+    Dacă încercăm să luăm câteva câteva clase de echivalențe găsim că:
+    \begin{align*}
+        \widehat{5} &= \widehat{-5 - 7} = \widehat{- 12} \\
+        \widehat{-4} &= \widehat{- (-4) - 7} = \widehat{-3} \\
+        \widehat{1} &= \widehat{-1 - 7} = \widehat{-8} \\
+        \widehat{-2} &= \widehat{- (-2) -7} = \widehat{-5}
+    \end{align*}
+    Observăm că \(-3.5\) este singur în clasa lui de echivalență, \(\widehat{-3.5} = \Set{ -3.5 }\), deoarece \(-3.5 = - (-3.5) - 7\).
+    
+    Bănuim că un sistem complet și independent de reprezentanți ar fi \(S = [-3.5, \infty)\). Trebuie să și demonstrăm asta:
+    \begin{itemize}
+        \item \(S\) este \emph{complet}: fie \(x \in \reals\). Dacă \(x \geq -3.5\) atunci reprezentantul lui \(x\) este \(\widehat{x}\). Dacă \(x < -3.5\), atunci \(-x - 7 > -3.5\), deci reprezentantul o să fie \(\widehat{-x-7}\).
+        \item \(S\) este \emph{independent}: să presupunem că există două clase de echivalență \(\widehat{x}, \widehat{y} \in S\) astfel încât \(\widehat{x} = \widehat{y}\) cu \(x \neq y\). Singura posibilitate este ca \(x = -y - 7\) (sau viceversa). Dar \(y > 3.5\), deci \(-y -7 < -3.5\). 
+    \end{itemize}
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+Demonstrați că pentru orice partiție \(P\) a unei mulțimi \(A\) există o unică relație de echivalență \(\rhoequiv\) astfel încât \(\frac{A}{\rhoequiv} = P\).
+\end{exercise}
+\begin{proof}
+Fie \(P\) o partiție a mulțimii \(A\).
+
+Definim relația \(\rhoequiv\) în felul următor: \(a \rhoequiv b \iff \exists U \in P \text{ astfel încât } a, b \in U\) (adică \(a\), \(b\) se află în aceeași mulțime în partiție). Se poate arăta ușor că această relație este de echivalență:
+\begin{itemize}
+    \item \emph{reflexivă}: fie \(x \in A\). Deoarece \(P\) este o partiție, trebuie să existe o submulțime \(U\) în care apare \(x\). Deci putem spune că \(x, x \in U\), deci \(x \rhoequiv x\).
+    \item \emph{simetrică}: fie \(x, y \in A\) astfel încât \(x \rhoequiv y\). Din definiția lui \(\rhoequiv\) avem că \(x, y \in U\). Atunci și \(y, x \in U\). Deci \(y \rhoequiv x\).
+    \item \emph{tranzitivă}: fie \(x, y, z \in A\) astfel încât \(x \rhoequiv y\) și \(y \rhoequiv z\). Deci \(x, y \in U\) și \(y, z \in V\). Avem că \(U \cap V = \Set{y}\). \(P\) fiind partiție, trebuie ca \(U = V\). Deci \(x, z \in U \iff x \rhoequiv z\).
+\end{itemize}
+
+Trebuie să mai arătăm că \(\frac{A}{\rhoequiv} = P\). Avem că
+\begin{align*}
+    \frac{A}{\rhoequiv} &= \Set{ \Set{ y \in A | x \rhoequiv y } | x \in A } \\
+    &= \Set{ \Set{ y \in A | y \in U } | U \in P } \\
+    &= \Set{ U \in P } = P
+\end{align*}
+
+Pentru unicitate: să presupunem că ar exista o altă relație \(\rhoequiv'\), diferită de \(\rhoequiv\), astfel încât \(\frac{A}{\rhoequiv} = \frac{A}{\rhoequiv'} = P\). Dacă relațiile diferă, trebuie să existe cel puțin o pereche \((x, y)\) astfel încât \((x, y) \in \rhoequiv\) și \((x, y) \not\in \rhoequiv'\) (sau vice versa). Dar asta ar însemna că \(x\) și \(y\) se află în aceeași mulțime în \(\frac{A}{\rhoequiv}\) și în mulțimi diferite în \(\frac{A}{\rhoequiv'}\). Însă asta înseamnă că \(\rhoequiv\) și \(\rhoequiv'\) definesc partiții diferite.
+\end{proof}
+

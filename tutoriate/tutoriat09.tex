@@ -1,0 +1,178 @@
+\begin{exercise}
+Fie \(Q = \Set{ 1, -1, i, -i, j, -j, k, -k }\) grupul cuaternionilor.
+\begin{enumerate}
+    \item Arătați că \(\Set{ 1, -1 } \leq Q\)
+    \item Arătați că \(\Set{ 1, -1 } \trianglelefteq Q\)
+    \item Descrieți grupul factor \(\frac{Q}{\Set{ 1, -1 }}\)
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+Enunțăm aici regulile de calcul pentru cuaternioni:
+\[
+\begin{array}{c|c|c|c|c}
+    \cdot & 1 & i & j & k \\
+    \hline
+    1 & 1 & i & j & k \\
+    \hline
+    i & i & -1 & k & -j \\
+    \hline
+    j & j & -k & -1 & i \\
+    \hline
+    k & k & j & -i & -1
+\end{array}
+\]
+
+Vom nota \(A = \Set{ -1, 1 }\) ca să nu ne tot repetăm.
+\begin{enumerate}
+    \item Mai întâi arătăm că \(A\) este parte stabilă în raport cu operația „\(\cdot\)”:
+    \begin{align*}
+        1 \cdot 1 &= 1 \in A \\
+        1 \cdot (-1) &= -1 \in A \\
+        (-1) \cdot 1 &= -1 \in A \\
+        (-1) \cdot (-1) &= 1 \in A
+    \end{align*}
+    
+    \(A\) este finită deoarece \(\abs{A} = 2\).
+    
+    Avem o propoziție care ne zice că \(A\) este subgrup.
+    
+    \item Construim clasele de resturi la stânga și la dreapta pentru \(A\) și vedem că acestea se potrivesc unu-la-unu:
+    \[
+    \begin{aligned}[c]
+        1 \cdot A &= -1 \cdot A \\
+        i \cdot A &= -i \cdot A \\
+        j \cdot A &= -j \cdot A \\
+        k \cdot A &= -k \cdot A
+    \end{aligned}
+    \quad
+    \begin{aligned}[c]
+        = \Set{ 1, -1 } = \\
+        = \Set{ i, -i } = \\
+        = \Set{ j, -j } = \\
+        = \Set{ k, -k } =
+    \end{aligned}
+    \quad
+    \begin{aligned}[c]
+        A \cdot 1 &= A \cdot (-1) \\
+        A \cdot i &= A \cdot (-i) \\
+        A \cdot j &= A \cdot (-j) \\
+        A \cdot k &= A \cdot (-k)
+    \end{aligned}
+    \]
+    
+    Deci \(\Set{ 1, -1 }\) este subgrup normal.
+    
+    \item Grupul factor cerut este format din
+    \[
+        \frac{Q}{\Set{1, -1}} = \Set{ \Set{1, -1}, \Set{i, -i}, \Set{j, -j}, \Set{k, -k} }
+    \]
+    
+    Vom nota cu \(\widehat{x}\) clasa corespunzătoare elementului \(x \in \Set{ 1, i, j, k }\).
+    Obținem o descriere echivalentă a grupului factor:
+    \[
+        \frac{Q}{\Set{1, -1}} = \Set{ \widehat{1}, \widehat{i}, \widehat{j}, \widehat{k} }
+    \]
+    
+    Fiind un grup cu 4 elemente, trebuie să fie izomorf fie cu \(\integersmod{4}\) fie cu \(\integersmod{2} \times \integersmod{2}\).
+    Ne putem da seama mai ușor cu care este izomorf dacă construim tabelul:
+    \[
+    \begin{array}{c|c|c|c|c}
+         \cdot & \widehat{1} & \widehat{i} & \widehat{j} & \widehat{k} \\
+         \hline
+         \widehat{1} & \widehat{1} & \widehat{i} & \widehat{j} & \widehat{k} \\
+         \hline
+         \widehat{i} & \widehat{i} & \widehat{1} & \widehat{k} & \widehat{j} \\
+         \hline
+         \widehat{j} & \widehat{j} & \widehat{k} & \widehat{1} & \widehat{i} \\
+         \hline
+         \widehat{k} & \widehat{k} & \widehat{j} & \widehat{i} & \widehat{1}
+    \end{array}
+    \]
+    
+    Se observă ușor că acest tabel corespunde lui \((\integersmod{2} \times \integersmod{2}, +)\).
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+Definiția noțiunea de transpoziție și demonstrați că orice transpoziție este o permutare impară.
+\end{exercise}
+\begin{proof}
+O transpoziție este un ciclu de lungime doi.
+Ne va ajuta în demonstrație să scriem cum arată la cazul general o transpoziție.
+
+Fie o transpoziție \(\sigma \in S_n\). Aceasta se scrie ca
+\[
+    \sigma = \begin{pmatrix}
+        1 & 2 & \dots & i & \dots & j & \dots & n - 1 & n \\
+        1 & 2 & \dots & j & \dots & i & \dots & n - 1 & n
+    \end{pmatrix}
+\]
+unde \(1 \leq i < j \leq n\), și \(\sigma(k) = k\) pentru orice \(k\) diferit de \(i\) și \(j\).
+
+O \emph{inversiune} a unei permutări este orice pereche de indici \(i, j\) cu \(i < j\) dar \(\sigma(i) > \sigma(j)\).
+Prin definiție, o permutare se numește \emph{impară} dacă are un număr impar de inversiuni.
+Deci trebuie să numărăm inversiunile dintr-o transpoziție pentru a vedea dacă este impară.
+
+Să scriem din nou partea care ne interesează din transpoziție:
+\[
+    \sigma = \begin{pmatrix}
+        \dots & i - 1 & i & i + 1 & \dots & j - 1 & j & j + 1 & \dots \\
+        \dots & i - 1 & j & i + 1 & \dots & j - 1 & i & j + 1 & \dots
+    \end{pmatrix}
+\]
+
+Să numărăm inversiunile cu un capăt în \(i\): avem \(i < i + 1\) dar \(j > i + 1\), \(i < i + 2\) dar \(j > i + 2\) etc. De la \(i\) la \(j - 1\) inclusiv avem un total de \(j - i\) inversiuni.
+
+Analog numărăm inversiunile cu un capăt în \(j\): avem \(i + 1 < j\) dar \(i + 1 > i\), \(i + 2 < j\) dar \(i + 2 > i\) etc. Aici mai avem încă \(j - i\) inversiuni.
+
+Mai trebuie să numărăm și inversiunea \((i, j)\). În total avem un număr impar de inversiuni:
+\[
+    (j - i) + (j - i) + 1 = 2 (j - i) + 1 = 2m + 1
+\]
+\end{proof}
+
+\begin{exercise}
+Demonstrați că
+\[
+    S_n = \generatedby{(1, 2), (2, 3), (3, 4), \dots, (n - 1, n)}
+\]
+(adică că pornind de la acele transpoziții putem genera orice permutare de ordin \(n\))
+\end{exercise}
+\begin{proof}
+De obicei când avem o submulțime și vrem să arătăm că aceasta poate genera tot grupul,
+este suficient să arătăm că poate genera un generator/sistem de generatori știut al grupului.
+
+La permutări, știm că mulțimea tuturor transpozițiilor poate genera orice permutare.
+Dacă reușim să plecăm de la transpozițiile date și să obținem orice transpoziție, am rezolvat problema.
+
+Să vedem ce se întâmplă când facem următoarea compunere de permutări:
+\[
+    (1, 2) \circ (2, 3) \circ (1, 2) = (1, 3)
+\]
+Luăm permutarea generată și calculăm:
+\[
+    (1, 3) \circ (3, 4) \circ (1, 3) = (1, 4)
+\]
+Prin inducție, se poate arăta că astfel generăm toate transpozițiile de forma \((1, i)\) cu \(\forall i \in \overline{2, n}\).
+
+Acum încercăm următoarele:
+\begin{align*}
+    (1, 2) \circ (1, 3) \circ (1, 2) = (2, 3) \\
+    (1, 2) \circ (1, 4) \circ (1, 2) = (2, 4) \\
+    (1, 2) \circ (1, 5) \circ (1, 2) = (2, 5)
+\end{align*}
+Generalizând:
+\[
+    (1, 2) \circ (1, i) \circ (1, 2) = (2, i), \forall i \in \overline{3, n}
+\]
+Putem obține orice transpoziție:
+\[
+    (1, i) \circ (1, j) \circ (1, i) = (i, j), \forall i, j \in \overline{3, n}
+\]
+
+Din moment ce mulțimea transpozițiilor generează \(S_n\), am demonstrat că
+\[
+    \Set{(1, 2), (2, 3), \dots, (n - 1, n)}
+\]
+generează tot \(S_n\).
+\end{proof}
