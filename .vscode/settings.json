@@ -8,10 +8,12 @@
         "-xelatex",
         "-interaction=nonstopmode",
         "-file-line-error",
-        "-outdir=output",
+        "-outdir=%OUTDIR%",
         "%DOC%"
       ],
       "env": {}
     }
-  ]
+  ],
+  "latex-workshop.latex.outDir": "output",
+  "latex-workshop.synctex.afterBuild.enabled": true,
 }
