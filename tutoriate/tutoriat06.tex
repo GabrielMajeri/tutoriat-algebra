@@ -16,7 +16,7 @@ Pentru a demonstra că două grupuri nu sunt izomorfe, putem folosi procedeul re
         \end{itemize}
 
     \item O altă proprietate care trebuie păstrată de izomorfisme este cea de a fi grup ciclic. \(\integers\) este un grup ciclic, în timp ce \(\rationals\) nu este (am demonstrat acest lucru în tutoriatul anterior).
-    
+
     \item Dacă ar exista un izomorfism \(f\), acesta ar fi funcție bijectivă. Asta ar însemna că \(\rationals\) și \(\reals\) ar avea același cardinal. Dar \(\rationals\) este mulțime numărabilă, iar \(\reals\) este nenumărabilă.
 \end{itemize}
 \end{proof}
@@ -55,7 +55,7 @@ Deci \(U\) este mulțimea punctelor aflate la distanță 1 de origine, sau cu al
         \cos 2 \pi (x + y) + i \sin 2 \pi (x + y) &= (\cos 2 \pi x + i \sin 2 \pi x) \cdot (\cos 2 \pi y + i \sin 2 \pi y)
     \end{align*}
     Ultima egalitate este adevărată din formulele lui de Moivre.
-    
+
     \item Ne bazăm pe definițiile acestor mulțimi:
     \begin{align*}
         \ker f &= \Set{ x \in \rationals | f(x) = 1 } \\
@@ -67,14 +67,14 @@ Deci \(U\) este mulțimea punctelor aflate la distanță 1 de origine, sau cu al
         &= \Set{ y \in \complex^* | \exists x \in \rationals, \cos 2 \pi x + i \sin 2 \pi x = y } \\
         &= \Set{ y \in \complex^* | \abs{y} = 1 } = U
     \end{align*}
-    
+
     \item Putem demonstra că grupul factor \(\frac{\rationals}{\integers}\) este izomorf cu \(U\) foarte ușor folosindu-ne de \textbf{teorema fundamentală de izomorfism}.
-    
+
     Pe cazul general, teorema spune că, dacă \(\function{f}{G}{H}\) este un morfism de grupuri, avem că
     \[
         \frac{G}{\ker f} \cong \im f
     \]
-    
+
     Aplicând teorema pe cazul nostru avem că:
     \[
         \frac{\rationals}{\integers} \cong U
@@ -146,22 +146,22 @@ Să încercăm mai întâi să înțelegem din ce este format grupul factor \(\f
     \[
         \underbrace{\widehat{\frac{a}{b}} + \dots + \widehat{\frac{a}{b}}}_{b \text{ ori}} = \widehat{b \cdot \frac{a}{b}} = \widehat{a} = \widehat{0}
     \]
-    
+
     Pentru a justifica că \(b\) este chiar ordinul lui \(\widehat{\frac{a}{b}}\), trebuie să arătăm că nu poate exista un \(c < b, c \in \naturals^*\) pentru care \(\widehat{c \frac{a}{b}} = \widehat{0}\). Ca să se întâmple așa ceva, ar trebui ca \(b \mid c \cdot a\). Însă știm că \((a, b) = 1\) și că \(c < b\), ajungem la o contradicție.
-    
+
     \item Fie un subgrup \(H \leq G\) care este generat de \(\widehat{\frac{a_1}{b_1}}, \dots, \widehat{\frac{a_n}{b_n}}\).
     Orice element din \(H\) se obține ca o combinație liniară dintre acești generatori:
     \[
         \forall x \in H, x = k_1 \widehat{\frac{a_1}{b_1}} + \dots + k_n \widehat{\frac{a_n}{b_n}}
     \]
-    
+
     Să zicem că \(q\) ar fi numitorul comun al  \(\widehat{\frac{a_1}{b_1}}, \dots, \widehat{\frac{a_n}{b_n}}\). Atunci putem rescrie relația de mai sus ca
     \begin{align*}
         x &= k_1' \widehat{\frac{1}{q}} + \dots + k_n' \widehat{\frac{1}{q}} \\
         &= (k_1' + \dots + k_n') \widehat{\frac{1}{q}}
     \end{align*}
     Deci \(H\) este ciclic, fiind generat de un singur element, \(\widehat{\frac{1}{q}}\).
-    
+
     \item Presupunem că ar exista un sistem de generatori finit pentru \(G = \generatedby{\widehat{\frac{a_1}{b_1}}, \dots \widehat{\frac{a_n}{b_n}}}\). Analog cu ce am făcut la subpunctul anterior, am ajunge la concluzia că acest sistem de generatori poate fi înlocuit de un singur \(\widehat{\frac{1}{q}}\). Dar nu avem cum să generăm, de exemplu, fracția \(\widehat{\frac{1}{q + 1}}\).
 \end{enumerate}
 \end{proof}

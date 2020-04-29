@@ -99,36 +99,36 @@ Fie permutarea
         \tau = (1, 3, 13) (2, 12, 10, 4) (5, 7) (6, 9, 8)
     \]
     Observați că nu am mai scris ciclul de lungime \(1\) format de \(11\), pentru că nu afectează rezultatul.
-    
+
     Pentru transpoziții, rupem fiecare ciclu în perechi de elemente consecutive:
     \[
         \tau = (1, 3) (3, 13) (2, 12) (12, 10) (10, 4) (5, 7) (6, 9) (9, 8)
     \]
-    
+
     \item Când ridicăm la puterea \(k\), luăm fiecare ciclu și numărăm din \(k\) în \(k\). Ciclii ale căror lungimi au factori în comun cu \(k\) se rup în mai multe bucăți. Ciclii ale căror lungimi sunt egale cu sau divid puterea dispar.
-    
+
     În cazul nostru, ciclul de lungime \(4\) s-a rupt în doi cicli de lungime \(2\).
     \[
         \tau^2 = (1, 13, 3) (2, 10) (12, 4) (6, 8, 9)
     \]
-    
+
     Pentru a calcula inversa, putem să ne uităm pe permutare și să luăm elementele de jos în sus și să le reordonăm. Însă mult mai simplu este să ne folosim de descompunerea în cicli și să scriem fiecare ciclu invers.
     \[
         \tau^{-1} = (13, 3, 1) (4, 10, 12, 2) (7, 5) (8, 9, 6)
     \]
-    
+
     Semnul permutării este fie \(+1\) (pentru permutări pare) fie \(-1\) (pentru permutări impare). Îl putem determina în funcție de numărul de transpoziții (paritatea permutării este aceeași cu paritatea numărului de transpoziții în care se descompune).
     \[
         \epsilon(\tau) = (-1)^{8} = 1
     \]
-    
+
     Ordinul unei permutări \(\tau\) este cel mai mic număr \(k \in \naturals^*\) pentru care \(\tau^k = e\). Ordinul unui ciclu (care este tot o permutare) este egal cu lungimea ciclului. Ordinul unei permutări este egal cu c.m.m.m.c.-ul lungimilor ciclilor.
-    
+
     În cazul nostru,
     \[
         \ord(\tau) = [3, 4, 2, 3] = 12
     \]
-    
+
     Pentru a determina \(\tau^{2010}\) ne folosim de faptul că
     \[
         \tau^{2010} = (\tau^{12})^{167} \cdot \tau^6 = \tau^6
@@ -160,17 +160,17 @@ Fie permutarea
 \begin{proof}
 ~
 \begin{itemize}
-    \item 
+    \item
     Produs de ciclii disjuncți:
     \[
         \tau = (1, 7, 3, 5) (2, 4, 6, 8, 10) (9, 12) (11, 13)
     \]
-    
+
     Produs de transpoziții:
     \[
         \tau = (1, 7) (7, 3) (3, 5) (2, 4) (4, 6) (6, 8) (8, 10) (9, 12) (11, 13)
     \]
-    
+
     \item Calculăm utilizând aceleași metode ca la exercițiul precedent:
     \begin{align*}
         \tau^{-2} &= (\tau^2)^{-1} \\
@@ -179,9 +179,9 @@ Fie permutarea
         \epsilon(\tau) &= (-1)^{9} = -1 \\
         \ord(\tau) &= [4, 5, 2, 2] = 20
     \end{align*}
-    
+
     \item Dacă ne uităm la semne, observăm că \(\epsilon(\tau)\) este \(-1\) (\(\tau\) este impară), dar în stânga, semnul lui \(x^{20}\) este \(+1\), fiind o putere pară. Deci ecuația nu are soluții.
-    
+
     În cazul în care ecuația ar avea soluții, trebuie să luăm o permutare oarecare din \(S_{13}\) și să potrivim indicii pentru a rezolva ecuația.
 \end{itemize}
 \end{proof}

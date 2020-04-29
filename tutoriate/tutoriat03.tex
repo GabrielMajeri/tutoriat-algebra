@@ -121,9 +121,9 @@ Determinați \(\frac{2}{\rhoequiv}\), \(\frac{\reals}{\rhoequiv}\), și găsiți
     \end{align*}
     Deci \(\frac{\reals}{\rho} = \Set{ \frac{y}{\rho} | y \in \reals } = \Set{ \Set{ y, - y - 7} | y \in \reals }\).
     \item Pentru a construi un sistem de reprezentanți, trebuie să alegem un element din fiecare clasă de echivalență.
-    
+
     Am putea să luăm ca sistem de reprezentanți tot \(\reals\): \(S = \Set{ \widehat{x} | x \in \reals }\). Acest sistem este complet, dar nu independent. De exemplu, \(\widehat{2} = \widehat{-9}\).
-    
+
     Dacă încercăm să luăm câteva câteva clase de echivalențe găsim că:
     \begin{align*}
         \widehat{5} &= \widehat{-5 - 7} = \widehat{- 12} \\
@@ -132,11 +132,11 @@ Determinați \(\frac{2}{\rhoequiv}\), \(\frac{\reals}{\rhoequiv}\), și găsiți
         \widehat{-2} &= \widehat{- (-2) -7} = \widehat{-5}
     \end{align*}
     Observăm că \(-3.5\) este singur în clasa lui de echivalență, \(\widehat{-3.5} = \Set{ -3.5 }\), deoarece \(-3.5 = - (-3.5) - 7\).
-    
+
     Bănuim că un sistem complet și independent de reprezentanți ar fi \(S = [-3.5, \infty)\). Trebuie să și demonstrăm asta:
     \begin{itemize}
         \item \(S\) este \emph{complet}: fie \(x \in \reals\). Dacă \(x \geq -3.5\) atunci reprezentantul lui \(x\) este \(\widehat{x}\). Dacă \(x < -3.5\), atunci \(-x - 7 > -3.5\), deci reprezentantul o să fie \(\widehat{-x-7}\).
-        \item \(S\) este \emph{independent}: să presupunem că există două clase de echivalență \(\widehat{x}, \widehat{y} \in S\) astfel încât \(\widehat{x} = \widehat{y}\) cu \(x \neq y\). Singura posibilitate este ca \(x = -y - 7\) (sau viceversa). Dar \(y > 3.5\), deci \(-y -7 < -3.5\). 
+        \item \(S\) este \emph{independent}: să presupunem că există două clase de echivalență \(\widehat{x}, \widehat{y} \in S\) astfel încât \(\widehat{x} = \widehat{y}\) cu \(x \neq y\). Singura posibilitate este ca \(x = -y - 7\) (sau viceversa). Dar \(y > 3.5\), deci \(-y -7 < -3.5\).
     \end{itemize}
 \end{enumerate}
 \end{proof}
@@ -163,4 +163,3 @@ Trebuie să mai arătăm că \(\frac{A}{\rhoequiv} = P\). Avem că
 
 Pentru unicitate: să presupunem că ar exista o altă relație \(\rhoequiv'\), diferită de \(\rhoequiv\), astfel încât \(\frac{A}{\rhoequiv} = \frac{A}{\rhoequiv'} = P\). Dacă relațiile diferă, trebuie să existe cel puțin o pereche \((x, y)\) astfel încât \((x, y) \in \rhoequiv\) și \((x, y) \not\in \rhoequiv'\) (sau vice versa). Dar asta ar însemna că \(x\) și \(y\) se află în aceeași mulțime în \(\frac{A}{\rhoequiv}\) și în mulțimi diferite în \(\frac{A}{\rhoequiv'}\). Însă asta înseamnă că \(\rhoequiv\) și \(\rhoequiv'\) definesc partiții diferite.
 \end{proof}
-
