@@ -21,6 +21,12 @@ Cursul de „Structuri algebrice în informatică” tratează noțiuni de algeb
 - polinoame
 - divizibilitate
 
+## Editare
+
+Cel mai ușor mod de a modifica și previzualiza tutoriatul este cu
+pluginul [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)
+pentru [VS Code](https://code.visualstudio.com/).
+
 ## Compilare
 
 Pentru început trebuie să instalezi o distribuție de LaTeX, cum ar fi [TeX Live](https://www.tug.org/texlive/).
