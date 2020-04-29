@@ -25,14 +25,6 @@ Cursul de „Structuri algebrice în informatică” tratează noțiuni de algeb
 
 Pentru început trebuie să instalezi o distribuție de LaTeX, cum ar fi [TeX Live](https://www.tug.org/texlive/).
 
-Trebuie să instalezi următoarele pachete de LaTeX:
-
-- braket
-- enumitem
-- tikz
-- tikz-cd
-- xits
-
 De asemenea, am creat un [Makefile](https://www.gnu.org/software/make/) pentru a rula operațiile uzuale.
 
 Comanda pentru a genera PDF-ul cu materialul:
