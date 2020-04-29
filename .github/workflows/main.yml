@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: Compile XeLaTeX document
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: main.tex
+          args: -xelatex -file-line-error -interaction=nonstopmode
