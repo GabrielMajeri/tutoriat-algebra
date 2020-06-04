@@ -1,0 +1,148 @@
+\section*{Problema 1}
+
+Fie \(\sigma = (1, 3, 2, 4) \in S_4\).
+
+\begin{enumerate}
+    \item Determinați soluțiile ecuației \(x^2 = \sigma\), \(x \in S_4\).
+    \begin{proof}
+    Descompunem ciclul ca \((1, 3) (3, 2) (2, 4)\). Are un număr impar de transpoziții, deci are semnul \(-1\).
+
+    Să presupunem că ar exista un \(x \in S_4\) pentru care \(x^2 = \sigma\). Atunci \(sgn(x^2) = sgn(\sigma)\), adică \(sgn(x)^2 = -1\), ceea ce este imposibil. Deci ecuația nu are soluții.
+    \end{proof}
+
+    \item Determinați soluțiile ecuației \(x^3 = \sigma\), \(x \in S_4\).
+    \begin{proof}
+    Permutarea noastră este
+    \[\sigma = \begin{pmatrix}
+        1 & 2 & 3 & 4 \\
+        3 & 4 & 2 & 1
+    \end{pmatrix}\]
+    Notăm
+    \[x = \begin{pmatrix}
+        1 & 2 & 3 & 4 \\
+        a & b & c & d
+    \end{pmatrix}\]
+    Trebuie să găsim toate posibiltățile prin forță brută.
+    \end{proof}
+
+    \item Aflați numărul de elemente din \(H = \generatedby{\sigma}\) (subgrupul generat de \(\sigma\) în \(S_4\)).
+    \begin{proof}
+    Ridicând la pătrat permutarea obținem \(\sigma^2 = (1, 2) (3, 4)\). Ridicând la puterea a 3-a obținem \(\sigma^3 = (1, 4, 2, 3)\). Ridicând la puterea a 4-a obținem \(\sigma^4 = (1, 2, 3, 4)\), care este permutarea identică \(1 \in S_4\). Deci \(\ord \sigma = 4\), deci subgrupul generat de \(\sigma\) are 4 elemente:
+    \[\generatedby{\sigma} = \set{1, \sigma, \sigma^2, \sigma^3}\]
+    \end{proof}
+
+    \item Aflați indicele lui \(H\) în \(S_4\).
+    \begin{proof}
+    \(S_4\) are \(4! = 24\) de elemente. Deci \(S_4 : H = 24 : 4 = 6\).
+    \end{proof}
+
+    \item Arătați că \(H\) nu este subgrup normal în \(S_4\).
+    \begin{proof}
+    Grupul de permutări \(S_4\) poate fi generat de \(G = \set{ (1, 2), (1, 2, 3, 4) }\). Pentru a arăta că subgrupul nu e normal, trebuie să arătăm că nu este închis la conjugare cu elemente din mulțimea care generează \(S_4\).
+
+    Cu alte cuvinte, trebuie să arătăm că \(x H x^{-1} \not\subseteq H\), pentru un \(x \in G\).
+
+    Dacă calculăm \((1, 2, 3, 4) \sigma (1, 2, 3, 4)^{-1} = (1, 2, 3, 4) (1, 3, 2, 4) (4, 3, 2, 1)\), observăm că obținem \((1, 2, 4, 3) \not\in H\), deci \(H\) nu este închis la conjugare, deci nu este subgrup normal.
+    \end{proof}
+
+    \item Determinați cel mai mic subgrup normal al lui \(S_4\) care-l conține pe \(H\).
+    \begin{proof}
+    Pentru a face acest lucru, putem să adăugăm la \(H\) toate elementele pe care le-am obține prin conjugare, și care nu se află în el.
+    \end{proof}
+\end{enumerate}
+
+\section*{Problema 2}
+
+Fie \(I\) submulțimea lui \(\integers[X]\) formată din toate polinoamele care au termenul liber divizibil cu 6.
+
+\begin{enumerate}
+    \item Demonstrați că \(I\) este un ideal al lui \(\integers[X]\).
+    \begin{proof}
+    Ca să fie ideal, trebuie să arătăm că:
+    \begin{itemize}
+        \item este subinel. Suficient să verificăm că \(x - y \in I\), \(\forall x, y \in I\). Dacă avem două polinoame al căror termen liber este divizibil cu 6, atunci și diferența lor va avea termenul liber divizibil cu 6.
+
+        \item pentru orice \(r \in \integers[X]\) și orice \(a \in I\), \(ra \in I\) (nu verificăm și \(ar\) pentru că inelul e comutativ). Putem observa că indiferent de ce polinom luăm din inel, când înmulțim cu un polinom care are termenul liber divizibil cu 6, fie obținem un nou termen liber care sigur e multiplu de 6, fie termenul liber devine 0 (care este multiplu de 6).
+    \end{itemize}
+    \end{proof}
+
+    \item Dați un exemplu de polinom de grad 4 din \(I\).
+    \begin{proof}
+    Luăm polinomul \(X^4 + 6\). Datorită termenului \(X^4\) are gradul 4. Termenul liber este divizibil cu 6.
+    \end{proof}
+
+    \item Arătați că \(I = (6, X)\). Este \(I\) ideal principal? Justificați.
+    \begin{proof}
+    Demonstrăm egalitatea prin dublă incluziune:
+    \begin{itemize}
+        \item \(\subseteq\): Fie un polinom din \(I\). Îl putem scrie ca \(a_n X^n + a_{n-1} X^{n-1} + \dots + a_1 X + a_0\), unde \(a_0 = 6 k\). Dăm factor comun pe \(X\) și obținem \(X (\underbrace{a_n X^{n - 1} + \dots + a_1}_{f}) + 6 \underbrace{k}_{g}\). Deci se poate scrie ca \(X f + 6 g\) cu \(f, g \in \integers[X]\).
+        \item \(\supseteq\): Fie un polinom din \((6, X)\). Îl putem scrie ca \(6 f + X g\).  Termenul din stânga are termenul liber multiplu de 6. Termenul din dreapta fie este 0 (dacă \(g = 0\)), fie nu are termen liber. Per total, termenul liber al sumei este multiplu de 6.
+    \end{itemize}
+
+    \(I\) nu este ideal principal. Să presupunem, prin reducere la absurd, că ar fi ideal principal. Atunci el s-ar putea genera de la un singur element, pe care îl notăm \(a \in \integers[X]\). Să presupunem că vrem să generăm polinomul de grad zero \(5\). Trebuie să existe un \(f \in \integers[X]\) astfel încât \(f \cdot a = 5\). Deoarece rezultatul are grad zero, trebuie ca \(f\) să aibă tot grad (cel mult) zero, adică \(f \in \integers\). Dar știm că \(a\) are termenul liber divizibil cu 6, și indiferent cu ce am înmulți din \(\integers\), nu putem face termenul liber să fie egal cu 5.
+    \end{proof}
+
+    \item Determinați toți divizorii lui zero din inelul factor \(\integers[X]/I\).
+    \begin{proof}
+    În inelul factor, clasa lui zero corespunde polinoamelor din ideal, adică polinoamelor care au termenul liber divizibil cu 6.
+
+    Pentru a avea un divizor al lui zero trebuie să găsim clasele \(\widehat{x}, \widehat{y} \in \integers[X]/I\) cu \(\widehat{x}, \widehat{y} \neq 0\) și \(\widehat{x} \cdot \widehat{y} = \widehat{0}\). Cu alte cuvinte, trebuie să găsim polinoame care nu au termenul liber divizibil cu 6, dar care înmulțite produc un polinom care are termenul liber divizibil cu 6. Singura posibilitate este \(2 \cdot 3 = 3 \cdot 2 = 6\).
+
+    Deci divizorii lui zero sunt clasele de polinoame cu termenul liber divizibil cu 2, respectiv cu 3, dar care nu este multiplu de 6.
+    \end{proof}
+
+    \item Arătați că \(\integers[X]/I\) este un inel finit și găsiți-i numărul de elemente.
+    \begin{proof}
+    Din definiție, spunem că două polinoame \(x, y \in \integers[X]\) sunt în aceeași clasă de echivalență din \(\integers[X]/I\) dacă \(x - y \in I\). Deci diferența lor trebuie să aibă termenul liber multiplu de 6.
+
+    Dacă ne gândim la termenul liber al diferenței, acesta poate fi scris tot timpul ca \(6k + r\), unde \(r \in \set{ 0, 1, 2, 3, 4, 5 }\). Deci avem doar 6 clase posibile de polinoame: cele care au termenul liber divizibil 6, cele care au termenul liber de forma \(6k + 1\), etc.
+
+    Le vom nota \(\widehat{0}, \dots, \widehat{5}\).
+    \end{proof}
+
+    \item Are loc izomorfismul de inele unitare \(\integers[X]/I \cong \integersmod{2}\times\integersmod{3}\)?
+    \begin{proof}
+    Observăm că, dacă plecăm de la elementul \(\widehat{1} \in I\), adunându-l cu el însuși obținem pe rând toate elementele din \(I\). Asta ne sugerează că inelul factor este ciclic. În acest caz, trebuie să fie izomorf cu \(\integersmod{6}\), deci nu poate fi izomorf și cu \(\integersmod{2}\times\integersmod{3}\).
+    \end{proof}
+\end{enumerate}
+
+\section*{Problema 3}
+
+Fie \(x, y, z \in \complex\) astfel încât
+\[
+    \begin{cases}
+        x + y + z = 3 \\
+        x^2 + y^2 + z^2 = 5 \\
+        x^3 + y^3 + z^3 = 6
+    \end{cases}
+\]
+
+\begin{enumerate}
+    \item Calculați \(x^5 + y^5 + z^5\).
+    \begin{proof}
+    Folosind formulele lui Newton, scriem
+    \[x + y + z = 3 \iff S_1 = 3\]
+    \begin{align*}
+        & x^2 + y^2 + z^2 = 5 \\
+        \iff & S_1^2 - 2 S_2 = 5 \\
+        \iff & 9 - 2 S_2 = 5 \\
+        \iff & S_2 = 2
+    \end{align*}
+    \begin{align*}
+        & x^3 + y^3 + z^3 = 6 \\
+        \iff & S_1^3 - 3 S_2 S_1 + 3 S_3 = 6 \\
+        \iff & 3^3 - 3 \cdot 2 \cdot 3 + 3 S_3 = 6 \\
+        \iff & S_3 = -3
+    \end{align*}
+    \end{proof}
+
+    \item Aflați polinomul monic \(P \in \integers[T]\) care are ca rădăcini pe \(x, y, z\).
+    \begin{proof}
+
+    \end{proof}
+
+    \item Studiați ireductibilitatea lui \(P\) peste \(\rationals\), \(\integersmod{2}\) și \(\integersmod{5}\).
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
