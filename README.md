@@ -1,5 +1,5 @@
 # Tutoriate de Algebră
-
+![CI](https://github.com/GabrielMajeri/tutoriat-algebra/workflows/CI/badge.svg)
 ## Descriere
 
 Acest repository conține exerciții rezolvate de algebră la nivel de facultate.
