@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{romanian}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+
+\usepackage{braket}
+
+\theoremstyle{definition}
+\newtheorem*{exercise}{Exercițiu}
+
+\begin{document}
+
+\begin{exercise}
+Găsiți elementele inversabile, divizorii lui 0, elementele nilpotente și elementele idempotente din \(\mathbb{Z}_{63}\).
+\end{exercise}
+\begin{proof}
+~
+\begin{itemize}
+    \item Elementele au invers la înmulțire în \(\mathbb{Z}_n\) dacă și numai dacă sunt prime față de \(n\). În acest caz, \(U(\mathbb{Z}_{63}) = \Set{ \hat{1}, \hat{2}, \hat{4}, \hat{5}, \dots }\).
+    
+    \item Divizorii lui 0 dintr-un inel \(R\) sunt elementele \(a \in R\) pentru care \(\exists b \neq 0\) astfel încât \(ab = 0\). Din acest motiv, elementele care sunt inversabile sigur nu pot fi divizori ai lui 0.
+
+    În \(\mathbb{Z}_n\), toate numerele care au un factor în comun cu \(n\) sunt divizori ai lui 0. Răspunsul este \(\Set{ \hat{3}, \hat{6}, \hat{7}, \hat{9}, \hat{12}, \dots }\).
+    
+    \item Elementele nilpotente sunt cele pentru care \(\exists n \in \mathbb{N}^*\) astfel încât \(a^n = 0\). 0 este întotdeauna nilpotent, dar este posibil să mai existe și alte elemente de acest fel.
+    
+    În \(\mathbb{Z}_n\), elementele nilpotente sunt cele care conțin cel puțin toți factorii primi distincți ai lui \(n\). Pentru \(n = 63\), avem \(63 = 3^2 \cdot 7\), deci trebuie să găsim numere care să fie multiplii de \(3 \cdot 7\). Răspunsul este \(\mathcal{N}(\mathbb{Z}_{63}) = \Set{ \hat{0} (= 3 \cdot 7 \cdot 0), \hat{21} (= 3 \cdot 7 \cdot 1), \hat{42} (= 3 \cdot 7 \cdot 2) }\).
+    
+    \item Elementele idempotente sunt cele pentru care \(a^2 = a\). Atât 0 cât și 1 sunt întotdeauna idempotente. De asemenea, dacă \(a\) este idempotent, atunci și \(1 - a\) este idempotent, deci odată ce am găsit jumătate dintre idempotente putem obține mai ușor și cealaltă jumătate.
+    
+    Ideea este să descompunem \(n\) în produs de \(r\) numere prime sau puteri de numere prime, \(n = p_1^{k_1} p_2^{k_2} \dots p_r^{k_r}\) și să descompunem \(\mathbb{Z}_n\) în \(\mathbb{Z}_{p_1^{k_1}} \times \mathbb{Z}_{p_2^{k_2}} \times \dots \times \mathbb{Z}_{p_r^{k_r}}\).
+    Singurele elemente idempotente din fiecare \(\mathbb{Z}_{p^k}\) sunt \(\bar{0}\) și \(\bar{1}\).
+    
+    În acest caz \(\mathbb{Z}_{63} = \mathbb{Z}_{7} \times \mathbb{Z}_{9}\).
+    Trebuie să scriem toate cele \(2^r\) șiruri posibile de 0 și 1 de lungime \(r\) (fiecare corespunde unui idempotent):
+    \begin{itemize}
+        \item \((\bar{0}, \bar{\bar{0}})\) \(\implies\) numere care dau rest 0 la împărțirea cu 7 și rest 0 la împărțirea cu 9 \(\implies\) \(\hat{0}\)
+        \item \((\bar{1}, \bar{\bar{1}})\) \(\implies\) numere care dau rest 1 la împărțirea cu 7 și rest 1 la împărțirea cu 9 \(\implies\) \(\hat{1}\)
+        \item \((\bar{0}, \bar{\bar{1}})\) \(\implies\) numere care dau rest 0 la împărțirea cu 7 și rest 1 la împărțirea cu 9 \(\implies\) \(\hat{28}\)
+        \item Din moment ce deja știm că \(\hat{28}\) este idempotent, știm că și \(1 - 28 \equiv -27 \equiv 36 \mod 63\) este idempotent. Dacă nu observăm acest lucru, putem să calculăm ca mai înainte:
+        
+        \((\bar{1}, \bar{\bar{0}})\) \(\implies\) numere care dau rest 1 la împărțirea cu 7 și rest 0 la împărțirea cu 9 \(\implies\) \(\hat{36}\)
+    \end{itemize}
+    
+    Deci \(\text{Idemp}(\mathbb{Z}_{63}) = \Set{ \hat{0}, \hat{1}, \hat{28}, \hat{36} }\).
+\end{itemize}
+
+\end{proof}
+
+\begin{exercise}
+Găsiți idealele lui \(\mathbb{C} \times M_4(\mathbb{Z}_6 \times \mathbb{R})\).
+\end{exercise}
+\begin{proof}
+Ne folosim de una sau mai multe dintre următoare proprietăți (în rezolvare, trebuie enunțate înainte de folosirea lor):
+\begin{itemize}
+    \item Idealele lui \(R_1 \times R_2 \times \dots \times R_n\) sunt \(I_1 \times I_2 \times \dots \times I_n\), unde \(I_1, I_2, \dots, I_n\) sunt ideale ale lui \(R_1, R_2, \dots, \text{ respectiv } R_n\).
+    \item Idealele lui \(\mathbb{Z}\) sunt \(n\mathbb{Z}, \forall n \in \mathbb{N}^{*}\).
+    \item Idealele lui \(\mathbb{Z}_n\) sunt \(\hat{d}\mathbb{Z}_n\) unde \(d \mid n\).
+    \item Dacă \(R\) este corp, atunci singurele lui ideale sunt \(\Set{0}\) și \(R\).
+    \item Idealele lui \(M_n(R)\) sunt \(M_n(I)\) unde \(I\) este un ideal al lui \(R\).
+\end{itemize}
+
+În acest caz:
+\begin{itemize}
+    \item Fiind corpuri, idealele lui \(\mathbb{C}\) și \(\mathbb{R}\) sunt \(\Set{0}\) și ele însăși.
+    \item Idealele lui \(\mathbb{Z}_6\) sunt \(\hat{d}\mathbb{Z}_6\) unde \(d \mid 6\), deci \(\hat{1}\mathbb{Z}_6, \hat{2}\mathbb{Z}_6, \hat{3}\mathbb{Z}_6, \hat{6}\mathbb{Z}_6\).
+    \item Ne folosim de prima proprietate pentru idealele produsului de inele.
+    \item Ne folosim de ultima proprietate pentru idealele inelelor de matrici.
+\end{itemize}
+
+În concluzie, idealele căutate sunt:
+\begin{itemize}
+    \item \(\Set{0} \times M_4(\hat{1} \mathbb{Z}_6 \times \set{0})\)
+    \item \(\Set{0} \times M_4(\hat{1} \mathbb{Z}_6 \times \mathbb{R})\)
+    \item \(\Set{0} \times M_4(\hat{2} \mathbb{Z}_6 \times \set{0})\)
+    \item \(\Set{0} \times M_4(\hat{2} \mathbb{Z}_6 \times \mathbb{R})\)
+    \item \dots
+    \item \(\mathbb{C} \times M_4(\hat{6} \mathbb{Z}_6 \times \set{0})\)
+    \item \(\mathbb{C} \times M_4(\hat{6} \mathbb{Z}_6 \times \mathbb{R})\)
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Găsiți idealele inelului \(R = \mathbb{Z}_8 \times \mathbb{Q}\) și, până la izomorfism, inelele factor obținute prin împărțirea la aceste ideale.
+\end{exercise}
+\begin{proof}
+Asemănător exercițiului anterior, găsim idealele acestui inel: \(\hat{1} \mathbb{Z}_8 \times \Set{0}, \hat{1} \mathbb{Z}_8 \times \mathbb{Q}, \dots, \hat{8}\mathbb{Z}_8 \times(\Set{0}), \hat{8}\mathbb{Z}_8 \times \mathbb{Q}\).
+
+Pentru a doua parte ne vom folosi și de următoarele proprietăți:
+\begin{itemize}
+    \item Dacă \(I_1 \trianglelefteq R_1\) și \(I_2 \trianglelefteq R_2\), \((R_1 \times R_2) / (I_1 \times I_2) \cong (R_1 / I_1) \times (R_2 / I_2)\)
+    \item Dacă \(I, J \trianglelefteq R\) și \(J \subset I\), atunci \((R / J) / (I / J) \cong (R / I)\).
+    \item \((R / R) \cong \Set{0}, (R / \Set{0}) \cong R\)
+    \item \(\Set{0} \times R \cong R \times \Set{0} \cong R\)
+    \item \(\mathbb{Z}_n \cong \mathbb{Z} / n\mathbb{Z}\)
+\end{itemize}
+
+Acum trebuie să scriem toate inelele factor de forma \(\frac{\mathbb{Z}_8 \times \mathbb{Q}}{I \times J}\), unde \(I \in \Set{ \hat{1}\mathbb{Z}_8, \dots, \hat{8}\mathbb{Z}_8 }\) și \(J \in \Set{ \Set{0}, \mathbb{Q} }\).
+Trebuie de asemenea să ``simplificăm'' aceste inele până la forma în care se vede care sunt izomorfe între ele.
+\begin{itemize}
+    \item \[
+    \frac{\mathbb{Z}_8 \times \mathbb{Q}}{\hat{1} \mathbb{Z}_8 \times \Set{0}}
+    \cong \frac{\mathbb{Z}_8}{\mathbb{Z}_8} \times \frac{\mathbb{Q}}{\Set{0}}
+    \cong \Set{\hat{0}} \times \mathbb{Q} \cong \mathbb{Q}
+    \]
+    \item \[
+    \frac{\mathbb{Z}_8 \times \mathbb{Q}}{\hat{1} \mathbb{Z}_8 \times \mathbb{Q}}
+    \cong \frac{\mathbb{Z}_8}{\mathbb{Z}_8} \times \frac{\mathbb{Q}}{\mathbb{Q}}
+    \cong \Set{\hat{0}} \times \Set{0} \cong \Set{0}
+    \]
+    \item \[
+    \dots
+    \]
+    \item \[
+    \frac{\mathbb{Z}_8 \times \mathbb{Q}}{\hat{4} \mathbb{Z}_8 \times \mathbb{Q}}
+    \cong \frac{\mathbb{Z}_8}{\hat{4}\mathbb{Z}_8} \times \frac{\mathbb{Q}}{\mathbb{Q}}
+    \cong \frac{\mathbb{Z} / 8\mathbb{Z}}{4\mathbb{Z} / 8\mathbb{Z}} \times \Set{0}
+    \cong \frac{\mathbb{Z}}{4\mathbb{Z}} \times \Set{0}
+    \cong \mathbb{Z}_4 \times \Set{0}
+    \cong \mathbb{Z}_4
+    \]
+    \item \[
+    \dots
+    \]
+    \item \[
+    \frac{\mathbb{Z}_8 \times \mathbb{Q}}{\hat{8} \mathbb{Z}_8 \times \mathbb{Q}}
+    \cong \frac{\mathbb{Z}_8}{\hat{8}\mathbb{Z}_8} \times \frac{\mathbb{Q}}{\mathbb{Q}}
+    \cong \frac{\mathbb{Z}_8}{\Set{0}} \times \Set{0}
+    \cong \mathbb{Z}_8 \times \Set{0}
+    \cong \mathbb{Z}_8
+    \]
+\end{itemize}
+\end{proof}
+
+\end{document}
