@@ -1,0 +1,414 @@
+\section{Algebră liniară}
+
+Exercițiile alese de domnul profesor sunt din cartea ``Algebra 1'' de Tiberiu Dumitrescu, \href{http://www.gta.math.unibuc.ro/pages/Algebra1TD.pdf}{disponibilă pe internet}.
+
+\subsection{Determinanți}
+
+\begin{exercise}[176]
+Fie \(x_1, x_2, x_3\) rădăcinile ecuației \(x^3 + px + q = 0\).
+Calculați \(\Delta^2\) în funcție de \(p\) și \(q\), unde
+\[
+\Delta = \begin{vmatrix}
+1 & 1 & 1 \\
+x_1 & x_2 & x_3 \\
+x_1^2 & x_2^2 & x_3^2
+\end{vmatrix}
+\]
+\end{exercise}
+\begin{proof}
+Putem să dezvoltăm \(\Delta\) ca un determinant Vandermonde, și astfel trebuie să calculăm \((x_2 - x_1)^2 (x_3 - x_1)^2 (x_3 - x_2)^2\). Acesta este un polinom simetric, deci poate fi scris în funcție de polinoamele simetrice fundamentale \(s_1, s_2, s_3\), pe care apoi le exprimăm în funcție de \(p\) și \(q\).
+
+Altfel, putem să ne folosim de faptul că \(\det A = \det A^\intercal\), de unde
+\[
+    (\det A) \cdot (\det A^\intercal) = (\det A) \cdot (\det A) = (\det A)^2
+\]
+
+Deci
+\begin{align*}
+    \Delta^2 &= \det \left(
+    \begin{pmatrix}
+        1 & 1 & 1 \\
+        x_1 & x_2 & x_3 \\
+        x_1^2 & x_2^2 & x_3^2
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+        1 & x_1 & x_1^2 \\
+        1 & x_2 & x_2^2 \\
+        1 & x_3 & x_3^2
+    \end{pmatrix}
+    \right) \\
+    &= \begin{vmatrix}
+    3 & x_1 + x_2 + x_3 & x_1^2 + x_2^2 + x_3^2 \\
+    x_1 + x_2 + x_3 & x_1^2 + x_2^2 + x_3^2 & x_1^3 + x_2^3 + x_3^3 \\
+    x_1^2 + x_2^2 + x_3^2 & x_1^3 + x_2^3 + x_3^3 & x_1^4 + x_2^4 + x_3^4
+    \end{vmatrix}
+\end{align*}
+
+Acum trebuie să obținem unele dintre aceste expresii în funcție de \(p\) și \(q\).
+\begin{align*}
+    x_1 + x_2 + x_3 &= 0 \\
+    x_1 x_2 + x_1 x_3 + x_2 x_3 &= p \\
+    x_1 x_2 x_3 &= -q \\
+    x_1^2 + x_2^2 + x_3^2 &= -2p \\
+    x_1^3 + x_2^3 + x_3^3 &= -3q \\ 
+    x_1^4 + x_2^4 + x_3^4 &= 2p^2
+\end{align*}
+
+Determinantul devine
+\begin{align*}
+    \Delta^2 &= \begin{vmatrix}
+        3 & 0 & -2p \\
+        0 & -2p & -3q \\
+        -2p & -3q & 2p^2
+    \end{vmatrix} \\
+    &= -4p^3 - 27q^2
+\end{align*}
+\end{proof}
+
+\begin{exercise}[179]
+Calculați determinantul
+\[
+    \Delta = \begin{vmatrix}
+    a_1 & x & x & \dots & x \\
+    x & a_2 & x & \dots & x \\
+    x & x & a_3 & \dots & x \\
+    \vdots & \vdots &  \vdots & \ddots & \vdots \\
+    x & x & x & \dots & a_n
+    \end{vmatrix}
+\]
+\end{exercise}
+\begin{proof}
+Scădem prima linie din toate celelalte și scoatem factorii comuni:
+\begin{gather*}
+    \Delta = \begin{vmatrix}
+    a_1 & x & x & \dots & x \\
+    x - a_1 & a_2 - x & 0 & \dots & 0 \\
+    x - a_1 & 0 & a_3 -x & \dots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    x - a_1 & 0 & 0 & \dots & a_n - x
+    \end{vmatrix} \\
+    = (a_1 - x) \dots (a_n - x) \begin{vmatrix}
+    \dfrac{a_1}{a_1 - x} & \dfrac{x}{a_2 - x} & \dfrac{x}{a_3 - x} & \dots & \dfrac{x}{a_n - x} \\
+    -1 & 1 & 0 & \dots & 0 \\
+    -1 & 0 & 1 & \dots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    -1 & 0 & 0 & \dots & 1
+    \end{vmatrix}
+\end{gather*}
+
+Adunăm toate coloanele la prima și dezvoltăm după prima linie:
+\begin{gather*}
+    = (a_1 - x) \dots (a_n - x) \begin{vmatrix}
+    \dfrac{a_1}{a_1 - x} + \dots + \dfrac{x}{a_n - x} & \dfrac{x}{a_2 - x} & \dots & \dfrac{x}{a_n - x} \\
+    0 & 1 & \dots & 0 \\
+    0 & 0 & \dots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \dots & 1
+    \end{vmatrix} \\
+    = (a_1 - x) \dots (a_n - x) (\dfrac{a_1}{a_1 - x} + \dfrac{x}{a_2 - x} + \dots + \dfrac{x}{a_n - x})
+\end{gather*}
+
+În cazul în care \(x \in \Set{a_1, \dots, a_n}\), trebuie să desfacem acel produs. Fracțiile dispar și formula rămâne validă.
+\end{proof}
+
+\begin{exercise}[180]
+Calculați următorul determinant prin dezvoltare Laplace după liniile 1 și 2:
+\[
+\Delta = \begin{vmatrix}
+5 & 3 & 0 & 0 & 0 \\
+2 & 5 & 3 & 0 & 0 \\
+0 & 2 & 5 & 3 & 0 \\
+0 & 0 & 2 & 5 & 3 \\
+0 & 0 & 0 & 2 & 5
+\end{vmatrix}
+\]
+\end{exercise}
+\begin{proof}
+Dezvoltăm cu regula lui Laplace după primele două linii:
+\begin{gather*}
+    \Delta = \underbrace{(-1)^{1 + 1 + 2 + 2}}_{1} \underbrace{\begin{vmatrix}
+        5 & 3 \\
+        2 & 5
+    \end{vmatrix}}_{19} \underbrace{\begin{vmatrix}
+        5 & 3 & 0 \\
+        2 & 5 & 3 \\
+        0 & 2 & 5
+    \end{vmatrix}}_{95 - 30} \\
+    + \underbrace{(-1)^{1 + 1 + 2 + 3}}_{-1} \underbrace{\begin{vmatrix}
+        5 & 0 \\
+        2 & 3
+    \end{vmatrix}}_{15} \underbrace{\begin{vmatrix}
+        2 & 3 & 0 \\
+        0 & 5 & 3 \\
+        0 & 2 & 5
+    \end{vmatrix}}_{2 \cdot 19} \\
+    + \underbrace{(-1)^{1 + 2 + 2 + 3}}_{1} \underbrace{\begin{vmatrix}
+        3 & 0 \\
+        5 & 3
+    \end{vmatrix}}_{9} \underbrace{\begin{vmatrix}
+        0 & 3 & 0 \\
+        0 & 5 & 3 \\
+        0 & 2 & 5
+    \end{vmatrix}}_{0} \\
+    = 95 \cdot 19 - 30 \cdot 19 - 30 \cdot 19 \\
+    = 19 \cdot 35
+\end{gather*}
+\end{proof}
+
+\begin{exercise}[185]
+Determinați numărul de matrici inversabile din \(\matrices{3}{\integersmod{2}}\). Generalizare.
+\end{exercise}
+\begin{proof}
+Construim matricea în așa fel încât determinantul ei să nu fie \(\widehat{0}\).
+\begin{enumerate}
+    \item Pentru a construi prima coloană, trebuie să alegem trei elemente din mulțimea \(\left\lbrace \widehat{0}, \widehat{1} \right\rbrace\). Acestea nu pot fi toate \(\widehat{0}\), altfel determinantul ar fi nul. Deci avem \(2^3 - 1\) posibilități.
+    
+    \item A doua coloană trebuie să fie diferită de coloana nulă, și diferită de prima coloană (dacă două coloane sunt egale sau proporționale, determinantul este nul). Atunci avem \(2^3 - 2\) posibilități.
+    
+    \item Ultima coloană trebuie să fie diferită de coloana nulă, diferită de primele două, și să nu fie combinație liniară de primele două coloane. Singura combinație liniară posibilă în \(\integersmod{2}\) ar fi suma primelor două coloane. Astfel avem \(2^3 - 4\) posibilități.
+\end{enumerate}
+În concluzie, sunt \((2^3 - 1)(2^3 - 2)(2^3 - 4) = 168\) moduri de a construi o matrice inversabilă în \(\matrices{3}{\integersmod{2}}\).
+
+Pe cazul general de matrici din \(\matrices{n}{\integersmod{2}}\) numărul de matrici inversabile este
+\((2^n - 2^0) \cdot (2^n - 2^1) \cdot \dots \cdot (2^n - 2^{n - 1})\).
+\end{proof}
+
+\subsection{Eșalonare. Metoda lui Gauss}
+
+\begin{exercise}[212]
+Eșalonați matricea
+\[
+    A = \begin{pmatrix}
+    1 & 2 & 3 & 4 \\
+    1 & 2 & 4 & 3 \\
+    2 & 3 & 1 & 4
+    \end{pmatrix}
+\]
+și găsiți baze în subspațiile generate de liniile, respectiv coloanele matricei.
+\end{exercise}
+\begin{proof}
+\begin{align*}
+    &\begin{pmatrix}
+    1 & 2 & 3 & 4 \\
+    1 & 2 & 4 & 3 \\
+    2 & 3 & 1 & 4
+    \end{pmatrix} \\
+    \reduce^{L_2 - L_1}_{L_3 - 2 L_1}
+    &\begin{pmatrix}
+    1 & 2 & 3 & 4 \\
+    0 & 0 & 1 & -1 \\
+    0 & -1 & -5 & -4
+    \end{pmatrix} \\
+    \reduce^{(-1) L_3}_{L_2 \leftrightarrow L_3}
+    &\begin{pmatrix}
+    1 & 2 & 3 & 4 \\
+    0 & 1 & 5 & 4 \\
+    0 & 0 & 1 & -1
+    \end{pmatrix} \\
+    \reduce^{L_1 - 2 L_2}
+    &\begin{pmatrix}
+    1 & 0 & -7 & -4 \\
+    0 & 1 & 5 & 4 \\
+    0 & 0 & 1 & -1
+    \end{pmatrix} \\
+    \reduce^{L_1 + 7 L_3}_{L_2 - 5 L_3}
+    &\begin{pmatrix}
+    1 & 0 & 0 & -11 \\
+    0 & 1 & 0 & 9 \\
+    0 & 0 & 1 & -1
+    \end{pmatrix}
+\end{align*}
+
+Vectorii coloană ai matricei sunt
+\[
+    C = \left\lbrace (1, 0, 0), (0, 1, 0), (0, 0, 1), (-11, 9, -1) \right\rbrace
+\]
+Aceștia generează întreg \(\reals^3\), deci o bază pentru ei este baza canonică \(B_0 = \Set{ (1, 0, 0), (0, 1, 0), (0, 0, 1) }\).
+
+Vectorii linie sunt \(L = \left\lbrace (1, 0, 0, -11), (0, 1, 0, 9), (0, 0, 1, -1) \right\rbrace\). Deoarece avem 3 vectori din \(\reals^4\) care sunt și linear independenți, ei generează un hiperplan 3-dimensional în \(\reals^4\), și îi putem lua și ca bază pentru acest subspațiu.
+\end{proof}
+
+\begin{exercise}[213]
+Rezolvați sistemul de ecuații liniare
+\[
+    \begin{cases}
+    x - 2y + z + t = 1 \\
+    x - 2y + z - t = -1 \\
+    x - 2y + z + 5t = 5
+    \end{cases}
+\]
+\end{exercise}
+\begin{proof}
+Construim matricea extinsă a sistemului:
+\begin{align*}
+    A^e = &\left(
+    \begin{array}{cccc|c}
+    1 & -2 & 1 & 1 & 1 \\
+    1 & -2 & 1 & -1 & -1 \\
+    1 & -2 & 1 & 5 & 5
+    \end{array}
+    \right) \\
+    \reduce^{L_2 - L_1}_{L_3 - L_1}
+    &\left(
+    \begin{array}{cccc|c}
+    1 & -2 & 1 & 1 & 1 \\
+    0 & 0 & 0 & -2 & -2 \\
+    0 & 0 & 0 & 4 & 4
+    \end{array}
+    \right)
+    \\
+    \reduce^{L_3 + 2 L_2}_{(-\frac{1}{2}) L_2}
+    &\left(\begin{array}{cccc|c}
+    1 & -2 & 1 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0
+    \end{array}\right)
+    \\
+    \reduce^{L_1 - L_2}
+    &\left(\begin{array}{cccc|c}
+    1 & -2 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 0 & 0
+    \end{array}\right)
+\end{align*}
+Acum putem rescrie sistemul echivalent din matrice:
+\[
+\begin{cases}
+x - 2y + z = 0 \\
+t = 1
+\end{cases}
+\]
+Rescriem necunoscutele principale \(x\) și \(t\) (necunoscutele pe coloanele cărora avem pivoții) în funcție de celelalte necunoscute (adică \(y, z\)).
+
+Mulțimea soluțiilor este \(S = \Set{ (2y - z, y, z, 1) | y, z \in \reals}\).
+
+Pentru a găsi soluția particulară, separăm termenii liberi de cei care depind de o variabilă, și rescriem vectorial ecuațiile:
+\[
+    S = (0, 0, 0, 1) + (2y + z, y, z, 0)
+\]
+Pentru a determina o bază care să genereze subspațiul vectorial al soluțiilor, separăm componentele care depind de \(y\), respectiv \(z\):
+\begin{align*}
+    S &= (0, 0, 0, 1) + y(2, 1, 0, 0) + z (-1, 0, 1, 0) \\
+    &= (0, 0, 0, 1) + \left\langle (2, 1, 0, 0), (-1, 0, 1, 0) \right\rangle
+\end{align*}
+\end{proof}
+
+\begin{exercise}[214]
+Rezolvați sistemul de ecuații liniare
+\[
+    \begin{cases}
+    x + y - 3z = -1 \\
+    2x + y - 2z = 1 \\
+    x + y + z = 3 \\
+    x + 2y - 3z = 1
+    \end{cases}
+\]
+\end{exercise}
+\begin{proof}
+Scriem matricea extinsă a sistemului și rezolvăm prin metoda lui Gauss:
+\begin{align*}
+    &\left(\begin{array}{ccc|c}
+    1 & 1 & -3 & -1 \\
+    1 & 1 & -2 & 1 \\
+    1 & 1 & 1 & 3 \\
+    1 & 2 & -3 & 1
+    \end{array}\right) \\
+    \reduce^{\substack{L_2 - L_1 \\ L_3 - L_1}}_{L_4 - L_1}
+    &\left(\begin{array}{ccc|c}
+    1 & 1 & -3 & -1 \\
+    0 & 0 & 1 & 2 \\
+    0 & 0 & 4 & 4 \\
+    0 & 1 & 0 & 2
+    \end{array}\right) \\
+    \reduce^{(\frac{1}{4}) L_3}_{L_3 - L_2}
+    &\left(\begin{array}{ccc|c}
+    1 & 1 & -3 & -1 \\
+    0 & 0 & 1 & 2 \\
+    0 & 0 & 0 & -1 \\
+    0 & 1 & 0 & 2
+    \end{array}\right)
+\end{align*}
+Deoarece deja am obținut o contradicție pe linia 3 (\(0 = -1\)), sistemul este incompatibil. 
+\end{proof}
+
+\subsection{Inversa unei matrici prin eșalonare}
+
+\begin{exercise}[215]
+Calculați inversa matricei următoare prin eșalonare
+\[
+    A = \begin{pmatrix}
+    2 & 1 & 0 & 0 \\
+    3 & 2 & 0 & 0 \\
+    1 & 1 & 3 & 4 \\
+    2 & -1 & 2 & 3
+    \end{pmatrix}
+\]
+\end{exercise}
+\begin{proof}
+Scriem matricea extinsă, cu \(I_4\) pe partea dreaptă:
+\begin{align*}
+    &\left(\begin{array}{cccc|cccc}
+    2 & 1 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    3 & 2 & 0 & 0 & 0 & 1 & 0 & 0 \\
+    1 & 1 & 3 & 4 & 0 & 0 & 1 & 0 \\
+    2 & -1 & 2 & 3 & 0 & 0 & 0 & 1
+    \end{array}\right) \\
+    \reduce^{L_1 \leftrightarrow L_3}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 1 & 3 & 4 & 0 & 0 & 1 & 0 \\
+    3 & 2 & 0 & 0 & 0 & 1 & 0 & 0 \\
+    2 & 1 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    2 & -1 & 2 & 3 & 0 & 0 & 0 & 1
+    \end{array}\right) \\
+    \reduce^{\substack{L_2 - 3 L_1 \\ (-1) L_2}}_{\substack{L_3 - 2 L_1 \\ L_4 - 2 L_1}}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 1 & 3 & 4 & 0 & 0 & 1 & 0 \\
+    0 & 1 & 9 & 12 & 0 & -1 & 3 & 0 \\
+    0 & -1 & -6 & -8 & 1 & 0 & -2 & 0 \\
+    0 & -3 & -4 & -5 & 0 & 0 & -2 & 1
+    \end{array}\right) \\
+    \reduce^{L_3 + L_2}_{L_4 + L_2}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 0 & -6 & -8 & 0 & 1 & -2 & 0 \\
+    0 & 1 & 9 & 12 & 0 & -1 & 3 & 0 \\
+    0 & 0 & 3 & 4 & 1 & -1 & 1 & 0 \\
+    0 & 0 & 23 & 31 & 0 & -3 & 7 & 1
+    \end{array}\right) \\
+    \reduce^{\substack{L_1 + 2 L_3 \\ L_2 - 3 L_3}}_{8 L_3}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 0 & 0 & 0 & 2 & -1 & 0 & 0 \\
+    0 & 1 & 0 & 0 & -3 & 2 & 0 & 0 \\
+    0 & 0 & 24 & 32 & 8 & -8 & 8 & 0 \\
+    0 & 0 & 23 & 31 & 0 & -3 & 7 & 1
+    \end{array}\right) \\
+    \reduce^{L_3 - L_4}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 0 & 0 & 0 & 2 & -1 & 0 & 0 \\
+    0 & 1 & 0 & 0 & -3 & 2 & 0 & 0 \\
+    0 & 0 & 1 & 1 & 8 & -5 & 1 & -1 \\
+    0 & 0 & 23 & 31 & 0 & -3 & 7 & 1
+    \end{array}\right) \\
+    \reduce^{L_4 - 23 L_4}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 0 & 0 & 0 & 2 & -1 & 0 & 0 \\
+    0 & 1 & 0 & 0 & -3 & 2 & 0 & 0 \\
+    0 & 0 & 1 & 1 & 8 & -5 & 1 & -1 \\
+    0 & 0 & 0 & 8 & -184 & 112 & -16 & 24
+    \end{array}\right) \\
+    \reduce^{\frac{1}{8} L_4}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 0 & 0 & 0 & 2 & -1 & 0 & 0 \\
+    0 & 1 & 0 & 0 & -3 & 2 & 0 & 0 \\
+    0 & 0 & 1 & 1 & 8 & -5 & 1 & -1 \\
+    0 & 0 & 0 & 1 & -23 & 14 & -2 & 3
+    \end{array}\right) \\
+    \reduce^{L_3 - L_4}
+    &\left(\begin{array}{cccc|cccc}
+    1 & 0 & 0 & 0 & 2 & -1 & 0 & 0 \\
+    0 & 1 & 0 & 0 & -3 & 2 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 31 & -19 & 3 & -4 \\
+    0 & 0 & 0 & 1 & -23 & 14 & -2 & 3
+    \end{array}\right)
+\end{align*}
+\end{proof}

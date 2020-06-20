@@ -1,0 +1,819 @@
+\section{Inele}
+
+\subsection{Generalități}
+
+\begin{exercise}[1.3]
+Să se determine numărul structurilor:
+\begin{enumerate}[(a)]
+    \item de inel, neizomorfe între ele, care pot fi definite pe grupul \((\integersmod{p}, +)\), unde \(p\) este un număr prim.
+    \begin{proof}
+    În acest exercițiu o să notăm cu \(*\) legea de înmulțire pe care trebuie să o definim.
+    
+    Pentru a defini în mod unic această lege de compoziție, este suficient să fixăm valoarea pentru \(\widehat{1} * \widehat{1}\), deoarece \(\widehat{k} = \underbrace{\widehat{1} + \dots + \widehat{1}}_{\text{de \(k\) ori}}, \forall \widehat{k} \in \integersmod{p}\), și avem că
+    \begin{align*}
+        \widehat{a} * \widehat{b}
+        &= (\underbrace{\widehat{1} + \dots + \widehat{1}}_{\text{de \(a\) ori}}) * (\underbrace{\widehat{1} + \dots + \widehat{1}}_{\text{de \(b\) ori}}) \\
+        &= \underbrace{\widehat{1} * \widehat{1} + \dots + \widehat{1} * \widehat{1}}_{\text{de \(a \cdot b\) ori}} \\
+        &= (ab) (\widehat{1} * \widehat{1})
+    \end{align*}
+    
+    Dacă \(\widehat{1} * \widehat{1} = \widehat{0}\), atunci avem înmulțirea nulă pe \(\integersmod{p}\), \(\widehat{a} * \widehat{b} = \widehat{0}, \forall \widehat{a}, \widehat{b} \in \integersmod{p}\).
+    
+    Dacă \(\widehat{1} * \widehat{1} = \widehat{u} \neq \widehat{0}\), atunci \(\widehat{a} * \widehat{b} = (ab) \widehat{u}\).
+    
+    Putem să arătăm că pentru orice \(\widehat{u}\) toate aceste structuri sunt izomorfe între ele, arătând că toate sunt izomorfe cu \(\integersmod{p}\) cu înmulțirea obișnuită modulo \(p\), definind izomorfismul \(f \colon (\integersmod{p}, +, *) \to (\integersmod{p}, +, \cdot)\), \(f(\widehat{x}) = \widehat{u}^{-1} \widehat{x}\).
+    \end{proof}
+    
+    \item de inel unitar ce pot fi definite pe grupul \((\integersmod{n}, +)\) și să se arate că acestea sunt izomorfe.
+    \begin{proof}
+    Deoarece avem nevoie de inele unitare, excludem din start înmulțirea nulă (\(a * b = 0, \forall a, b \in \integersmod{n}\)).
+    
+    Toate elementele care sunt prime față de \(n\) au invers la înmulțire în \(\integersmod{n}\). Folosind morfismul de la sub punctul precedent, putem arăta că toate acestea sunt izomorfe cu \((\integersmod{n}, +, \cdot)\), adică \(\integersmod{n}\) cu înmulțirea obișnuită modulo \(n\).
+    \end{proof}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[1.4]
+Arătați că pe grupul \((\rationals/\integers, +)\) nu se poate defini o structură de inel unitar.
+\end{exercise}
+\begin{proof}
+Clasele de resturi din acest grup factor sunt de forma \(\widehat{\frac{1}{a}}\), cu \(a \in \integers\).
+Observăm că pentru orice \(n \in \naturals^*\), elementul \(\widehat{\frac{1}{n}}\) are ordin \(n\), deoarece \(\underbrace{\widehat{\frac{1}{n}} + \dots + \widehat{\frac{1}{n}}}_{\text{de \(n\) ori}} = \widehat{\frac{n}{n}} = \widehat{1} = \widehat{0}\).
+
+Presupunem că am definit o înmulțire pe acest inel, și că avem elementul unitate \(\widehat{\frac{1}{k}}, k \in \integers\). Atunci pentru orice \(\widehat{1/a} \in \rationals/\integers\):
+\[
+\underbrace{\widehat{\frac{1}{a}} + \dots + \widehat{\frac{1}{a}}}_{\text{de \(k\) ori}} =
+\widehat{\frac{k}{a}} = \widehat{\frac{1}{k}} \cdot \widehat{\frac{k}{a}} = \widehat{0}
+\]
+Asta înseamnă că ordinul oricărui element este cel mult \(k\), dar asta ar contrazice faptul că putem avea elemente cu ordin orice număr natural.
+\end{proof}
+
+\begin{exercise}[1.6]
+Să se arate că \((\reals^{\reals}, +, \circ)\) nu este inel.
+\end{exercise}
+\begin{proof}
+Presupunem că această structură ar fi inel. Atunci compunerea ar trebui să fie distributivă față de adunare.
+Luăm contra exemplul \(f, g, h \colon \reals \to \reals\), \(f(x) = x^2, g(x) = 2x, h(x) = 3x\).
+\[
+f \circ (g + h) = f(g(x) + h(x)) = f(2x + 3x) = (5x)^2 = 25x^2
+\]
+\[
+f \circ g + f \circ h = f(g(x)) + f(h(x)) = f(2x) + f(3x) = 4x^2 + 9x^2 = 13x^2
+\]
+
+Avem că \(25x^2 \neq 13x^2\), deci \(f \circ (g + h) \neq f \circ g + f \circ h\), deci nu este inel.
+\end{proof}
+
+\begin{exercise}[1.7]
+Fie \(R\) un inel și \(n \geq 2\). Să se arate că inelul de matrice \(\matrices{n}{R}\) este comutativ dacă și numai dacă \(ab = 0\) pentru orice \(a, b \in R\).
+\end{exercise}
+\begin{proof}
+\begin{itemize}
+    \item[\(\implies\)] Fie \(a, b \in R\). Considerăm matricile din \(A, B \in \matrices{n}{R}\), unde \(A\) este matricea care îl are pe \(a\) pe poziția \((2, 1)\) și zerouri în rest, și \(B\) îl are pe \(b\) pe \((1, 2)\).
+   
+    Dacă calculăm produsul \(AB\), obținem matricea care îl are pe \(ab\) în poziția (2, 2), iar din produsul \(BA\) obținem 0 în acea poziție.
+    
+    Deoarece știm din ipoteză că \(AB = BA\), rezultă că \(ab = 0\).
+    \item[\(\impliedby\)] Fie \(A, B \in M_n(R)\). Când calculăm produsul \(AB\), respectiv \(BA\), calculăm expresii de forma \(\sum a_i b_j\). Deoarece știm din ipoteză că \(ab = 0, \forall a, b \in R\), aceste expresii vor fi toate 0. Deci \(AB = BA = \symbf{0}_n\).
+\end{itemize}
+\end{proof}
+
+\begin{exercise}[1.10]
+Arătați că dacă un inel are un divizor al lui zero la stânga (dreapta) nenul, atunci are un divizor al lui zero nenul.
+\end{exercise}
+\begin{proof}
+Fie \(a \in R\), \(a \neq 0\) un divizor al lui zero la stânga, nenul. Atunci, din definiție \(\exists b \in R\), \(b \neq 0\) astfel încât \(a \cdot b = 0\).
+Asta înseamnă că \(b\) este un divizor al lui zero \emph{la dreapta} nenul.
+
+Considerăm acum elementul \(b \cdot a\). Dacă acesta este 0, atunci înseamnă că \(a\) este un divizor al lui zero și la dreapta, deci am terminat demonstrația. Altfel, observăm ce se întâmplă când înmulțim acest element cu \(b\) la dreapta, respectiv cu \(a\) la stânga:
+\begin{gather*}
+    (b \cdot a) \cdot b = b \cdot (a \cdot b) = b \cdot 0 = 0 \\
+    a \cdot (b \cdot a) = (a \cdot b) \cdot a = 0 \cdot a = 0
+\end{gather*}
+Deci \(b \cdot a\) este sigur divizor al lui zero.
+
+Demonstrația decurge analog dacă pornim cu un divizor al lui zero la dreapta nenul.
+\end{proof}
+
+\begin{exercise}[1.11]
+Arătați că în inelul \(\matrices{n}{R}\) orice divizor al lui zero la stânga (dreapta) este divizor al lui zero la dreapta (stânga).
+\end{exercise}
+\begin{proof}
+Fie \(A \in \matrices{n}{R}\), \(A \neq 0\) o matrice care este divizor al lui zero la stânga. 
+
+Fiind divizor al lui zero, sigur nu este inversabilă, deci \(\det A = 0\). De asemenea, \(\det A^\intercal = 0\).
+
+Considerând matricea \(A^\intercal\) o transformare liniară între spații vectoriale, din teorema dimensiunii, trebuie să existe cel puțin un vector nenul \(v \in R^n\) pentru care \(A^\intercal v = 0\).
+
+Construim matricea \(V\) punând copii ale vectorului \(v\) pe fiecare coloană. Avem că \(A^\intercal V = 0\). Atunci \((A^\intercal V)^\intercal = 0 \iff V^\intercal A = 0\).
+
+Deci \(A\) este divizor al lui zero și la dreapta.
+\end{proof}
+
+
+\begin{exercise}[1.15]
+~
+\begin{itemize}
+    \item Arătați că \(f \in \reals^{\reals}\) este divizor al lui zero dacă și numai dacă există \(x_0 \in \mathbb{R}\) astfel încât \(f(x_0) = 0\).
+    \begin{proof}
+    \begin{itemize}
+        \item[\(\implies\)] Deoarece \(f\) este divizor al lui zero, înseamnă că există un \(g \in \reals^{\reals}, g \neq 0\) astfel încât \((f \cdot g)(x) = 0, \forall x \in \reals\).
+        
+        Putem rescrie \(g \neq 0\) ca \(\exists x_0 \text{ astfel încât } g(x_0) \neq 0\). Atunci:
+        \[
+        (f \cdot g)(x_0) = 0 \implies f(x_0) g(x_0) = 0 \implies f(x_0) = 0
+        \]
+        
+        \item[\(\impliedby\)] Definim \(g \colon \reals \to \reals\), \(g \neq 0\),
+        \[
+        g(x) = \begin{cases}
+            1, \, x = x_0 \\
+            0, \, \text{altfel}
+        \end{cases}
+        \]
+        Se observă că \(f(x)g(x) = (f \cdot g)(x) = 0, \forall x \in \reals\). Deci \(f\) este divizor al lui 0.
+    \end{itemize}
+    \end{proof}
+    \item Fie \(C(\reals) = \Set{f \colon \reals \to \reals | \text{f este continuă}}\)
+    cu operațiile de adunare și înmulțire a funcțiilor.
+    Arătați că \(f \in C(\reals)\) este divizor al lui zero dacă și numai dacă
+    există \((a, b) \subseteq \reals\) astfel încât \(f(x) = 0\) pentru orice \(x \in (a, b)\).
+    \begin{proof}
+    \begin{itemize}
+        \item[\(\implies\)] Fie \(\function{f}{\reals}{\reals}\) continuă și divizor al lui zero. Asemenea sub-punctului precedent, trebuie să existe un \(x_0 \in \reals\) astfel încât \(f(x_0) = 0\). Dar deoarece \(f\) este continuă, trebuie să fie 0 pe o vecinătate deschisă a lui \(x_0\), și anume \((a, b) \subseteq \reals\).
+        
+        \item[\(\impliedby\)] Trebuie să găsim o funcție continuă care înmulțită cu \(f\) să fie peste tot 0. Pentru a face acest lucru, funcția va fi 0 în afara lui \((a, b)\), și în \((a, b)\) va fi o parabolă care intersectează \(O_x\) în \(a\), respectiv \(b\).
+        
+        Definim \(\function{g}{\reals}{\reals}\) continuă,
+        \[
+        g(x) = \begin{cases}
+            (x - a)(x - b), \, x \in (a, b) \\
+            0, \, \text{altfel}
+        \end{cases}
+        \]
+        Atunci \(g \neq 0\), dar \(f(x)g(x) = 0\), \(\forall x \in \reals\). Deci \(f\) este divizor al lui 0.
+    \end{itemize}
+    \end{proof}
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}[1.17]
+Arătați că în inelul \(\matrices{n}{R}\) orice element inversabil la stânga (dreapta) este inversabil la dreapta (stânga).
+\end{exercise}
+\begin{proof}
+Fie \(A \in \matrices{n}{R}\) o matrice inversabilă la stânga. Atunci există \(B \in \matrices{n}{R}\) cu \(B A = I_n\).
+
+Dacă ne uităm la determinanți, \(\det (B A) = \det I_n = 1\), deci atât \(\det B\) cât și \(\det A\) sunt nenuli.
+
+Avem că
+\[
+B = (B A) B = B (A B)
+\]
+
+Din \(B = B (A B)\) obținem că \(B (A B - I_n) = 0_n\). Deoarece \(\det B \neq 0\), știm că \(B\) nu este divizor al lui zero, deci îl putem simplifica. Rămâne că \(A B = I_n\). De aici am obținut că \(A\) este inversabilă și la dreapta.
+\end{proof}
+
+\begin{exercise}[1.22]
+Să se determine elementele nilpotente în inelul \(\integersmod{n}\) și să se afle numărul acestora.
+\end{exercise}
+\begin{proof}
+Elementele nilpotente sunt cele pentru care \(\exists k \in \naturals\) astfel încât \(\widehat{x}^k = \widehat{0}\). Deci \(n \mid x^k\). Ridicând la putere, nu pot apărea noi factori primi, doar crește puterea celor deja existenți. Deci trebuie ca \(x\) să conțină toți factorii primi ai lui \(n\), la puteri mai mici.
+
+Fie descompunerea lui \(n\) în \(m\) factori primi \(n = p_1^{r_1} \cdot \dots \cdot p_m^{r_m}\). Atunci \(\integersmod{n} \cong \integersmod{p_1^{r_1}} \times \dots \times \integersmod{p_m^{r_m}}\). Nilpotenții din inelul inițial corespund perechilor care conțin nilpotenți în inelele din produs.
+
+În \(\integersmod{p_i^{r_i}}\) se vede mult mai clar câți nilpotenți avem. Înmulțim cu \(p_i\) tot inelul original \(\integersmod{p_i^{r_i}}\) ca să obținem numere în care apare factorul prim \(p_i\), și obținem un sub inel
+\[
+    p_i \integersmod{p_i^{r_i}} = p_i (\integers / {p_i^{r_i} \integers)} = \integers / {p_i^{r_i - 1} \integers} = \integersmod{p_i^{r_i - 1}}
+\]
+care are \(p_i^{r_i - 1}\) elemente.
+
+Per total, în \(\integersmod{n}\) avem
+\[
+    p_1^{r_1 - 1} \cdot \dots \cdot p_m^{r_m - 1} = \frac{p_1^{r_1} \cdot \dots \cdot p_m^{r_m}}{p_1 \cdot \dots \cdot p_m} = \frac{n}{p_1 \cdot \dots \cdot p_m}
+\]
+nilpotenți.
+\end{proof}
+
+\begin{exercise}[1.23]
+Fie \(R\) un inel și \(x, y \in R\) elemente nilpotente.
+\begin{enumerate}
+    \item Dacă \(xy = yx\) atunci \(xy\) și \(x + y\) sunt nilpotente.
+    \begin{proof}
+    Fie \(x, y \in R\) nilpotente. Atunci \(\exists n, m \in \naturals^*\) astfel încât \(x^n = 0\), \(y^m = 0\). Vrem să găsim o putere pentru care atât \(x\) și \(y\) să fie 0. Alegem \(k = \max{(n, m)}\). Atunci \(x^k = y^k = 0\).
+    
+    Luăm prima expresie și vedem ce se întâmplă când o ridicăm la \(k\):
+    \[(xy)^k = \underbrace{(xy)\dots(xy)}_{\text{k ori}}\]
+    Deoarece \(xy = yx\) putem să rearanjăm termenii: \((xy)^k = x^k y^k = 0\).
+    Deci \(xy\) nilpotent.
+    
+    Pentru \(x + y\) ne folosim de binomul lui Newton pentru a ridica la putere (avem voie deoarece \(xy = yx\)). Deoarece vrem ca toți termenii să se anuleze, nu este suficient să ridicăm la puterea \(k\), ci cel puțin la puterea \(2k\). Dezvoltăm \((x + y)^{2k}\) după binomul lui Newton:
+    \[
+    (x + y)^{2k} = \sum\limits_{i = 0}^{2k}{\binom{2k}{i}}a^{2k-i}b^{i}
+    \]
+    Termenii cu \(i\) de la 0 până la \(k\) se anulează deoarece avem \(k - i \geq 0\), putem rescrie \(a^{2k - i} = a^k a^{k - i} = 0\), cei de la \(k + 1\) până la \(2k\) se anulează deoarece avem \(i - k \geq 0\), putem rescrie \(b^{i} = b^{k} b^{i - k} = 0\).
+    Deci \(x + y\) nilpotent.
+    \end{proof}
+    
+    \item Dați exemple care să arate că proprietatea 1 nu mai rămâne adevărată dacă \(xy \neq yx\).
+    \begin{proof}
+    De exemplu, în \(M_2(\mathbb{R})\), avem nilpotenții \(X = \begin{pmatrix}0 & 1 \\ 0 & 0\end{pmatrix}\) și \(Y = \begin{pmatrix}0 & 0 \\ 1 & 0\end{pmatrix}\), cu \(X^2 = Y^2 = \mathbf{0}_2\), care nu comută: \(XY \neq YX\). Suma lor nu este nilpotentă: \(X + Y = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\), \((X + Y)^2 = \mathbf{I}_2\), \((X + Y)^3 = (X + Y)\).
+    \end{proof}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[1.27]
+Fie \(R\) un inel boolean. Să se arate că \(R\) este comutativ.
+\end{exercise}
+\begin{proof}
+Din definiția inelului boolean, toate elementele sunt idempotente: \(x^2 = x\), \(\forall x \in R\).
+
+Observăm că avem următoarele identități:
+\begin{align*}
+    &\begin{rcases*}
+    x + x = (x + x)^2 = (x + x)(x + x) = x^2 + x^2 + x^2 + x^2 \\
+    x + x = (x^2) + (x^2)
+    \end{rcases*} \implies \\
+    &\implies x^2 + x^2 + x^2 + x^2 = x^2 + x^2 \\
+    &\implies x^2 + x^2 = 0 \\
+    &\implies x^2 = -x^2 \\
+    &\implies x = -x, \forall x \in R
+\end{align*}
+Deci orice element este propriul său invers la adunare.
+
+Pentru a arăta că acest inel este comutativ, trebuie să obținem cumva că \(xy = yx\), \(\forall x, y \in R\), folosindu-ne de proprietățile pe care le știm deja.
+\begin{align*}
+    &\begin{rcases*}
+        x + y = (x + y)^2 = x^2 + xy + yx + y^2 \\
+        x + y = x^2 + y^2
+    \end{rcases*} \implies \\
+    &\implies (x^2 + y^2) + (xy + yx) = x^2 + y^2 \\
+    &\implies xy + yx = 0 \\
+    &\implies xy = -yx \\
+    &\implies xy = yx
+\end{align*}
+\end{proof}
+
+\begin{exercise}[1.28]
+~
+\begin{itemize}
+    \item Se consideră numărul natural \(n \geq 2\) care are \(r\) factori primi distincți în descompunerea sa.
+    Să se arate că numărul idempotenților lui \(\integersmod{n}\) este \(2^r\).
+    \begin{proof}
+    Descompunem pe \(n\) în factori primi, \(n = p_1^{q_1} p_2^{q_2} \dots p_r^{q_r}\).
+    Atunci \(\integersmod{n}\) este izomorf cu \(\integersmod{p_1^{q_1}} \times \dots \times \integersmod{p_r^{q_r}}\).
+    
+    Singurele elemente idempotente în \(\integersmod{p_i^{r_i}}\) sunt \(\overline{0}\) și \(\overline{1}\). Deci idempotentele lui \(\integersmod{n}\) corespund prin izomorfism elementelor de forma \((0, \dots, 0, 0)\), \((0, \dots, 0, 1)\), \(\dots\), \((1, \dots, 1, 1)\). Există \(2^r\) astfel de \(r\)-tupluri.
+    
+    Pentru a găsi idempotenții în inelul inițial, construim un sistem de congruențe liniare. De exemplu, pentru \((1, 0, \dots, 0, 1)\) sistemul ar fi:
+    \[
+        \begin{cases}
+            x \equiv 1 \mod p_1^{q_1} \\
+            x \equiv 0 \mod p_2^{q_2} \\
+            \vdots \\
+            x \equiv 0 \mod p_{r-1}^{q_{r-1}} \\
+            x \equiv 1 \mod p_r^{q_r}
+        \end{cases}
+    \]
+    
+    Din lema chineză a resturilor și din faptul că toți factorii primi sunt numere prime între el, acest sistem sigur are soluții.
+    \end{proof}
+
+    \item Să se determine idempotenții inelului \(\integersmod{36}\).
+    \begin{proof}
+    Pe baza descompunerii în factori primi avem că
+    \[
+        \integersmod{36} \cong \integersmod{2^2} \times \integersmod{3^2}
+    \]
+    În inelul produs, avem idempotenții \((\overline{0}, \overline{\overline{0}})\), \((\overline{1}, \overline{\overline{1}})\), \((\overline{0}, \overline{\overline{1}})\) și \((\overline{1}, \overline{\overline{0}})\).
+    
+    Primii doi idempotenți corespund lui \(\widehat{0}\), respectiv \(\widehat{1}\). Pentru a afla corespondenții ultimilor doi idempotenți trebuie să rezolvăm două sisteme de congruențe:
+    
+    \begin{gather*}
+        \begin{cases}
+            x \equiv 0 \mod 4 \\
+            x \equiv 1 \mod 9
+        \end{cases}
+        \quad
+        \begin{cases}
+            x \equiv 1 \mod 4 \\
+            x \equiv 0 \mod 9
+        \end{cases}
+    \end{gather*}
+    Soluția primei ecuații este \(\widehat{28}\). Putem rezolva și a doua ecuație, sau ne putem folosi de faptul că \(\widehat{1} - \widehat{28}\) este tot idempotent, de unde obținem că \(\widehat{1 - 28} = \widehat{-27} = \widehat{9}\) este cealaltă soluție.
+    \end{proof}
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}[1.29]
+Fie \(R = M_2(\integersmod{2})\).
+\begin{itemize}
+    \item Să se determine numărul elementelor lui \(R\).
+    \begin{proof}
+    Elementele lui \(R\) sunt matrici \(2 \times 2\) cu elemente din \(\integersmod{2}\):
+    \[
+        A = \begin{pmatrix}
+            \widehat{a} & \widehat{b} \\
+            \widehat{c} & \widehat{d}
+        \end{pmatrix} \in R
+    \]
+    În \(R\) avem \(\abs{\integersmod{2}}^4 = 2^4 = 16\) matrici distincte.
+    \end{proof}
+    
+    \item Să se determine numărul divizorilor lui zero ai lui \(R\).
+    \begin{proof}
+    Dacă o matrice are determinantul \(\widehat{0}\), atunci există un vector nenul astfel încât \(A v = 0\), și dacă punem copii ale acestui vector pentru a obține o matrice, obținem că \(A B = 0\). Deci este suficient să găsim matricile cu determinant nul.
+    
+    Avem 10 matrici cu determinant nul:
+    \begin{gather*}
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{1} & \widehat{0} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{1} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{1} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{0} & \widehat{1}
+        \end{pmatrix},
+        \\
+        \begin{pmatrix}
+            \widehat{1} & \widehat{1} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{1} & \widehat{0} \\
+            \widehat{1} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{1} \\
+            \widehat{0} & \widehat{1}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{1} & \widehat{1}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{1} & \widehat{1} \\
+            \widehat{1} & \widehat{1}
+        \end{pmatrix}
+    \end{gather*}
+    \end{proof}
+    
+    \item Aflați câte elemente nilpotente are \(R\).
+    \begin{proof}
+    Pentru ca \(A\) să fie nilpotent, trebuie ca \(A^k = 0\). Din proprietățile determinantului, obținem că \(\det A\) trebuie să fie \(\widehat{0}\). Putem să plecăm de la lista de divizori ai lui zero / matrici cu determinant nul, și să verificăm fiecare matrice dacă este nilpotentă.
+    
+    Obținem 4 nilpotenți:
+    \[
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{1} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{1} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{1} & \widehat{1} \\
+            \widehat{1} & \widehat{1}
+        \end{pmatrix}
+    \]
+    \end{proof}
+    
+    \item Aflați câte elemente idempotente are \(R\).
+    \begin{proof}
+    Din faptul că vrem ca \(A^2 = A\), ajungem la concluzia că fie nu este inversabilă și are determinant zero, fie este inversabilă, și atunci este matricea unitate (deoarece \(A^2 = A \iff A^{-1} A^2 = A^{-1} A \iff A = I\)).
+    
+    Verificând matricile cu determinant nul, obținem 8 idempotenți:
+    \begin{gather*}
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{1} & \widehat{0} \\
+            \widehat{0} & \widehat{1}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{1} & \widehat{0} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{0} & \widehat{1}
+        \end{pmatrix},
+        \\
+        \begin{pmatrix}
+            \widehat{1} & \widehat{1} \\
+            \widehat{0} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{1} & \widehat{0} \\
+            \widehat{1} & \widehat{0}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{1} \\
+            \widehat{0} & \widehat{1}
+        \end{pmatrix},
+        \begin{pmatrix}
+            \widehat{0} & \widehat{0} \\
+            \widehat{1} & \widehat{1}
+        \end{pmatrix}
+    \end{gather*}
+    \end{proof}
+\end{itemize}
+\end{exercise}
+
+\subsection{Subinele. Ideale}
+
+\begin{exercise}[2.7]
+Fie \(R_1\), \(R_2\) inele unitare \(R = R_1 \times R_2\).
+Să se arate că idealele la stânga (la dreapta, bilaterale) ale lui \(R\) sunt de forma \(I = I_1 \times I_2\)
+unde \(I_1\), \(I_2\) sunt ideale la stânga (la dreapta, bilaterale) în \(R_1\), respectiv \(R_2\).
+\end{exercise}
+\begin{proof}
+\begin{itemize}
+    \item[\(\implies\)] Presupunem că avem două ideale \(I_1 \trianglelefteq R_1\), \(I_2 \trianglelefteq R_2\). Trebuie să arătăm că \(I_1 \times I_2 = I \trianglelefteq R\).
+    
+    Avem că \(I = I_1 \times I_2 = \Set{ (a, b) \in R | a \in I_1, b \in I_2 }\).
+    
+    Arătăm că această mulțime este închisă la adunare:
+    \begin{align*}
+        (a, b) + (c, d) = (\underbrace{a + c}_{\in I_1}, \underbrace{b + d}_{\in I_2}) \in I
+    \end{align*}
+    și la înmulțirea cu un element din inel:
+    \begin{align*}
+        (m, n) (a, b) = (\underbrace{ma}_{\in I_1}, \underbrace{nb}_{\in I_2}) \in I
+    \end{align*}
+    (ne-am folosit de faptul că \(I_1\) și \(I_2\) sunt ideale în inelele respective, și adunarea\slash înmulțirea se face pe componente).
+    
+    Deci \(I\) este ideal (la stânga, la dreapta, sau bilateral, în funcție de cum erau \(I_1\) și \(I_2\)).
+
+    \item[\(\impliedby\)] Presupunem că avem \(I \trianglelefteq R\). Trebuie să arătăm că există două ideale \(I_1 \trianglelefteq R_2\), \(I_2 \trianglelefteq R_2\) astfel încât \(I_1 \times I_2 = I\).
+    
+    \emph{Observație}: dacă perechea \((a, b)\) aparține lui \(I\), atunci și perechile \((a, 0)\), respectiv \((0, b)\) aparțin idealului: putem să înmulțim \((a, b)\) cu \((1, 0)\), respectiv \((0, 1)\) (avem voie, \(I\) este ideal).
+    
+    Definim două mulțimi
+    \[
+    I_1 = \Set{ a \in R_1 | \exists y \in R_2 \text{ a.î. } (a, y) \in I } \subseteq R_1
+    \]
+    \[
+    I_2 = \Set{ b \in R_2 | \exists x \in R_1 \text{ a.î. } (x, b) \in I } \subseteq R_2
+    \]
+    
+    
+    Vrem să arătăm că acestea sunt ideale în inelele de care aparțin. Se arată ușor prin calcule că sunt închise la adunare. În ceea ce privește închiderea la înmulțirea cu un element din inel:
+    
+    Fie \(r \in R_1\), \(a \in I_1\). Pentru ca \(r a \in I_1\) trebuie să existe un \(y'\) astfel încât \((r a, y') \in I\). Noi știm că \(a \in I_1 \implies \exists y\) astfel încât \((a, y) \in I\). Pe baza observației de mai sus, \((a, 0) \in I\). Atunci și \((r a, 0) \in I\). Deci \(y' = 0\) și \(r a \in I_1\).
+    
+    Demonstrația decurge analog pentru \(I_2\), dar interschimbăm componentele.
+    
+    Mai rămâne de arătat că \(I_1 \times I_2 = I\) (prin dublă incluziune):
+    \begin{enumerate}
+        \item Dacă avem \(a \in I_1\), \(b \in I_2\), înseamnă că există \(x \in I_1, y \in I_2\) astfel încât \((a, y) \in I\) și \((x, b) \in I\), deci sigur \((a, b) \in I\)
+        \item Pentru orice \((a, b) \in I\), avem \(a \in I_1\) și \(b \in I_2\).
+    \end{enumerate}
+\end{itemize}
+\end{proof}
+
+\begin{comment}
+\begin{exercise}[2.8]
+Fie \(R\) un inel unitar.
+\begin{itemize}
+    \item Să se arate că idealele bilaterale ale lui \(M_2(R)\) sunt de forma \(M_2(I)\) unde \(I\) este ideal bilateral al lui \(R\).
+    \item Dați exemplu de ideal la stânga al lui \(M_2(R)\) care nu este de forma \(M_2(J)\), cu \(J\) ideal la stânga al lui \(R\).
+\end{itemize}
+\end{exercise}
+\end{comment}
+
+\subsection{Morfisme de inele}
+
+\begin{comment}
+\begin{exercise}[3.8]
+Arătați că orice inel boolean finit nenul este izomorf cu \(\underbrace{\integersmod{2} \times \dots \times \integersmod{2}}_{\text{\(n\) ori}}\) pentru un \(n \in \naturals^*\).
+\end{exercise}
+\end{comment}
+
+\begin{exercise}[3.9]
+Arătați că avem următoarele izomorfisme de grupuri:
+\begin{itemize}
+    \item \(\End((\integers, +)) \cong \integers{}\)
+    \begin{proof}
+    Fie \(\function{f}{\integers}{\integers}\) un morfism. Știm că \(f(0) = 0\). Notăm \(f(1) = a \in \integers\).
+    
+    Atunci, pentru un \(k\) pozitiv
+    \[
+        f(k) = f(\underbrace{1 + \dots + 1}_{k \text{ ori }}) = f(1) + \dots + f(1) = k \cdot f(1) = k \cdot a, \forall k > 0
+    \]
+    
+    Pentru un \(k\) negativ, ne folosim de faptul că pentru orice morfism de grupuri \(f(-x) = - f(x)\). Atunci
+    \[
+        f(k) = - f(- k) = - k \cdot a, \forall k < 0
+    \]
+    
+    Deci \(f(k) = k \cdot a, \forall k \in \integers\). Fiecare dintre aceste morfisme este identificat prin valoarea lui \(a\), deci avem câte unul pentru fiecare număr din \(\integers\).
+    
+    De asemenea, acestea formează un grup în raport cu compunerea. Fie \(\function{f_a}{\integers}{\integers}\) morfismul cu \(f_a(k) = k \cdot a\), \(\forall k \in \integers\). Atunci:
+    \begin{align*}
+        (f_a \circ f_b)(k) &= f_a(f_b(k)) = k \cdot ab = f_{ab} \\
+        f_{-a}(k) &= k \cdot (-a) = -  k \cdot a = - f_a
+    \end{align*}
+    
+    Deci \(\End((\integers, +)) \cong \integers{}\).
+    \end{proof}
+    
+    \item \(\End((\rationals, +)) \cong \rationals\)
+    \begin{proof}
+    Asemănător cu exercițiul precedent, endomorfismele lui \(\rationals\) sunt de forma \(f_{\frac{p}{q}} (x) = \frac{p}{q} x\).
+    \end{proof}
+    
+    \item \(\End((\integersmod{n}, +)) \cong \integersmod{n}\)
+    \begin{proof}
+    Asemănător cu exercițiile precedente, endomorfismele sunt de forma \(f_{\widehat{k}} (\widehat{x}) = \widehat{k} \cdot \widehat{x}\).
+    \end{proof}
+    
+    \item \(\End((\integers \times \integers, +)) \cong M_2(\integers)\)
+    \begin{proof}
+    Plecând de la cunoștințele pe care le avem legate de endomorfismele lui \(\integers\), putem construi endomorfisme scriind combinații liniare ale celor două componente:
+    \[
+        f((x, y)) = (a x + b y, c x + d y)
+    \]
+    Dacă scriem fiecare pereche din \(\integers \times \integers\) ca un vector coloană, obținem:
+    \[
+        f(
+        \begin{pmatrix}
+            x \\
+            y
+        \end{pmatrix}
+        ) = \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix} 
+        \cdot
+        \begin{pmatrix}
+            x \\
+            y
+        \end{pmatrix}
+    \]
+    \end{proof}
+    
+    \begin{comment}
+    \item Pe de altă parte, \(\End((\reals, +)) \not\cong \reals\)
+    \end{comment}
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}[3.10]
+Determinați endomorfismele (și automorfismele) următoarelor inele:
+\begin{itemize}
+    \item \((\integers, +, \cdot)\)
+    \begin{proof}
+    Plecăm de la endomorfismele grupului \((\integers, +)\), și punem condiția și ca \(f(a \cdot b) = f(a) \cdot f(b)\), \(\forall a, b \in \integers\). Dacă înlocuim cu forma generală a unui morfism pe \(\integers\) obținem
+    \[
+        k \cdot a b = k a \cdot k b = k^2 \cdot a b
+    \]
+    Din \(k = k^2\) ajungem la concluzia că singurele endomorfisme de inele sunt morfismul identitate, \(f(x) = x\), și morfismul nul, \(f(x) = 0\). Dintre acestea, morfismul identitate este și automorfism.
+    \end{proof}
+    
+    \item \((\rationals, +, \cdot)\)
+    \begin{proof}
+    Asemănător cu exercițiul precedent.
+    \end{proof}
+    
+    \item \((\reals, +, \cdot)\)
+    \begin{proof}
+    Asemănător cu exercițiile precedente.
+    \end{proof}
+    
+    \item \((\integersmod{n}, +, \cdot)\)
+    \begin{proof}
+    Din faptul că vrem ca \(\widehat{k} = \widehat{k}^2\), trebuie ca \(\widehat{k}\) să fie element idempotent. Deci putem obține un endomorfism diferit pentru fiecare idempotent al lui \(\integersmod{n}\).
+    \end{proof}
+    
+    \item \((\integers \times \integers, +, \cdot)\)
+    \begin{proof}
+    Asemănător exercițiilor precedente, trebuie să căutăm morfisme ale grupului \((\integers \times \integers, +)\) care să se comporte bine și cu înmulțirea.
+    
+    Deoarece deja știm că aceste morfisme sunt unic determinate de o matrice din \(\matrices{2}{\integers}\), endomorfismele inelului \(\integers \times \integers\) sunt cele care corespund matricilor idempotente.
+    \end{proof}
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}[3.11]
+~
+\begin{itemize}
+    \item Arătați că există un morfism \emph{unitar} de inele \(\integersmod{m} \to \integersmod{n}\) dacă și numai dacă \(n \mid m\).
+    \begin{proof}
+    Vom nota cu \(\widehat{a}\) clasele de resturi din \(\integersmod{m}\) și cu \(\widetilde{b}\) clasele de resturi din \(\integersmod{n}\).
+
+    \textbf{Observație}: la acest sub-punct contează foarte mult că ne referim numai la morfisme \emph{unitare}. Indiferent de \(n\) și \(m\), întotdeauna avem de exemplu morfismul neunitar \(f(\widehat{x}) = \widetilde{0}\).
+    
+    \begin{itemize}
+        \item[\(\implies\)] Fie \(\function{f}{\integersmod{m}}{\integersmod{n}}\) morfism unitar de inele. Atunci avem proprietățile:
+        \begin{align*}
+            f(\widehat{0}) &= \widetilde{0} \tag{\(f\) este morfism de inele} \\
+            f(\widehat{1}) &= \widetilde{1} \tag{\(f\) este morfism \emph{unitar} de inele}
+        \end{align*}
+        
+        Acum vedem ce se întâmplă când introducem clasa lui \(m\) în morfism:
+        \begin{align*}
+            f(\widehat{m}) &= f(\widehat{0}) = \widetilde{0} \tag{restul lui \(m\) la împărțirea cu \(m\) este 0} \\
+            f(\widehat{m}) &= f(\underbrace{\widehat{1} + \dots + \widehat{1}}_{m \text{ ori }}) \\
+            f(\widehat{m}) &= \underbrace{f(\widehat{1}) + \dots + f(\widehat{1})}_{m \text{ ori }} = \underbrace{\widetilde{1} + \dots + \widetilde{1}}_{m \text{ ori }} = \widetilde{m}
+        \end{align*}
+        Punând totul la un loc, obținem că \(\widetilde{m} = \widetilde{0}\). Cu alte cuvinte, \(m\) este multiplu de \(n\), deci \(n \mid m\).
+        
+        \item[\(\impliedby\)] Presupunem că \(n \mid m\). Definim \(\function{f}{\integersmod{m}}{\integersmod{n}}\), cu legea \(f(\widehat{x}) = \widetilde{\widehat{x}} = \widetilde{x}\). Cu alte cuvinte, \(f\) ia fiecare rest la împărțirea cu \(m\) și îi face restul la împărțirea cu \(n\).
+    
+        Trebuie să arătăm mai întâi că această funcție este bine definită. Indiferent de ce reprezentanți am alege pentru aceeași clasă de resturi, trebuie să ne asigurăm că funcția ia aceeași valoare. Altfel spus, \(\forall \widehat{x}, \widehat{y} \in \integersmod{m}\) cu \(\widehat{x} = \widehat{y}\) și \(x \neq y\), vrem ca \(f(\widehat{x}) = f(\widehat{y})\).
+        \begin{align*}
+            &\begin{rcases*}
+            \widehat{x} = \widehat{y} \iff m \mid (x - y) \\
+            n \mid m
+            \end{rcases*}
+            \implies n \mid (x - y) \\
+            &\iff \widetilde{x} = \widetilde{y} \\
+            &\iff f(\widehat{x}) = f(\widehat{y})
+        \end{align*}
+        
+        Acum trebuie să demonstrăm că \(f\) este morfism unitar de inele. Acest lucru se poate face destul de simplu, deoarece ``căciula'' comută cu operațiile uzuale. Deci \(f(\widehat{a} + \widehat{b}) = f(\widehat{a + b}) = \widetilde{a + b} = \widetilde{a} + \widetilde{b}\), și analog pentru înmulțire.
+    \end{itemize} 
+    \end{proof}
+
+    \item Arătați că un morfism de inele \(\function{f}{\integersmod{m}}{\integersmod{n}}\) este unic determinat de condițiile: \(m f(\widehat{1}) = \Tilde{0}\) și \(f(\widehat{1}) = f(\widehat{1})^2\).
+    \begin{proof}
+    Cerința poate fi rescrisă ca \(\function{f}{\integersmod{m}}{\integersmod{n}}\) morfism de inele dacă și numai dacă \(m f(\widehat{1}) = \Tilde{0}\) și \(f(\widehat{1}) = f(\widehat{1})^2\).
+    
+    \begin{itemize}
+        \item[\(\implies\)] Fie \(\function{f}{\integersmod{m}}{\integersmod{n}}\) morfism de inele. Atunci
+        \begin{align*}
+            &\widehat{m} = \widehat{0} \\
+            \implies &f(\widehat{m}) = f(\widehat{0}) \\
+            \implies &f(\widehat{1} + \dots + \widehat{1}) = \widetilde{0} \\
+            \implies &f(\widehat{1}) + \dots + f(\widehat{1}) = \widetilde{0} \\
+            \implies &m f(\widehat{1}) = \widetilde{0}
+        \end{align*}
+        
+        Pentru a doua condiție, avem că
+        \[
+            f(\widehat{1}) = f(\widehat{1} \cdot \widehat{1}) = f(\widehat{1}) \cdot f(\widehat{1}) = f(\widehat{1})^2
+        \]
+    
+        \item[\(\impliedby\)] Fie \(\function{f}{\integersmod{m}}{\integersmod{n}}\), \(f(\widehat{k}) = k f(\widehat{1})\).
+        Notăm \(f(\widehat{1}) = \widetilde{a}\). Știm că \(m \widetilde{a} = \widetilde{0}\) și \(\widetilde{a} = \widetilde{a}^2\).
+        
+        Trebuie să arătăm mai întâi că această funcție este bine definită. Fie \(\widehat{k}, \widehat{l} \in \integersmod{m}\) cu \(k \neq l\) și \(\widehat{k} = \widehat{l}\). Vrem să arătăm că 
+        \begin{align*}
+            &f(\widehat{k}) = f(\widehat{l}) \\
+            \iff &k \widetilde{a} = l \widetilde{a} \\
+            \iff &k \widetilde{a} - l \widetilde{a} = \widetilde{0} \\
+            \iff &(k - l) \widetilde{a} = \widetilde{0}
+        \end{align*}
+        
+        Din \(\widehat{k} = \widehat{l}\) avem că \(\widehat{k} - \widehat{l} = \widehat{0}\), deci \(k - l\) este multiplu de \(m\). Deoarece \(m \widetilde{a} = \widetilde{0}\), avem că \((k - l) \widetilde{a} = \widetilde{0}\).
+        
+        Ca să arătăm că este morfism, ne folosim de cealaltă proprietate:
+        \begin{align*}
+            f(\widehat{k} \cdot \widehat{l}) &= f(\widehat{k \cdot l}) \\
+            &= (k \cdot l)\widetilde{a} = (k \cdot l)\widetilde{a}^2
+            \tag{ \text{din proprietatea \(\widetilde{a}^2 = \widetilde{a}\)} } \\
+            &= k\widetilde{a} \cdot l\widetilde{a} \\
+            &= f(\widehat{k}) \cdot f(\widehat{l})
+        \end{align*}
+    \end{itemize}
+    \end{proof}    
+
+    \item Să se determine toate morfismele de inele de la \(\integersmod{12}\) la \(\integersmod{28}\).
+    \begin{proof}
+        Fie \(\function{f}{\integersmod{12}}{\integersmod{28}}\).
+        Notăm \(f(\widehat{1}) = \widetilde{a}\). Atunci, conform subpunctului anterior, \(\widetilde{a}\) trebuie să îndeplinească condițiile:
+        \[
+        \begin{cases}
+            \widetilde{a}^2 = \widetilde{a} \\
+            12 \widetilde{a} = \widetilde{0}
+        \end{cases}
+        \]
+        
+        Trebuie să găsim toate \(\widetilde{a} \in \integersmod{28}\) pentru care \(\widetilde{a}^2 = \widetilde{a}\). Cu alte cuvinte, căutăm elementele idempotente.
+        
+        Avem că \(\integersmod{28} = \integersmod{4} \times \integersmod{7}\). Idempotenții corespund perechilor \((\overline{0}, \overline{\overline{0}})\), \((\overline{0}, \overline{\overline{1}})\), \((\overline{1}, \overline{\overline{0}})\) și \((\overline{1}, \overline{\overline{1}})\). Idempotenții lui \(\integersmod{28}\) sunt \(\Set{ \widetilde{0}, \widetilde{1}, \widetilde{8}, \widetilde{21} }\).
+        
+        Dintre aceștia, doar \(\widetilde{0}\) și \(\widetilde{21}\) îndeplinesc și a doua condiție. Deci singurele morfisme sunt \(f(\widehat{k}) = \widetilde{0}\) și \(f(\widehat{k}) = \widetilde{21} \widetilde{k}\).
+    \end{proof}
+\end{itemize}
+\end{exercise}
+
+\subsection{Inele factor}
+
+\begin{exercise}[4.8]
+Fie \(R_1\), \(R_2\) inele unitare, \(R = R_1 \times R_2\) și \(I = I_1 \times I_2\) unde \(I_1\), \(I_2\) sunt ideale bilaterale în \(R_1\), respectiv \(R_2\). Să se arate că inelele \(R/I\) și \(R_1/I_1 \times R_2/I_2\) sunt izomorfe.
+\end{exercise}
+\begin{proof}
+Se poate rezolva definind \(\function{f}{R/I}{R_1/I_1 \times R_2/I_2}\), cu
+\[
+    f(\widehat{(a, b)}) = (\overline{a}, \overline{\overline{b}})
+\]
+și demonstrând că această funcție este izomorfism.
+\end{proof}
+
+\begin{exercise}[4.9]
+Fie \(R\) un inel unitar și \(I\) ideal bilateral al lui \(R\).
+Să se arate că inelele \(M_2(R)/M_2(I)\) și \(M_2(R/I)\) sunt izomorfe.
+\end{exercise}
+\begin{proof}
+Vrem să folosim teorema fundamentală de izomorfism pentru inele. Avem nevoie de un morfism \(f\) pentru care \(\ker f = M_2(I)\).
+
+\begin{itemize}
+    \item Definim \(f \colon M_2(R) \to M_2(R/I)\), \(f(\begin{pmatrix}a & b \\ c & d\end{pmatrix}) = \begin{pmatrix}\Hat{a} & \Hat{b} \\ \Hat{c} & \Hat{d}\end{pmatrix}, \forall a, b, c, d \in R\).
+    \item Se arătă prin calcule că \(f\) este morfism unitar de inele.
+    \item Studiem nucleul morfismului:
+    \begin{align*}
+        f(&\begin{pmatrix}a & b \\ c & d\end{pmatrix}) = \begin{pmatrix}\Hat{0} & \Hat{0} \\ \Hat{0} & \Hat{0}\end{pmatrix}
+        \iff
+        \begin{pmatrix}\Hat{a} & \Hat{b} \\ \Hat{c} & \Hat{d}\end{pmatrix} = \begin{pmatrix}\Hat{0} & \Hat{0} \\ \Hat{0} & \Hat{0}\end{pmatrix} \\
+        &\iff
+        \begin{cases}
+        \Hat{a} = \Hat{0} \\
+        \Hat{b} = \Hat{0} \\
+        \Hat{c} = \Hat{0} \\
+        \Hat{d} = \Hat{0} \\
+        \end{cases}
+        \iff
+        a, b, c, d \in I
+    \end{align*}
+    Deci \(\ker f = M_2(I)\).
+    \item Imaginea lui \(f\) este întregul codomeniul \(M_2(R/I)\), \(f\) este surjectiv.
+    
+    Fie \(y \in M_2(R/I)\), \(y = \begin{pmatrix}\Hat{a} & \Hat{b} \\ \Hat{c} & \Hat{d}\end{pmatrix}\). Atunci luăm \(x \in M_2(R)\), \(x = \begin{pmatrix}a & b \\ c & d\end{pmatrix}\). Se observă că \(f(x) = y\).
+    \item Din teorema fundamentală de izomorfism, \(M_2(R)/M_2(I) \cong M_2(R/I)\).
+\end{itemize}
+\end{proof}
+
+\subsection{Teorema chineză a resturilor pentru ideale}
+
+\begin{exercise}[5.4]
+Arătați că
+\begin{itemize}
+    \item \(\rationals[X] / (X^2 - 1) \cong \rationals \times \rationals\)
+    \begin{proof}
+    Putem rescrie \(\rationals[X] / (X^2 - 1) = \rationals[X] / ((X - 1)(X + 1))\).
+    
+    Pentru a arăta că \((X - 1)\) și \((X + 1)\) sunt comaximale, trebuie să arătăm că suma lor generează tot \(\rationals[X]\). Este suficient să arătăm că suma idealelor conține elementul unitate.
+    
+    Observăm că \((X + 1) - (X - 1) = 2\). Înmulțind cu \(\frac{1}{2}\) (avem voie, deoarece lucrăm în \(\rationals\)) obținem 1.
+    
+    Putem aplica \textbf{Remarca 5.2} din curs, și obținem că
+    \[\rationals[X] / ((X - 1)(X + 1)) = \rationals[X] / ((X - 1) \cap (X + 1))\]
+    
+    Acum ne folosim de \textbf{Teorema 5.3} din curs. Obținem că
+    \[\rationals[X] / ((X - 1) \cap (X + 1)) \cong \rationals[X]/(X - 1) \times \rationals[X]/(X + 1) \]
+    
+    Clasele de echivalență ale lui \(\rationals[X]/(X - 1)\) sunt resturile obținute prin împărțirea oricărui polinom la \(X - 1\), deci sunt polinoame de grad 0, de forma \(\Set{ \hat{a} | a \in \rationals}\), deci \(\rationals[X]/(X - 1) \cong \rationals\). Analog pentru \(\rationals[X]/(X + 1) \cong \rationals\).
+    
+    În concluzie, \(\rationals[X] / (X^2 - 1) \cong \rationals \times \rationals\).
+    \end{proof}
+    
+    \item \(\integers[X]/(X^2 - X) \cong \integers \times \integers\)
+    \begin{proof}
+    Demonstrația decurge asemănător pentru \(\integers[X] / (X^2 - X)\), cu observația că \(X^2 - X = X(X - 1)\). Sunt comaximale deoarece \(X - (X - 1) = 1\).
+    \end{proof}
+    
+    \item \(\integers[X] / (X^2 - 1) \not\cong \integers \times \integers\)
+    \begin{proof}
+    Demonstrația începe la fel ca prima, însă nu mai putem să înmulțim cu \(\frac{1}{2}\) deoarece lucrăm în \(\integers\), deci nu mai putem folosi această metodă pentru a arăta că sunt izomorfe.
+    
+    Presupunem că inelul factor ar fi izomorf cu \(\integers \times \integers\). Ne uităm la elementele idempotente ale acestor două inele.
+    
+    \textbf{Observație}: deoarece \(X^2 - 1\) aparține idealului prin care factorizăm, avem că \(\widehat{X^2 - 1} = \widehat{0}\), de unde \(\widehat{X^2} = \widehat{1}\).
+    \begin{itemize}
+        \item În \(\integers[X] / (X^2 - 1)\), fie \(\widehat{a}\widehat{X} + \widehat{b}\) un idempotent. Atunci
+        \begin{align*}
+            & (\widehat{a}\widehat{X} + \widehat{b})^2 = \widehat{a}\widehat{X} + \widehat{b} \\
+            \iff & \widehat{a}^2 \widehat{X}^2 + \widehat{2ab}\widehat{X} + \widehat{b}^2 = \widehat{a}\widehat{X} + \widehat{b} \\
+            \iff & \widehat{a}^2 \cdot \widehat{1} + \widehat{2ab} \widehat{X} + \widehat{b}^2 = \widehat{a} \widehat{X} + \widehat{b} \\
+            \iff &\begin{cases}
+                \widehat{a^2} + \widehat{b^2} = \widehat{b} \\
+                \widehat{2ab} = \widehat{a}
+            \end{cases}
+        \end{align*}
+        Singura soluție care convine în \(\integers\) este \(a = 0\) și \(b \in \left\lbrace 0, 1 \right\rbrace\). Deci singurii idempotenți sunt \(\widehat{0}\) și \(\widehat{1}\).
+        \item În \(\integers \times \integers\), avem idempotenții \((0, 0)\), \((0, 1)\), \((1, 0)\) și \((1, 1)\).
+    \end{itemize}
+    Cele două inele nu pot fi izomorfe, având un număr diferit de idempotenți.
+    \end{proof}
+\end{itemize}
+\end{exercise}

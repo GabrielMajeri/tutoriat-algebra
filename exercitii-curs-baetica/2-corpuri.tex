@@ -1,0 +1,20 @@
+\section{Corpuri}
+
+\subsection{Generalități}
+
+\begin{exercise}[1.4]
+Orice inel unitar (\(1 \neq 0\)) integru și finit este corp.
+\end{exercise}
+\begin{proof}
+Fie \(a \in R\) un element diferit de 0. Trebuie să arătăm că are invers la înmulțire.
+
+Luăm în considerare puterile lui \(a\): \(a^n\), \(\forall n \in \naturals^*\). Inelul fiind finit, acestea nu pot fi toate distincte. La un moment dat trebuie să existe \(m \neq n\) pentru care \(a^m = a^n\). Să presupunem că \(m < n\).
+
+Atunci \(a^m - a^n = 0 \iff a^m(1 - a^{n - m}) = 0\).
+
+Fiind inel integru, rezultă că \(a^m = 0\) sau \(a^{n - m} - 1 = 0\). Prima posibilitate este exclusă deoarece un inel integru nu are nilpotenți netriviali.
+
+Rămâne deci că \(a^{n - m} - 1 = 0 \iff a^{n - m} = 1 \iff a \cdot a^{n - m - 1} = 1\).
+
+Astfel am găsit un invers multiplicativ pentru \(a\), și anume \(a^{n - m - 1}\).
+\end{proof}

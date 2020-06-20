@@ -1,0 +1,62 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Mai multe font-uri
+\usepackage{fontspec}
+
+% Suport pentru limba română
+\usepackage{polyglossia}
+\setdefaultlanguage{romanian}
+
+% Ridic titlul
+\usepackage{titling}
+\setlength{\droptitle}{-10em}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage{verbatim}
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[math-style=TeX]{unicode-math}
+
+\usepackage{polynom}
+
+\theoremstyle{definition}
+\newtheorem*{exercise}{Exercițiul}
+
+% Notație pentru mulțimi
+\usepackage{braket}
+
+%% Meta-informații despre document
+\title{Rezolvarea exercițiilor din cursul de algebră}
+\author{
+Cursul scris de dl.~prof.~Cornel Băețica \\
+Rezolvări scrise de Gabriel Majeri
+\thanks{Mulțumiri dlui.~prof.~Gabriel Mincu pentru cursul de la seria 14 și explicațiile de la seminarii, Antoniei Biro-Bălan pentru materiale, feedback și explicații, și celorlalți colegi pentru feedback și susținere.}
+}
+\date{}
+
+\input{commands.tex}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\input{1-inele.tex}
+\input{2-corpuri.tex}
+\input{3-polinoame.tex}
+\input{4-divizibilitate.tex}
+\input{5-liniara.tex}
+
+\end{document}

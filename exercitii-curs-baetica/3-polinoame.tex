@@ -1,0 +1,390 @@
+\section{Inele de polinoame}
+
+\subsection{Inele de polinoame într-o nedeterminată}
+
+\begin{comment}
+\begin{exercise}[1.7]
+Fie \(R\) un inel comutativ și unitar, și \(f \in R[X]\), \(f = a_0 + a_1 X + \dots + a_n X^n\).
+Să se arate că:
+\begin{enumerate}
+    \item \(f\) este nilpotent dacă și numai dacă \(a_i\) este nilpotent, \(\forall i \in \overline{0, n}\).
+    \item \(f\) este inversabil dacă și numai dacă \(a_0\) este inversabil și \(a_i\) este nilpotent, \(\forall i \in \overline{1, n}\).
+\end{enumerate}
+\end{exercise}
+\end{comment}
+
+\begin{exercise}[2.4]
+Fie \(R\) un inel comutativ și unitar, și fie \(\alpha \in R\). Atunci \(R[X] / (X - \alpha) \cong R\).
+\end{exercise}
+\begin{proof}
+Vrem să ne folosim de teorema fundamentală de izomorfism.
+
+Trebuie să găsim un morfism de inele al cărui nucleu să fie exact idealul generat de \(X - \alpha\),
+iar imaginea acestuia să fie întreg \(R\)-ul.
+Cu alte cuvinte, vrem să avem un morfism \(\varphi \colon R[X] \to R\) surjectiv
+pentru care \(\varphi(f) = 0 \iff f \text{ este multiplu de } X - \alpha, \forall f \in R[X]\).
+Acesta este chiar morfismul care evaluează polinomul în \(\alpha\): \(\varphi(f) = f(\alpha)\).
+
+Morfismul este și surjectiv, deoarece \(\forall y \in R\), \(y\) este și element în \(R[X]\), iar \(\varphi(y) = y\).
+Acum trebuie să îi determinăm nucleul:
+\begin{align*}
+    &f \in \ker \varphi \\
+    \iff &\varphi(f) = 0 \\
+    \iff &f(\alpha) = 0 \\
+    \iff &X - \alpha \mid f && \text{(din Bézout)} \\
+    \iff &f \text{ multiplu de } X - \alpha \\
+    \iff &f \in (X - \alpha)
+\end{align*}
+Deci \(\ker \varphi = (X - \alpha)\), \(\operatorname{im} \varphi = R\).
+
+Aplicăm teorema fundamentală de izomorfism pentru inele:
+\[
+R[X] / \ker \varphi \cong \operatorname{im} \varphi \iff R[X] / (X - \alpha) \cong R
+\]
+\end{proof}
+
+\subsection{Teorema de împărțire cu rest pentru polinoame într-o nedeterminată}
+
+\begin{exercise}[2.5]
+Arătați că:
+\begin{enumerate}
+    \item \(\reals[X] / (X^2 + 1) \cong \complex\)
+    \begin{proof}
+    Definim \(\varphi \colon \reals[X] \to \complex\), \(\varphi(f) = f(i)\), adică funcția care evaluează polinomul în \(i\).
+    Aceasta este morfism unitar de inele.
+    
+    Demonstrăm că \(\ker \varphi = (X^2 + 1)\) prin dublă incluziune:
+    \begin{itemize}
+        \item Dacă \(f\) este multiplu de \(X^2 + 1\), atunci \(f(i) = 0\), deci \(f \in \ker \varphi\).
+        \item Fie \(f \in \ker \varphi\).
+        
+        \(\varphi(f) = 0 \implies f(i) = 0 \implies \text{\(i\) este o rădăcină a polinomului \(f\)}\)
+        
+        Deoarece lucrăm cu polinoame cu coeficienți reali, și conjugatul \(-i\) este o rădăcină a polinomului \(f\).
+        
+        Din Bézout, \(f\) se divide prin \(X - i\) și prin \(X + i\), deci se divide și prin \((X - i)(X + i) = X^2 + 1\).
+        
+        Deci \(f \in (X^2 + 1)\).
+    \end{itemize}
+    
+    Pentru orice număr complex \(z = a + bi\), avem că \(\varphi(a + bX) = a + bi\), deci \(\varphi\) este surjectiv.
+    Imaginea lui \(\varphi\) este \(\complex\). 
+    
+    Aplicăm teorema fundamentală de izomorfism pentru inele și avem că
+    \[
+        \reals[X] / \ker \varphi \cong \operatorname{im} \varphi \iff \reals[X] / (X^2 + 1) \cong \complex
+    \]
+    \end{proof}
+    
+    \item \(\integers[X] / (X^2 - 2) \cong \integers[\sqrt{2}]\)
+    \begin{proof}
+    Aplicăm teorema fundamentală de izomorfism pentru
+    \[
+    \varphi \colon \integers[X] \to \integers[\sqrt{2}]
+    \]
+    \[
+    \varphi(f) = f(\sqrt{2})
+    \]
+    \end{proof}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[2.6]
+Să se arate că \(R = \integers[X] / (2, X^2 + 1)\) este un inel cu 4 elemente, dar nu este izomorf cu \(\integersmod{2} \times \integersmod{2}\).
+\end{exercise}
+\begin{proof}
+Factorizând prin \((2)\), toți coeficienții polinoamelor sunt înlocuiți cu resturi modulo 2. Deci \(\integers[X] / (2, X^2 + 1) \cong \integersmod{2}[X] / (\widehat{X^2 + 1})\).
+
+Factorizând mai departe prin \((\widehat{X^2 + 1})\), clasele de resturi obținute sunt de forma \(\widehat{a}X + \widehat{b}\). De aceea \(R\) are \(2^2 = 4\) elemente:\
+\[
+    R = \integers[X] / (2, X^2 + 1) = \left\lbrace \widehat{0}, \widehat{1}, \widehat{X}, \widehat{X} + \widehat{1} \right\rbrace
+\]
+Pentru a demonstra că nu este izomorf cu \(\integersmod{2} \times \integersmod{2}\), ne uităm la numărul de nilpotenți ale acestor inele.
+\begin{itemize}
+    \item În \(R\) avem \(\widehat{0}^2 = \widehat{0}\) și \((\widehat{X} + \widehat{1})^2 = \widehat{X^2} + \widehat{2} \widehat{X} + \widehat{1} = \widehat{0}\).
+    \item În \(\integersmod{2} \times \integersmod{2}\) singurul nilpotent este \((\widehat{0}, \widehat{0})\).
+\end{itemize}
+Deci aceste două inele nu sunt izomorfe.
+\end{proof}
+
+\begin{exercise}[2.7]
+Considerăm idealul \(I = (3, X^3 - X^2 + 2X + 1)\) în \(\integers[X]\). Să se arate că \(I\) nu este ideal principal și că \(\integers[X] / I\) nu este inel integru.
+\end{exercise}
+\begin{proof}
+Dacă \(I\) ar fi ideal principal, atunci ar exista un singur polinom \(f\) astfel încât \(I = (f)\). Ar însemna că \(f\) poate să genereze ambii generatori ai lui \(I\). Deci \(f \mid 3\) și \(f \mid X^3 - X^2 + 2X + 1\).
+
+Ar rezulta că \(f = 1\), deci \(I = (f) = \integers[X]\). Însă de exemplu \(2 \in \integers[X]\), însă 2 nu poate fi scris ca o combinație liniară de \(3\) și \(X^3 - X^2 + 2X + 1\).
+
+Inelul factor rezultat este izomorf cu \(\integersmod{3}[X] / (X^3 - X^2 + \widehat{2} X + \widehat{1})\).
+
+În inelul obținut, încercăm să scriem \(X^3 - X^2 + \widehat{2} X + \widehat{1}\) (care corespunde lui 0) ca produs de alte polinoame. Avem că
+\[
+    (X + \widehat{1})(X^2 + X + \widehat{1}) = X^3 + \widehat{2} X^2 + \widehat{2} X + \widehat{1} = X^3 - X^2 + \widehat{2} X + \widehat{1}
+\]
+Deci inelul factor nu este integru, avem cel puțin doi divizori ai lui zero: \(X + \widehat{1}\) și \(X^2 + X + \widehat{1}\).
+\end{proof}
+
+\begin{exercise}[2.8]
+Aflați inversul lui \(\widehat{4X + 3}\) în inelul factor \newline \(R = \integersmod{11}[X] / (X^2 + 1)\).
+\end{exercise}
+\begin{proof}
+Asemănător exercițiilor anterioare ajungem la concluzia că clasa asociată fiecărui polinom din \(\mathbb{Z}_{11}[X]\) se poate găsi calculând restul la împărțirea cu \(\widehat{X^2 + 1}\):
+\[
+\mathbb{Z}_{11}[X] / (X^2 + 1) = \Set{ \widehat{a}\widehat{X} + \widehat{b} | \widehat{a}, \widehat{b} \in \mathbb{Z}_{11} }
+\]
+
+Exercițiul ne cere să găsim un invers multiplicativ pentru \(\widehat{4X + 3}\), adică un polinom de forma \(\widehat{aX + b} \in R\) pentru care
+\[
+(\widehat{4X + 3})(\widehat{aX + b}) = \widehat{1}
+\iff
+(\widehat{4}\widehat{X} + \widehat{3})(\widehat{a}\widehat{X} + \widehat{b}) = \widehat{1}
+\]
+
+Dacă desfacem parantezele avem că
+\[
+\widehat{4a}\widehat{X^2} + \widehat{3a}\widehat{X} + \widehat{4b}\widehat{X} + \widehat{3b} = \widehat{1}
+\]
+
+Deoarece lucrăm cu idealul generat de \(X^2 + 1\), știm că \(\widehat{X^2 + 1} = \widehat{0}\) deoarece \(X^2 + 1\) aparține idealului. Observăm că
+\[
+\widehat{X^2 + 1} = \widehat{0} \iff \widehat{X^2} + \widehat{1} = \widehat{0} \iff \widehat{X^2} = \widehat{-1}
+\]
+Putem să rescriem rezultatul să fie de grad cel mult 1:
+\[
+(\widehat{3a} + \widehat{4b})\widehat{X} + (\widehat{-4a} + \widehat{3b}) = \widehat{1}
+\]
+
+În acest moment, găsirea inversului se reduce la rezolvarea sistemului de ecuații
+\[
+\begin{cases}
+    \widehat{3a} + \widehat{4b} = \widehat{0} \\
+    \widehat{-4a} + \widehat{3b} = \widehat{1}
+\end{cases}
+\]
+
+După calcule ajungem la soluția \(\widehat{a} = \widehat{6}\) și \(\widehat{b} = \widehat{1}\).
+
+Deci inversul lui \(\widehat{4X + 3}\) este \(\widehat{6X + 1}\).
+\end{proof}
+
+\subsection{Inele de polinoame într-un număr finit de nedeterminate}
+
+\begin{exercise}[3.9]
+Fie \(R\) un inel comutativ și unitar, și fie \(\alpha_1, \dots, \alpha_n \in R\).
+Atunci \(R[X_1, \dots, X_n]/(X_1 - \alpha_1, \dots, X_n - \alpha_n)\) și \(R\) sunt izomorfe.
+\end{exercise}
+\begin{proof}
+Demonstrația decurge similar ca la exercițiul 2.4, dar vom defini \(\varphi(f) = f(\alpha_1, \dots, \alpha_n)\), și ne folosim de proprietatea de universalitate a inelelor de polinoame într-un număr finit de nedeterminate. 
+\end{proof}
+
+\subsection{Polinoame simetrice}
+
+\begin{comment}
+\begin{exercise}[4.17]
+Arătați că orice șir strict descrescător de monoame este finit.
+\end{exercise}
+\end{comment}
+
+\begin{exercise}[4.19]
+Să se arate că următoarele polinoame sunt simetrice și să se scrie fiecare dintre ele ca polinom de polinoame simetrice fundamentale:
+\begin{enumerate}
+    \item \(X_1^3 X_2 + X_1^3 X_3 + X_1 X_2^3 + X_1 X_3^3 + X_2^3 X_3 + X_2 X_3^3\)
+    \begin{proof}
+    Notăm cu \(f\) polinomul din enunț. Pentru a arăta că este simetric, este suficient să verificăm că rămâne la fel dacă permutăm necunoscutele cu transpozițiile \((1, 2)\) și \((2, 3)\).
+    \[
+    f(X_2, X_1, X_3) = X_2^3 X_1 + X_2^3 X_3 + X_2 X_1^3 + X_2 X_3^3 + X_1^3 X_3 + X_1 X_3^3 = f
+    \]
+    \[
+    f(X_1, X_3, X_2) = X_1^3 X_3 + X_1^3 X_2 + X_1 X_3^3 + X_1 X_2^3 + X_3^3 X_2 + X_3 X_2^3 = f
+    \]
+
+    Îl descompunem în polinom de polinoame simetrice fundamentale folosind algoritmul lui Newton.
+    
+    Polinoamele simetrice în 3 necunoscute sunt
+    \begin{align*}
+        s_1 &= X_1 + X_2 + X_3 \\
+        s_2 &= X_1 X_2 + X_1 X_3 + X_2 X_3 \\
+        s_3 &= X_1 X_2 X_3
+    \end{align*}
+    
+    Termenul principal (primul în ordine lexicografică) este \(X_1^3 X_2\). Acesta este de grad 4 și are coeficientul 1. Scriem toate monoamele de grad 4 cu exponenții necunoscutelor descrescători, și le ordonăm lexicografic:
+    \[
+    \underbrace{X_1^3 X_2}_{(3, 1, 0)} > \underbrace{X_1^2 X_2^2}_{(2, 2, 0)} > \underbrace{X_1^2 X_2 X_3}_{(2, 1, 1)}
+    \]
+    Trebuie să obținem aceste monoame din produse de polinoame simetrice. Notăm coeficienții acestor polinoame simetrice cu \(a, b\):
+    \[
+        f = s_1^2 s_2 + a s_2^2 + b s_1 s_3
+    \]
+    Acum putem să dăm valori convenabile lui \(X_1, X_2, X_3\), astfel încât polinomul să fie 0, și să se anuleze unele dintre polinoamele simetrice fundamentale.
+    
+    \begin{itemize}
+        \item Pentru \(X_1 = 1, X_2 = -1, X_3 = 0\) avem \(f = -2\) și \(s_1 = 0, s_2 = -1, s_3 = 0\).
+        Atunci \(a (-1)^2 = -2 \iff \fbox{a = -2}\).
+        \item Pentru \(X_1 = 1, X_2 = 1, X_3 = 1\) avem \(f = 6\) și \(s_1 = 3, s_2 = 3, s_3 = 1\).
+        Atunci \(3^2 \cdot 3 - 2 \cdot 3^2 + b \cdot 3 \cdot 1 = 6 \iff 3b = -3 \iff \fbox{b = -1}\).
+    \end{itemize}
+    
+    Deci \(f = s_1^2 s_2 - 2 s_2^2 - s_1 s_3\).
+    \end{proof}
+    
+    \item \((X_1^2 + X_2^2)(X_1^2 + X_3^2)(X_2^2 + X_3^2)\)
+    \begin{proof}
+    Notăm polinomul dat cu \(f\). Vedem ce se întâmplă când îl permutăm cu transpozițiile \((1, 2)\) și \((2, 3)\):
+    \[
+    f(X_2, X_1, X_3) = (X_2^2 + X_1^2)(X_2^2 + X_3^2)(X_1^2 + X_3^2) = f
+    \]
+    \[
+    f(X_1, X_3, X_2) = (X_1^2 + X_3^2)(X_1^2 + X_2^2)(X_3^2 + X_2^2) = f
+    \]
+    Deci \(f\) este polinom simetric.
+    
+    Termenii pe care îi putem obține dacă desfacem parantezele o să fie de grad cel mult 6, iar \(X_1^4 X_2^2\) este primul lexicografic. Monoamele de grad 6 ar veni, în ordine:
+    \[
+    (4, 2, 0) > (4, 1, 1) > (3, 3, 0) > (3, 2, 1) > (2, 2, 2)
+    \]
+    Care ar corespunde lui
+    \[
+    f = s_1^2 s_2^2 + a s_1^3 s_3 + b s_2^3 + c s_1 s_2 s_3 + d s_3^2
+    \]
+    
+    \begin{itemize}
+        \item Pentru \(X_1 = 1, X_2 = i, X_3 = 0\) avem \(f = 0\) și \(s_1 = 1 + i, s_2 = i, s_3 = 0\).
+        Atunci \((1 + i)^2 \cdot (i^2) + b \cdot (i^3) = 0 \iff - 2i - bi = 0 \iff \fbox{b = -2}\).
+        \item Pentru \(X_1 = 2, X_2 = -1, X_3 = -1\) avem \(f = 50\) și \(s_1 = 0, s_2 = -3, s_3 = 2\).
+        Atunci \(-2 \cdot (-3)^3 + d \cdot 2^2 = 50 \iff 54 + 4d = 50 \iff \fbox{d = -1}\).
+        \item Pentru \(X_1 = 2, X_2 = 2, X_3 = -1\) avem \(f = 200\) și \(s_1 = 3, s_2 = 0, s_3 = -4\).
+        Atunci \(a \cdot 3^3 \cdot (-4) - (-4)^2 = 200 \iff -108 a = 216 \iff \fbox{a = -2}\).
+        \item Pentru \(X_1 = 1, X_2 = i, X_3 = -i\) avem \(f = 0\) și \(s_1 = 1, s_2 = 1, s_3 = 1\).
+        Atunci \(1 - 2 - 2 + c - 1 = 0 \iff \fbox{c = 4}\).
+    \end{itemize}
+
+    Deci \(f = s_1^2 s2^2 - 2s_1^3 s_3 - 2 s_2^3 + 4 s_1 s_2 s_3 - s_3^2\).
+    \end{proof}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[4.22]
+Să se calculeze:
+\begin{enumerate}
+    \item \(x_1^5 + x_2^5 + x_3^5\), unde \(x_1, x_2, x_3\) sunt rădăcinile polinomului \(X^3 - 3X + 1\).
+    \begin{proof}
+    Dacă \(x_i\) este una dintre rădăcinile polinomului, atunci
+    \[
+    x_i^3 - 3x_i + 1 = 0 \iff x_i^3 = 3x_i - 1
+    \]
+    Înlocuind, expresia care trebuie calculată devine
+    \begin{gather*}
+    x_1^2 x_1^3 + x_2^2 x_2^3 + x_3^2 x_3^3 \\
+    = x_1^2(3x_1 - 1) + x_2^2(3x_2 - 1) + x_3^2(3x_3 - 1) \\
+    = 3x_1^3 - x_1^2 + 3x_2^3 - x_2^2 + 3x_3^3 - x_3^2 \\
+    = 3(3x_1 - 1) + 3(3x_2 - 1) + 3(3x_3 - 1) - (x_1^2 + x_2^2 + x_3^2) \\ 
+    = (9x_1 - 3) + (9x_2 - 3) + (9x_3 - 3) - (x_1^2 + x_2^2 + x_3^2) \\
+    = 9(x_1 + x_2 + x_3) - 9 - (x_1^2 + x_2^2 + x_3^2)
+    \end{gather*}
+    Din relațiile lui Viète avem \(x_1 + x_2 + x_3 = 0\), \(x_1 x_2 + x_2 x_3 + x_1 x_3 = -3\) și
+    \[
+    x_1^2 + x_2^2 + x_3^2 = (x_1 + x_2 + x_3)^2 - 2(x_1 x_2 + x_2 x_3 + x_1 x_3) = 6
+    \]
+    Valoarea expresiei \(x_1^5 + x_2^5 + x_3^5\) este \(9 * 0 - 9 - 6 = -15\).
+    \end{proof}
+    \item \(x_1^3 + x_2^3 + x_3^3 + x_4^3\), unde \(x_1, x_2, x_3, x_4\) sunt rădăcinile polinomului \(X^4 + X^3 + 2X^2 + X + 1\).
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}[4.23]
+Considerăm elementele \(x_1, \dots, x_n \in \mathbb{C}\) cu proprietatea că \(x_1^k + \dots + x_n^k = 0, \forall k \in \overline{1, n}\). Arătați că \(x_1 = \dots = x_n = 0\).
+\end{exercise}
+\begin{proof}
+În cele ce urmează notăm cu \(s_i\) polinoamele simetrice fundamentale. Încercăm să vedem ce obținem dacă îi dăm diferite valori lui \(k\). 
+
+Pentru \(k = 1\) avem că \(x_1 + \dots + x_n = 0 \iff s_1 = 0\).
+
+Pentru \(k = 2\) obținem 
+\begin{gather*}
+    x_1^2 + \dots + x_n^2 = 0 \\
+    \iff (\underbrace{x_1 + \dots + x_n}_{\text{ \(= 0\) din \(k = 1\)}})^2 - 2(x_1 x_2 + x_1 x_3 + \dots + x_{n-1} x_n) = 0 \\
+    \iff x_1 x_2 + x_1 x_3 + \dots + x_{n-1} x_n = 0 \\
+    \iff s_2 = 0
+\end{gather*}
+
+Prin inducție, putem demonstra că \(s_i = 0, \forall i \in \overline{1, n}\). Din relațiile lui Viète obținem că \(x_1 = x_2 = \dots = x_n = 0\).
+\end{proof}
+
+\begin{exercise}[4.24]
+Să se rezolve în \(\mathbb{R}\) ecuația \(\sqrt[4]{97 - x} + \sqrt[4]{x} = 5\).
+\end{exercise}
+\begin{proof}
+\textbf{Condiții de existență.}
+Observăm că numerele de sub radicalul de ordin 4 trebuie să fie pozitive.
+Deci pentru început \(0 \leq x \leq 97\).
+
+Fie \(t = \sqrt[4]{x}\). Atunci ecuația devine:
+\begin{align*}
+    &\sqrt[4]{97 - t^4} + t = 5 \\
+    \iff &\sqrt[4]{97 - t^4} = 5 - t && \text{Condiție de existență: \(t \leq 5\)} \\
+    \iff &97 - t^4 = t^4 - 20 t^3 + 150 t^2 - 500 t + 625 \\
+    \iff &2 t^4 - 20 t^3 + 150 t^2 - 500t + 528 = 0 \\
+    \iff &t^4 - 10 t^3 + 75 t^2 - 250t + 264 = 0
+\end{align*}
+În acest moment, știm că dacă acest polinom are soluții reale, acestea sunt în intervalul \(t \in [0, 5]\).
+Prin încercări, găsim soluțiile \(t = 2\) și \(t = 3\). Dacă factorizăm polinomul la \(t - 2\) și la \(t - 3\) obținem:
+\[
+(t - 2)(t - 3)(t^2 - 5t + 44) = 0
+\]
+Calculând \(\Delta\) pentru polinomul de grad 2 rămas, observăm că este negativ, deci nu mai avem alte soluții în \(\mathbb{R}\).
+
+Scoatem \(x\) din \(t\) și avem soluțiile \(x = 16\), respectiv \(x = 81\).
+\end{proof}
+
+\begin{exercise}[4.25]
+Să se rezolve în \(\mathbb{R}\) sistemul de ecuații
+\[
+\begin{cases}
+    x + y = 3 \\
+    x^5 + y^5 = 33
+\end{cases}
+\]
+\end{exercise}
+\begin{proof}
+Toate polinoamele care apar în acest sistem sunt simetrice.
+O să le descompunem în polinoame simetrice fundamentale.
+
+Notăm polinoamele simetrice fundamentale în două necunoscute cu \(S = x + y\), \(P = x y\).
+
+Din prima ecuație avem că \(x + y = 3 \implies S = 3\).
+
+Încercăm să descompunem \(x^5 + y^5\):
+\begin{align*}
+    x^5 + y^5 &= (\underline{x + y})^5 - (5 x^4 y + 10 x^3 y^2 + 10 x^2 y^3 + 5 x y^4) \\
+    &= S^5 - 5 \underline{x y} (x^3 + 2 x^2 y + 2 x y^2 + y^3) \\
+    &= S^5 - 5P ((\underline{x + y})^3 - (x^2 y + x y^2)) \\
+    &= S^5 - 5P (S^3 - \underline{x y} (\underline{x + y})) \\
+    &= S^5 - 5P (S^3 - P S)
+\end{align*}
+
+Sistemul devine:
+\begin{align*}
+&\begin{cases}
+S = 3 \\
+S^5 -  5P (S^3 - P S) = 33
+\end{cases} \\
+&\iff 3^5 - 5P (3^3 - 3P) = 33 \\
+&\iff 243 - 5P (27 - 3P) = 33 \\
+&\iff 5P^2 - 45P + 70 = 0 \\
+&\iff P \in \Set{ 2, 7 }
+\end{align*}
+
+Acum trebuie să găsim două numere reale care să aibă suma egală cu 3 și produsul egal cu 2 (respectiv, suma 3 și produsul 7). Putem să le ghicim, sau putem să aplicăm invers relațiile lui Viète.
+
+Numerele care au suma \(S\) și produsul \(P\) sunt soluțiile ecuației \(x^2 - Sx + P = 0\).
+\[
+x^2 - 3x + 2 = 0 \iff x \in \Set{ 1, 2 }
+\]
+\[
+x^2 - 3x + 7 = 0 \iff \text{nu are soluții pe \(\mathbb{R}\)}
+\]
+
+Deci soluțiile găsite sunt \((x = 1, y = 2)\) și \((x = 2, y = 1)\).
+
+(Sistemul fiind simetric, dacă \((a, b)\) este soluție, atunci și \((b, a)\) este soluție)
+\end{proof}

@@ -1,0 +1,286 @@
+\section{Aritmetica în \texorpdfstring{\(\integers\)}{Z} și \texorpdfstring{\(K[X]\)}{K[X]}}
+
+\subsection{Divizibilitate. Algoritmul lui Euclid}
+
+\begin{exercise}[1.15]
+Calculați \((24, 54)\) în \(\integers\) cu algoritmul lui Euclid.
+\end{exercise}
+\begin{proof}
+Împărțim cu rest pe 54 la 24 (dacă am urma exact algoritmul ar trebui să împărțim pe 24 la 54 mai întâi, dar apoi tot la pasul acesta ajungem):
+\[
+    54 = 24 \cdot 2 + 6
+\]
+Acum împărțim cu rest pe 24 la 6:
+\[
+    24 = 6 \cdot 4 + 0
+\]
+Deoarece restul obținut este 0, algoritmul se termină. În concluzie, un c.m.m.d.c. al lui 24 și 54 este 6.
+\end{proof}
+
+\begin{exercise}[1.16]
+Calculați \((X^4 - 4X^3 + 1, X^3 - 3X^2 + 1)\) în \(\reals[X]\) cu algoritmul lui Euclid.
+\end{exercise}
+\begin{proof}
+Notăm \(f = X^4 - 4X^3 + 1\), \(g = X^3 - 3X^2 + 1\).
+Împărțim cu rest pe \(f\) la \(g\):
+\[
+\polylongdiv[style=B]{X^4 - 4X^3 + 1}{X^3 - 3X^2 + 1}
+\]
+Deci \(f = (X - 1) g + (- 3X^2 - X + 2)\). Notăm \(r_1 = -3X^2 - X + 2\). Acum împărțim cu rest pe \(g\) la \(r_1\):
+\[
+\polylongdiv[style=B]{X^3 - 3X^2 + 1}{-3X^2 - X + 2}
+\]
+Deci \(g = \left(-\frac{1}{3} X + \frac{10}{9}\right) r_1 + \left(\frac{16}{9} X - \frac{11}{9}\right)\).
+
+Dacă înmulțim un polinom cu un element inversabil din inelul de coeficienți, noul polinom este asociat în divizibilitate cu cel precedent. Deci o să înmulțim cu numitorul comun (care este inversabil, deoarece lucrăm în \(\reals\)) și notăm \(r_2 = 16 X - 11\) pentru a simplifica calculele.
+
+Împărțim cu rest pe \(r_1\) la \(r_2\):
+\[
+\polylongdiv[style=B]{-3X^2 - X + 2}{16 X - 11}
+\]
+Deci \(r_1 = \left(-\frac{3}{16} X - \frac{49}{256}\right) r_2 + (-\frac{27}{256})\).
+O să înmulțim restul obținut cu \(-\frac{256}{27}\). Notăm \(r_3 = 1\).
+
+Împărțim cu rest pe \(r_2\) la \(r_3\):
+\[
+\polylongdiv[style=B]{16 X - 11}{1}
+\]
+De unde rezultă \(r_2 = 1 \cdot r_3 + 0\). Ultimul rest nenul este \(1\), deci cele două polinoame sunt prime între ele: \((X^4 - 4X^3 + 1, X^3 - 3X^2 + 1) = 1\).
+\end{proof}
+
+\begin{exercise}[1.22]
+Determinați \((X^2 - 1) \rationals[X] \cap (X^3 - 1) \rationals[X]\) și \((X^2 - 1) \rationals[X] + (X^3 - 1) \rationals[X]\).
+\end{exercise}
+\begin{proof}
+Ne folosim de proprietățile din curs: intersecția a două ideale generate de un singur element este idealul generat de c.m.m.m.c.-ul al celor două elemente, respectiv pentru adunare de c.m.m.d.c.-ul celor două elemente.
+
+Pentru a fi mai ușor să găsim c.m.m.d.c.-ul și c.m.m.m.c.-ul, descompunem polinoamele în factori ireductibili din \(\rationals[X]\):
+\begin{align*}
+    X^2 - 1 &= (X - 1)(X + 1) \\
+    X^3 - 1 &= (X - 1)(X^2 + X + 1)
+\end{align*}
+Obținem \([X^2 - 1, X^3 - 1] = (X - 1)(X + 1)(X^2 + X + 1)\) și \((X^2 - 1, X^3 - 1) = X - 1\).
+
+Deci
+\begin{align*}
+    (X^2 - 1) \rationals[X] \cap (X^3 - 1) \rationals[X] &= ((X - 1)(X + 1)(X^2 + X + 1)) \rationals[X] \\
+    (X^2 - 1) \rationals[X] + (X^3 - 1) \rationals[X] &= (X - 1) \rationals[X]
+\end{align*}
+\end{proof}
+
+\subsection{Elemente prime. Elemente ireductibile}
+
+\begin{exercise}[2.10]
+Determinați polinoamele ireductibile de grad \(\leq 5\) din \(\integersmod{2}[X]\).
+\end{exercise}
+\begin{proof}
+Sunt cel mult \(2^6 = 64\) polinoame de grad \(\leq 5\) în \(\integersmod{2}[X]\). Ca să nu fie nevoie să le încercăm pe toate, facem câteva observații ajutătoare:
+\begin{enumerate}
+    \item Polinoamele de grad \(\leq 1\) sunt sigur ireductibile: \(\widehat{0}, \widehat{1}, \widehat{X}, \widehat{X + 1}\).
+    
+    \item Polinoamele de grad \(\geq 2\) care nu au un termen liber \(\widehat{1}\) sunt sigur reductibile, pentru că se divid prin \(\widehat{X}\).
+    
+    \item Dacă un polinom are rădăcina \(\alpha\), atunci sigur este reductibil (din Bézout, se divide prin \(X - \alpha\)). Deoarece lucrăm în \(\integersmod{2}\), este suficient să încercăm să înlocuim \(X\) cu \(\widehat{0}\) și \(\widehat{1}\).
+    
+    \item Pentru că \(\integersmod{2}\) este corp de caracteristică 2 (deoarece \(\widehat{1} + \widehat{1} = \widehat{0}\)), avem că \((a + b)^2 = a^2 + b^2\) (sau mai general, \((\sum x)^2 = \sum (x^2)\)).
+    
+    Deci orice polinom din \(\integersmod{2}[X]\) cu toate monoamele de grad par este reductibil. De exemplu, \(X^4 + X^2 + \widehat{1} = (X^2 + X + \widehat{1})^2\).
+    
+    \item În \(\integersmod{2}[X]\), dacă suma coeficienților unui polinom este un număr par, atunci acel polinom sigur are rădăcina \(\widehat{1}\), deci este reductibil.
+    
+    \item Pe măsură ce construim lista, dacă observăm că un polinom este egal cu produsul altor polinoame deja scrise, atunci este reductibil.
+\end{enumerate}
+
+Lista polinoamelor ireductibile de grad \(\leq 5\) din \(\integersmod{2}[X]\):
+\begin{itemize}
+    \item Grad \(\leq 1\): \(0\), \(1\), \(X\), \(X + 1\)
+    \item Grad 2: \(X^2 + X + 1\)
+    \item Grad 3: \(X^3 + X^2 + 1\), \(X^3 + X + 1\)
+    \item Grad 4: \(X^4 + X^3 + X^2 + X + 1\), \(X^4 + X^3 + 1\), \(X^4 + X + 1\)
+    \item Grad 5: \(
+        X^5 + X^2 + 1,
+        X^5 + X^3 + 1,
+        X^5 + X^3 + X^2 + X + 1,
+        X^5 + X^4 + X^2 + X + 1,
+        X^5 + X^4 + X^3 + X + 1,
+        X^5 + X^4 + X^3 + X^2 + 1
+    \)
+\end{itemize}
+\end{proof}
+
+\begin{exercise}[2.11]
+Descompuneți polinomul \(f = X^{56} - X^{49} - X^7 + \widehat{1}\) în produs de polinoame ireductibile în \(\integersmod{7}[X]\).
+\end{exercise}
+\begin{proof}
+Notăm \(Y = X^7\). Polinomul inițial este \(f = Y^8 - Y^7 - Y + \widehat{1}\).
+
+Observăm că \(\widehat{1}\) este o rădăcină (multiplă) a polinomului. Tot împărțim prin \(Y - \widehat{1}\) și obținem:
+\begin{align*}
+    f &= Y^8 - Y^7 - Y + 1 \\
+    &= (Y - \widehat{1}) (Y^7 - \widehat{1}) \\
+    &= (Y - \widehat{1})^2 (Y^6 + Y^5 + Y^4 + Y^3 + Y^2 + Y + \widehat{1}) \\
+    &= (Y - \widehat{1})^3 (Y^5 + \widehat{2} Y^4 + \widehat{3} Y^3 + \widehat{4} Y^2 + \widehat{5} Y - \widehat{1}) \\
+    &= (Y - \widehat{1})^4 (Y^4 + \widehat{3} Y^3 + \widehat{6} Y^2 + \widehat{3} Y + \widehat{1}) \\
+    &= (Y - \widehat{1})^5 (Y^3 + \widehat{4} Y^2 + \widehat{3} Y - \widehat{1}) \\
+    &= (Y - \widehat{1})^6 (Y^2 + \widehat{5} Y + \widehat{1}) \\
+    &= (Y - \widehat{1})^7 (Y - \widehat{1}) \\
+    &= (Y - \widehat{1})^8
+\end{align*}
+
+Deci polinomul inițial este \(f = (Y - \widehat{1})^8 = (X^7 - \widehat{1})^8\). Pe baza calculelor deja efectuate pentru \(Y\), acesta este egal cu \(((X - \widehat{1})^7)^8 = (X - \widehat{1})^{56}\).
+\end{proof}
+
+\begin{exercise}[2.17]
+Determinați c.m.m.d.c. și c.m.m.m.c. pentru polinoamele \(f = (X - 1)(X^2 - 1)(X^3 - 1)(X^4 - 1)\) și \(g = (X + 1)(X^2 + 1)(X^3 + 1)(X^4 + 1)\) din \(\rationals[X]\).
+\end{exercise}
+\begin{proof}
+Deoarece polinoamele sunt deja scrise ca produs de alte polinoame, începem prin a descompune cele două polinoame în produs de factori ireductibili peste \(\rationals[X]\). Avem că
+\begin{align*}
+    f &= (X - 1)(X - 1)(X + 1)(X - 1)(X^2 + X + 1)(X - 1)(X + 1)(X^2 + 1) \\
+    &= (X - 1)^3 (X + 1)^2 (X^2 + 1) (X^2 + X + 1) \\
+    g &= (X + 1)(X^2 + 1)(X^3 + 1)(X^4 + 1)
+\end{align*}
+
+Pentru a găsi c.m.m.d.c.-ul, luăm toți factorii primi comuni la puterea cea mai mică.
+\[
+(f, g) = (X + 1)(X^2 + 1)
+\]
+
+Pentru c.m.m.m.c., luăm toți factorii primi o singură dată, la puterea cea mai mare.
+\[
+[f, g] = (X - 1)^3 (X + 1)^2 (X^2 + 1)(X^3 + 1)(X^2 + X + 1)(X^4 + 1)
+\]
+\end{proof}
+
+\subsection{Teorema fundamentală a algebrei}
+
+\begin{exercise}[3.7]
+Arătați că polinomul \(X^n - 2\) este ireductibil în \(\rationals[X]\) pentru orice \(n \geq 1\).
+\end{exercise}
+\begin{proof}
+~
+\begin{itemize}
+    \item Pentru \(n = 1\), \(X - 2\) este polinom de grad 1, deci ireductibil.
+    
+    \item Pentru \(n = 2\), rădăcinile polinomului sunt \(\pm \sqrt{2}\), care nu aparțin lui \(\rationals\), deci polinomul este ireductibil.
+    
+    \item Pentru \(n \geq 3\), facem observația că polinomul este reductibil peste \(\complex[X]\), soluțiile fiind rădăcinile de ordin \(n\) ale lui 2.
+    Deci \(X^n - 2\) mai poate fi scris ca
+    \[
+        X^n - 2 = (X - \varepsilon_0) \dots (X - \varepsilon_{n - 1})
+    \]
+    unde \(\varepsilon_k = \sqrt[n]{2} (\cos \frac{2 k \pi}{n} + i \sin \frac{2 k \pi}{n})\). De aici rezultă că \((-1)^n \cdot \varepsilon_0 \cdot \dots \cdot \varepsilon_n = -2\).
+    
+    Să presupunem că putem scrie \(X^n - 2\) ca produs de polinoame ireductibile peste \(\rationals[X]\):
+    \[
+        X^n - 2 = (X^{k_1} + \dots + a_{1}) \dots (X^{k_r} + \dots + a_{r})
+    \]
+    Toate aceste polinoame trebuie să fie de grad cel puțin 2, pentru că rădăcinile polinomului nu sunt numere raționale. 
+    
+    Dacă egalăm cele două descompuneri, și ne uităm la termenii liberi care apar când calculăm produse dintre unii termeni, am obține că un produs de numere raționale \(a_{i_1} \dots a_{i_p}\) este egal cu un produs de numere complexe \(\varepsilon_{j_1} \dots \varepsilon_{j_r}\). Deci polinomul nu poate fi descompus peste \(\rationals\).
+\end{itemize}
+\end{proof}
+
+\begin{exercise}[3.8]
+Descompuneți polinomul \(X^{n} - 1, 1 \leq n \leq 6\), în produs de polinoame ireductibile în \(\rationals[X]\), \(\reals[X]\), respectiv \(\complex[X]\).
+\end{exercise}
+\begin{proof}
+~
+\begin{itemize}
+    \item Pentru \(n = 1\), polinomul \(X - 1\) este deja ireductibil, fiind de grad 1.
+    
+    \item Pentru \(n = 2\), polinomul \(X^2 - 1\) se descompune ca \((X - 1)(X + 1)\).
+    
+    \item Pentru \(n = 3\), polinomul \(X^3 - 1\) se descompune ca \((X - 1)(X^2 + X + 1)\). Peste \(\rationals\) și \(\reals\), factorul \(X^2 + X + 1\) este ireductibil, fiind de gradul 2, cu \(\Delta < 0\).
+    
+    Peste \(\complex\), descompunerea completă este \((X - 1)(X - e^{i \frac{2 \pi}{3}})(X - e^{i \frac{2 \pi}{3}})\).
+    
+    \item Pentru \(n = 4\), polinomul \(X^4 - 1\) se descompune ca \((X^2 - 1)(X^2 + 1) = (X - 1)(X + 1)(X^2 + 1)\). Aceasta este descompunerea în factori ireductibili peste \(\rationals\) și \(\reals\).
+    
+    Peste \(\complex\) polinomul se descompune ca \((X - 1)(X + 1)(X - i)(X + i)\).
+    
+    \item Pentru \(n = 5\), polinomul \(X^5 - 1\) se descompune ca \((X - 1)(X^4 + X^3 + X^2 + X + 1)\). Această descompunere este ireductibilă peste \(\rationals\).
+    
+    Peste \(\reals\) mai putem descompune polinomul în \((X - 1)(X^2 + \frac{1 - \sqrt{5}}{2} X + 1)(X^2 + \frac{1 + \sqrt{5}}{2} X + 1)\).
+    
+    Peste \(\complex\) polinomul se descompune complet în \((X - \varepsilon_0) \dots (X - \varepsilon_4)\), unde \(\varepsilon_k = \cos \frac{2 k \pi}{5} + i \sin \frac{2 k \pi}{5}\).
+    
+    \item Pentru \(n = 6\), putem scrie \(X^6 - 1\) ca \((X^3 - 1)(X^3 + 1)\). Deja am analizat descompunerea lui \(X^3 - 1\).
+    
+    În ceea ce privește \(X^3 + 1\), acest polinom se descompune în \((X + 1)(X^2 - X + 1)\). Aceasta este descompunerea finală peste \(\rationals\) și \(\reals\), dar peste \(\complex\) mai putem descompune \(X^2 - X + 1\) în \((X - \varepsilon_1)(X - \varepsilon_2)\), unde \(\varepsilon_k = - (\cos \frac{2 k \pi}{3} + i \sin \frac{2 k \pi}{3})\).
+\end{itemize}
+\end{proof}
+
+\subsection{Teorema chineză a resturilor}
+
+\begin{exercise}[4.1]
+Să se afle cea mai mică soluție pozitivă a sistemului de congruențe
+\[
+\begin{cases}
+    x \equiv 5 \mod{18} \\
+    x \equiv 27 \mod{35}
+\end{cases}
+\]
+\end{exercise}
+\begin{proof}
+Deoarece 18 și 35 sunt prime între ele, putem aplica teorema chineză a resturilor.
+Începem prin a găsi inversul modular al lui 18 în \(\integersmod{35}\), respectiv al lui 35 în \(\integersmod{18}\) (putem face asta folosind algoritmul lui Euclid extins):
+\[
+\begin{cases}
+    18 \cdot 2 &\equiv 1 \mod{35} \\
+    35 \cdot 17 &\equiv 1 \mod{18}
+\end{cases}
+\]
+Atunci \(x = 27 \cdot (18 \cdot 2) + 5 \cdot (35 \cdot 17)\) este o soluție pozitivă a sistemului.
+Pentru a găsi cea mai mică soluție pozitivă, calculăm restul împărțirii lui \(x\) la \(18 \cdot 35\):
+\[
+    27 \cdot (18 \cdot 2) + 5 \cdot (35 \cdot 17) \equiv 167 \mod{18 \cdot 35}
+\]
+Verificare:
+\[
+\begin{cases}
+    167 &\equiv 5 \mod{18} \\
+    167 &\equiv 27 \mod{35}
+\end{cases}
+\]
+\end{proof}
+
+\begin{exercise}[4.2]
+Rezolvați sistemul de congruențe
+\[
+\begin{cases}
+6x \equiv 2 \mod{8} \\
+5x \equiv 5 \mod{6}
+\end{cases}
+\]
+\end{exercise}
+\begin{proof}
+Deoarece 8 și 6 nu sunt prime între ele, nu putem aplica teorema chineză a resturilor. Încercăm să mai simplificăm sistemul pentru a găsi o soluție manual.
+
+În prima ecuație putem simplifica cu 2:
+\[
+\begin{cases}
+3x \equiv 1 \mod{4} \\
+5x \equiv 5 \mod{6}
+\end{cases}
+\]
+
+Putem înmulți prima ecuație cu inversul modulo 4 al lui 3, și a doua ecuație cu inversul modulo 6 al lui 5. Sistemul devine:
+\[
+\begin{cases}
+x \equiv 3 \mod{4} \\
+x \equiv 1 \mod{6}
+\end{cases}
+\]
+
+Trebuie să găsim soluția care este de forma \(x = 4p + 3 = 6q + 1\) pentru un \(p, q \in \integers\). De asemenea, este suficient să căutăm soluția printre numerele cuprinse între 0 și \(4 \cdot 6 = 24\).
+
+Observăm că 19 este o soluție:
+\[
+\begin{cases}
+19 \equiv 3 \mod{4} \\
+19 \equiv 1 \mod{6}
+\end{cases}
+\]
+De asemenea, toate numerele de forma \(24k + 19, \forall k \in \integers\) sunt soluții.
+\end{proof}
