@@ -1,0 +1,170 @@
+\section*{Examen Mincu 2020 Rezolvat}
+
+Fiecare student a primit un \(k\) și un \(l\) diferit.
+
+Vom lua ca exemplu \(k = 73\) și \(l = 38\).
+
+\begin{enumerate}
+\item Considerăm corespondențele \(f, g, h \colon \rationals \to \rationals\) date astfel:
+\[
+f\left(\frac{a}{b}\right) = \frac{a^{2k}}{b^{2l + 1}} \text{ pentru orice } (a, b) \in \integers \times \integers^*,
+\]
+\[
+g\left(\frac{a}{b}\right) = \frac{a^{2k}}{b^{2l + 1}} \text{ pentru orice } (a, b) \in \integers \times \integers^* \text{ pentru care } (a, b) = 1,
+\]
+\[
+h\left(\frac{a}{b}\right) = \frac{a^{2k}}{b^{2l + 1}} \text{ pentru orice } (a, b) \in \integers \times \naturals^* \text{ pentru care } (a, b) = 1.
+\]
+
+\begin{enumerate}
+    \item Care dintre aceste corespondențe este funcție? Justificați!
+    \begin{proof}
+    În toate aceste cazuri, numitorul este diferit de zero, deci fracțiile care apar sunt bine definite pe întreg domeniul.
+
+    O proprietate a unei funcții este că, atâta timp cât îi dăm același input, o să aibă același rezultat.
+
+    Dacă ne uităm la \(f\), putem avea aceași fracție scrisă în două moduri, de exemplu \(\frac{1}{2} = \frac{2}{4}\), dar rezultatul diferă:
+    \[f\left(\frac{1}{2}\right) = \frac{1}{2^{77}} \neq \frac{1}{2^7} = \frac{2^{146}}{4^{77}} = f\left(\frac{2}{4}\right)\]
+
+    Pentru \(g\), observăm că apare o problemă legată de semne. Să zicem că luăm \(\frac{-1}{-1} = \frac{1}{1}\). Atunci avem:
+    \[g\left(\frac{-1}{-1}\right) = \frac{1}{-1} \neq \frac{1}{1} = g\left(\frac{1}{1}\right)\]
+
+    La \(h\), modul în care este definită funcția garantează că nu întâmpinăm vreuna dintre probleme. Fracția este ireductibilă și semnul rezultatului este întotdeauna pozitiv.
+    \end{proof}
+
+    \item Pentru acelea dintre ele care sunt funcții, precizați (cu justificare!) dacă sunt sau nu injective, respectiv surjective.
+
+    \begin{proof}
+    Pentru \(h\):
+    \begin{itemize}
+        \item nu este injectivă, dacă luăm \(\frac{-1}{1}\) și \(\frac{1}{1}\) obținem același rezultat, dar parametrii sunt diferiți.
+        \item nu este surjectivă, deoarece rezultatul este mereu pozitiv, deci nu acoperă tot \(\rationals\).
+    \end{itemize}
+    \end{proof}
+\end{enumerate}
+
+\item Considerăm grupul \(G = \integersmod{k} \times S_l\) (în cazul nostru \(\integersmod{73} \times S_{38}\)).
+\begin{enumerate}
+    \item Decideți dacă \(G\) este sau nu ciclic.
+    \begin{proof}
+    Vom arată că nu este ciclic bazându-ne pe faptul că \(S_n\) pentru \(n \geq 3\) nu este ciclic.
+
+    Să presupunem prin reducere la absurd că \(G\) este ciclic, deci există un generator \((\widehat{a}, \tilde{b}) \in G\). Asta implică că \(n(\widehat{a}, \tilde{b})\) atinge toate valorile lui \(G\), deci și \(n \widehat{a}\) și \(\tilde{b}^n\) ating, eventual, toate valorile din \(\integersmod{73}\), respectiv din \(S_{38}\).
+
+    Deci \(\tilde{b}\) este un generator pentru \(S_{38}\), deci \(S_{38}\) este ciclic. Dar asta contrazice faptul că \(S_{38}\) \href{https://math.stackexchange.com/a/1196364/388180}{nu este ciclic}.
+    \end{proof}
+
+    \item Determinați \(\mathop{Hom}(\rationals, G)\).
+    \begin{proof}
+    Fie \(f \colon \rationals \to G\) un morfism. Notăm \(f(1) = a = (\widehat{x}, \tilde{y}) \in G\).
+
+    Atunci
+    \[f(2) = f(1 + 1) = f(1) + f(1) = (\widehat{x}, \tilde{y}) + (\widehat{x}, \tilde{y}) = (\widehat{x} + \widehat{x}, \tilde{y} \circ \tilde{y}) = 2a\]
+
+    Analog
+    \[f(-1) = -f(1) = - (\widehat{x}, \tilde{y}) = (-\widehat{x}, \tilde{y}^{-1}) = -a\]
+
+    Deci \(f(n) = n a, \forall n \in \integers\).
+
+    De asemenea, avem
+    \[a = f(1) = f\left(\frac{1}{2} + \frac{1}{2}\right) = 2 f\left(\frac{1}{2}\right)\]
+
+    Dacă ne uităm la numerele de forma \(\frac{1}{k}\), obținem asemănător că
+    \[a = k f\left(\frac{1}{k}\right), \forall k \in \naturals^*\]
+
+    Atunci, pentru \(k = 73\) avem
+    \[a = 73 f\left(\frac{1}{73}\right) \implies \widehat{x} = 73 \cdot \dots = \widehat{0}\]
+
+    Facem același lucru pentru \(k = \abs{S_{38}}\) și obținem că \(\tilde{y} = \tilde{1}\) (permutarea identică).
+
+    Deci \(a = (\widehat{0}, \tilde{1})\), iar \(f(q) = (\widehat{0}, \tilde{1}), \forall q \in \rationals\).
+    \end{proof}
+
+    \item Determinați un subgrup \(H\) normal, propriu și netrivial al lui \(G\).
+    \begin{proof}
+    \(\integersmod{73}\) este un subgrup normal al lui \(\integersmod{73}\).
+
+    \(A_{38}\) (subgrupul permutărilor pare) este un subgrup normal, propriu și netrivial al lui \(S_{38}\).
+
+    \(H = \integersmod{73} \times A_{38}\) este un subgrup normal, propriu și netrivial al lui \(G\).
+    \end{proof}
+
+    \item Descrieți, eventual până la izomorfism, grupul factor \(G/H\).
+    \begin{proof}
+    Când factorizăm \(S_{38}\) prin \(A_{38}\) obținem două clase de resturi: clasa permutărilor pare și clasa permutărilor impare. Având exact două elemente, grupul factor este izomorf cu \(\integersmod{2}\).
+
+    \[
+        \frac{G}{H} = \frac{\integersmod{73} \times S_{38}}{\integersmod{73} \times A_{38}} \cong \frac{\integersmod{73}}{\integersmod{73}} \times \frac{S_{38}}{A_{38}} \cong \set{1} \times \integersmod{2} \cong \integersmod{2}
+    \]
+    \end{proof}
+\end{enumerate}
+
+\item
+\begin{enumerate}
+    \item Determinați numărul elementelor de ordin \(10k\) din grupul \(\integersmod{2020k}\).
+
+    \begin{proof}
+    Trebuie să găsim numărul elementelor de ordin \(730\) din grupul \(\integersmod{2020 \cdot 73}\).
+
+    Observăm că \(730 \mid (2020 \cdot 73)\), deci există elemente de acest ordin.
+
+    Ne folosim de raționamentul de \href{http://facstaff.cbu.edu/~wschrein/media/M402\%20Notes/M402L54.pdf}{aici}, care ne spune că numărul cerut este fix \(\phi(730)\), adică numărul de numere de la \(1\) la \(729\) inclusiv prime față de \(730\).
+
+    Putem calcula \(\phi(730)\) foarte rapid descompunând numărul în factori primi: \(730 = 2 \cdot 5 \cdot 73\). Atunci \(\phi(730) = \phi(2 \cdot 5 \cdot 73)\), care \href{https://www.wolframalpha.com/input/?i=phi\%28730\%29}{după multe calcule} iese ca fiind \(288\).
+    \end{proof}
+
+    \item Considerăm permutarea \(\sigma\) a literelor alfabetului românesc scrisă ca produs de cicluri astfel: luați (toate) numele și toate prenumele dvs. (așa cum apar în actul de identitate, fără inițiala tatălui, dar cu diacritice) și scrieți-le pe un rând, fără spații. Descompuneți apoi șirul de caractere obținut în blocuri, cu ajutorul parantezelor, închizând fiecare paranteză exact înaintea literei care ar genera o primă repetiție în blocul închis de acea paranteză.
+
+    De exemplu, numele Dulgeru Iancu R.D. Mihaela Florica generază permutarea
+    \[\sigma = (dulger)(uianc)(umihael)(afloric)(a)\]
+
+    Descompuneți \(\sigma\) în produs de transpoziții și în produs de cicluri disjuncte. Calculați \(\sigma^3\), \(\sigma^{-1}\), \(\varepsilon(\sigma)\), \(\ord(\sigma)\) și \(\sigma^{2020}\).
+
+    \begin{proof}
+    Vom lucra cu permutarea dată ca exemplu.
+
+    Descompunerea ca transpoziții se poate face destul de ușor, doar spargem ciclurile:
+    \begin{gather*}
+        \sigma = (du)(ul)(lg)(ge)(er) \\
+        (ui)(ia)(an)(nc) \\
+        (um)(mi)(ih)(ha)(ae)(el) \\
+        (af)(fl)(lo)(or)(ri)(ic)
+    \end{gather*}
+    Nu am mai scris ultimul ciclu \((a)\) pentru că fiind un ciclu cu un singur element, era practic permutarea identică.
+
+    Deși permutarea este deja descompusă în cicluri, acestea \textbf{nu} sunt disjuncte. Trebuie să înmulțim pe rând transpozițiile, urmărim parcursul fiecărei litere să vedem ce cicluri disjuncte obținem.
+
+    De exemplu, dacă am avea \((a b c)(a d)\), am observa că:
+    \begin{itemize}
+        \item \(a\) se duce în \(d\), care nu e afectat de \((a b c)\)
+        \item \(b\) nu e afectat de \((a d)\), se duce în \(c\)
+        \item \(c\) nu e afectat de \((a d)\), se duce în \(a\)
+        \item \(d\) se duce în \(a\), care se duce în \(b\)
+    \end{itemize}
+    Deci scris ca ciclu disjunct ar fi \((a d b c)\).
+
+    Dacă la unul dintre acești pași ne întoarcem la începutul ciclului pe care îl calculăm, deschidem un nou ciclu cu una dintre literele rămase și continuăm algoritmul.
+
+    Efectuând calcule asemănătoare, obținem pe rând:
+    \begin{gather*}
+        (dulger)(uianc) = (duianclger) \\
+        (duianclger)(umihael) = (dumar)(ihncl)(ge) \\
+        (dumar)(ihncl)(ge)(afloric) = (dumafilo)(hncr)(ge)
+    \end{gather*}
+    Avem 3 cicluri disjuncte de lungimi 8, 4, și 2.
+
+    Pentru a calcula \(\sigma^3\), e suficient să parcurgem din 3 în 3 ciclurile:
+    \[\sigma^3 = (dalufomi) (hrcn) (ge)\]
+
+    Pentru a calcula \(\sigma^{-1}\), citim invers ciclurile:
+    \[\sigma^{-1} = (olifamud) (rcnh) (eg)\]
+
+    Pentru a calcula \(\varepsilon(\sigma)\), numărăm câte transpoziții avem: 21, deci permutarea este impară.
+
+    Pentru a calcula \(\ord(\sigma)\), calculăm cel mai mic multiplu comun al lui 8, 4 și 2, adică 8.
+
+    Pentru a calcula \(\sigma^{2020}\), observăm că \(2 \mid 2020\) și \(4 \mid 2020\), deci ciclurile de aceste lungime dispar. De asemenea, \(2020 = 2016 + 4\), deci este suficient să calculăm puterea a 4-a a ciclului de lungime 8:
+    \[\sigma^{2020} = (df)(ao)(lm)(ui)\]
+    \end{proof}
+\end{enumerate}
+\end{enumerate}
